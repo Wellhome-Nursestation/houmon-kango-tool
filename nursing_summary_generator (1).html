@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>看護記録 月次サマリー生成</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+  :root {
+    --bg:#f0f4f8; --surface:#fff; --surface2:#f8fafc;
+    --border:#e2e8f0; --border2:#cbd5e1;
+    --text:#1e293b; --text2:#64748b;
+    --accent:#2563eb; --accent-bg:#eff6ff; --accent-h:#1d4ed8;
+    --ok:#059669; --ok-bg:#ecfdf5;
+    --warn:#d97706; --warn-bg:#fffbeb;
+    --purple:#7c3aed; --purple-bg:#f5f3ff;
+    --r:10px; --sh:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;font-size:14px;background:var(--bg);color:var(--text);min-height:100vh}
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;box-shadow:var(--sh)}
+  .logo{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+  header h1{font-size:16px;font-weight:700}
+  header span{font-size:12px;color:var(--text2)}
+  main{max-width:960px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);padding:20px;margin-bottom:16px}
+  .card-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  .badge{width:20px;height:20px;background:var(--accent);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+  .badge.p{background:var(--purple)}
+  .drop{border:2px dashed var(--border2);border-radius:var(--r);padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface2)}
+  .drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-bg)}
+  .drop.pp:hover,.drop.pp.over{border-color:var(--purple);background:var(--purple-bg)}
+  .drop input{display:none}
+  .drop .ic{font-size:32px;margin-bottom:6px}
+  .drop p{color:var(--text2);font-size:13px}
+  .drop strong{color:var(--accent)}
+  .drop.pp strong{color:var(--purple)}
+  .pdf-entry{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--purple-bg);border:1px solid #ddd6fe;border-radius:8px;margin-top:8px}
+  .pdf-tag{background:var(--purple);color:#fff;border-radius:4px;padding:2px 6px;font-size:11px;font-weight:700;white-space:nowrap;margin-top:2px}
+  .pdf-info{flex:1}
+  .pdf-nm{font-size:13px;font-weight:600}
+  .pdf-mo{font-size:11px;color:var(--text2);margin-top:2px}
+  .pdf-rm{background:none;border:none;cursor:pointer;color:var(--text2);font-size:16px;padding:0 4px}
+  .pdf-rm:hover{color:#dc2626}
+  .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:12px}
+  .pb{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;text-align:left;transition:all .15s;display:flex;flex-direction:column;gap:2px}
+  .pb:hover{border-color:var(--accent);background:var(--accent-bg)}
+  .pb.sel{border-color:var(--accent);background:var(--accent-bg);box-shadow:0 0 0 2px rgba(37,99,235,.2)}
+  .pb.hpdf{border-left:3px solid var(--purple)}
+  .pb .nm{font-size:13px;font-weight:600}
+  .pb .ct{font-size:11px;color:var(--text2)}
+  .pb .pp{font-size:10px;color:var(--purple);font-weight:600}
+  .pb.done .nm::after{content:' ✓';color:var(--ok)}
+  .mg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .mc{padding:6px 14px;border:1px solid var(--border);border-radius:20px;background:var(--surface);cursor:pointer;font-size:12px;transition:all .15s}
+  .mc:hover{border-color:var(--accent);background:var(--accent-bg)}
+  .mc.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn-gen{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:16px}
+  .btn-gen:hover:not(:disabled){background:var(--accent-h)}
+  .btn-gen:disabled{opacity:.5;cursor:not-allowed}
+  .rb{margin-top:16px}
+  .rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+  .rn{font-size:15px;font-weight:700}
+  .rm{font-size:12px;color:var(--text2)}
+  .rt{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:13px;line-height:1.8;white-space:pre-wrap;min-height:80px}
+  .rt.ld{color:var(--text2);font-style:italic}
+  .rt.er{color:#dc2626;background:#fef2f2;border-color:#fca5a5}
+  .btn-cp{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border2);border-radius:6px;background:var(--surface);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text)}
+  .btn-cp:hover{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
+  .btn-cp.cp{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+  .warn-box{background:var(--warn-bg);border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400e;margin-bottom:16px}
+  .pb-bar{height:4px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
+  .pb-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .3s}
+  .sa{font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;text-decoration:underline}
+  .rw{display:flex;flex-direction:column;gap:16px}
+  .sb{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-right:4px}
+  .sb-c{background:#dbeafe;color:#1e40af}
+  .sb-p{background:#ede9fe;color:#5b21b6}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">📋</div>
+  <div>
+    <h1>看護記録 月次サマリー生成</h1>
+    <span>カイポケCSV ＋ 経過記録PDF → 利用者別月次まとめ</span>
+  </div>
+</header>
+<main>
+
+<div class="card">
+  <div class="card-title"><span class="badge">1</span> カイポケCSVを読み込む</div>
+  <div class="drop" id="dCSV" onclick="document.getElementById('fCSV').click()">
+    <input type="file" id="fCSV" accept=".csv">
+    <div class="ic">📂</div>
+    <p><strong>クリックしてCSVを選択</strong>またはここにドロップ</p>
+    <p style="margin-top:4px">看護記録書Ⅱ（CP932エンコード）</p>
+  </div>
+  <div id="csvSt" style="margin-top:10px;font-size:13px;color:var(--text2)"></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="badge p">＋</span> 経過記録PDFを追加（任意）</div>
+  <div class="drop pp" id="dPDF" onclick="document.getElementById('fPDF').click()">
+    <input type="file" id="fPDF" accept=".pdf" multiple>
+    <div class="ic">📄</div>
+    <p><strong>PDFを追加</strong>（複数可）</p>
+    <p style="margin-top:4px">施設の経過記録PDF — 利用者名と日付を自動抽出します</p>
+  </div>
+  <div id="pdfList"></div>
+</div>
+
+<div class="card" id="step2" style="display:none">
+  <div class="card-title">
+    <span class="badge">2</span> 対象月と利用者を選択
+  </div>
+  <div style="font-size:12px;color:var(--text2);margin-bottom:6px">対象月</div>
+  <div id="mGrid" class="mg"></div>
+  <div style="margin-top:16px;font-size:12px;color:var(--text2);margin-bottom:2px;display:flex;align-items:center;justify-content:space-between">
+    <span>利用者</span>
+    <span><button class="sa" onclick="selAll()">全選択</button>　<button class="sa" onclick="clrAll()">全解除</button></span>
+  </div>
+  <div id="pGrid" class="pg"></div>
+  <div style="margin-top:12px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <button class="btn-gen" id="genBtn" onclick="genAll()" disabled>✨ サマリーを生成</button>
+    <span id="selCnt" style="font-size:12px;color:var(--text2)"></span>
+  </div>
+</div>
+
+<div class="card" id="step3" style="display:none">
+  <div class="card-title"><span class="badge">3</span> 生成結果</div>
+  <div class="warn-box">⚠️ AIによる要約です。カイポケへのコピー前に必ず内容を確認してください。</div>
+  <div id="progArea" style="display:none;margin-bottom:16px">
+    <div style="font-size:12px;color:var(--text2)" id="progLbl">生成中...</div>
+    <div class="pb-bar"><div class="pb-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+  <div id="resWrap" class="rw"></div>
+</div>
+
+</main>
+<script>
+// ---- PDF.js setup ----
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// ---- state ----
+let csvRows = [];
+let pdfEntries = []; // {filename, patientName, byMonth:{YYYY-MM:[{date,time,content,recorder}]}, months:[]}
+let patientData = {};
+let selected = new Set();
+let selMonth = '';
+let availMonths = [];
+let results = {};
+
+// ================= CSV =================
+function parseCSVLine(line) {
+  const r=[]; let q=false,c='';
+  for(let i=0;i<line.length;i++){
+    const ch=line[i];
+    if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++}else q=!q}
+    else if(ch===','&&!q){r.push(c);c=''}
+    else c+=ch;
+  }
+  r.push(c); return r;
+}
+document.getElementById('fCSV').addEventListener('change',e=>{if(e.target.files[0])loadCSV(e.target.files[0])});
+setupDrop('dCSV',f=>loadCSV(f));
+
+async function loadCSV(file){
+  const st=document.getElementById('csvSt');
+  st.textContent='読み込み中...';
+  try{
+    const buf=await file.arrayBuffer();
+    const text=new TextDecoder('shift-jis').decode(buf);
+    const lines=text.split(/\r?\n/).filter(l=>l.trim());
+    const hdr=parseCSVLine(lines[0]);
+    csvRows=[];
+    for(let i=1;i<lines.length;i++){
+      const v=parseCSVLine(lines[i]);
+      const o={};hdr.forEach((h,j)=>o[h]=v[j]||'');
+      csvRows.push(o);
+    }
+    st.innerHTML=`<span style="color:var(--ok)">✓ 読み込み完了</span>　${csvRows.length}件`;
+    rebuildUI();
+  }catch(e){st.innerHTML=`<span style="color:#dc2626">エラー: ${e.message}</span>`;}
+}
+
+// ================= PDF =================
+document.getElementById('fPDF').addEventListener('change',e=>{
+  [...e.target.files].forEach(loadPDF); e.target.value='';
+});
+setupDrop('dPDF',f=>loadPDF(f),true);
+
+async function loadPDF(file){
+  try{
+    const buf=await file.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    let fullText='';
+    for(let p=1;p<=pdf.numPages;p++){
+      const page=await pdf.getPage(p);
+      const tc=await page.getTextContent();
+      // join with newlines, preserving y-position breaks
+      let lastY=null; let pageText='';
+      tc.items.forEach(item=>{
+        if(lastY!==null && Math.abs(item.transform[5]-lastY)>3) pageText+='\n';
+        pageText+=item.str;
+        lastY=item.transform[5];
+      });
+      fullText+=pageText+'\n';
+    }
+    parsePDFText(fullText, file.name);
+    rebuildUI();
+  }catch(e){
+    console.error('PDF load error',e);
+    alert('PDF読み込みエラー: '+e.message);
+  }
+}
+
+function parsePDFText(text, filename){
+  // 利用者名抽出
+  const nameMatch = text.match(/利用者名\s+([^\s様]+\s*[^\s様]+)\s*様/);
+  const patientName = nameMatch ? nameMatch[1].trim() : filename.replace('.pdf','');
+
+  // 和暦→西暦変換
+  function toYYYYMM(reiwa, month){ return (2018+parseInt(reiwa))+''; }
+  function toISO(reiwaYear, month, day){
+    const y=2018+parseInt(reiwaYear);
+    return `${y}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+  }
+
+  const entries=[];
+  // パターン: 令和X年M月D日（曜）  または 令和X年M月D日
+  const dateRe=/令和(\d+)年(\d+)月(\d+)日/g;
+  const lines=text.split('\n');
+
+  let curDate='', curTime='', curContent='', curRecorder='';
+
+  function flush(){
+    if(curDate&&curContent.trim()){
+      entries.push({date:curDate,time:curTime,content:curContent.trim(),recorder:curRecorder.trim()});
+    }
+    curContent=''; curTime=''; curRecorder='';
+  }
+
+  const timeRe=/^(\d{1,2})[：:.](\d{2})/;
+  const recorderHint=/([^\s　]{2,6})\s*$/; // 行末の氏名っぽい文字列
+
+  lines.forEach(line=>{
+    line=line.trim();
+    if(!line) return;
+
+    const dm=line.match(/令和(\d+)年(\d+)月(\d+)日/);
+    if(dm){
+      flush();
+      curDate=toISO(dm[1],dm[2],dm[3]);
+      // 同行に時刻があるか
+      const tm=line.match(/(\d{1,2})[：:.](\d{2})/);
+      if(tm) curTime=`${String(tm[1]).padStart(2,'0')}:${tm[2]}`;
+      return;
+    }
+
+    if(!curDate) return; // ヘッダー前はスキップ
+
+    // 時刻だけの行
+    const tm=line.match(/^(\d{1,2})[：:.](\d{2})/);
+    if(tm && line.length<10){
+      // 短い行は時刻のみとみなす
+      if(curContent.trim()){flush();}
+      curTime=`${String(tm[1]).padStart(2,'0')}:${tm[2]}`;
+      return;
+    }
+
+    // 記録者っぽい行（2〜6文字、スペース含む和名、単独行）
+    if(/^[ぁ-ん\u30A0-\u30FF\u4E00-\u9FFF]{2,4}[\s　][ぁ-ん\u30A0-\u30FF\u4E00-\u9FFF]{1,5}$/.test(line) && line.length<=10){
+      curRecorder=line;
+      flush();
+      return;
+    }
+
+    curContent+=( curContent?'\n':'' )+line;
+  });
+  flush();
+
+  if(!entries.length) return;
+
+  // byMonth
+  const byMonth={};
+  entries.forEach(e=>{
+    const m=e.date.slice(0,7);
+    if(!byMonth[m])byMonth[m]=[];
+    byMonth[m].push(e);
+  });
+
+  // 重複チェック（同名患者のPDFがすでにあれば上書き確認なしで追加）
+  pdfEntries.push({
+    filename,
+    patientName,
+    byMonth,
+    months:Object.keys(byMonth).sort()
+  });
+  renderPDFList();
+}
+
+function renderPDFList(){
+  const list=document.getElementById('pdfList');
+  list.innerHTML='';
+  pdfEntries.forEach((e,i)=>{
+    const d=document.createElement('div');
+    d.className='pdf-entry';
+    d.innerHTML=`<span class="pdf-tag">PDF</span>
+      <div class="pdf-info">
+        <div class="pdf-nm">${e.patientName} — ${e.filename}</div>
+        <div class="pdf-mo">記録期間: ${e.months.join('、')}　（${e.months.reduce((s,m)=>s+(e.byMonth[m]?.length||0),0)}件）</div>
+      </div>
+      <button class="pdf-rm" onclick="rmPDF(${i})" title="削除">✕</button>`;
+    list.appendChild(d);
+  });
+}
+function rmPDF(i){ pdfEntries.splice(i,1); renderPDFList(); rebuildUI(); }
+
+// ================= UI =================
+function rebuildUI(){
+  if(!csvRows.length&&!pdfEntries.length) return;
+  const ms=new Set();
+  csvRows.forEach(r=>{ const m=(r['訪問日']||'').slice(0,7); if(m)ms.add(m); });
+  pdfEntries.forEach(e=>e.months.forEach(m=>ms.add(m)));
+  availMonths=[...ms].sort();
+
+  const mg=document.getElementById('mGrid');
+  mg.innerHTML='';
+  availMonths.forEach(m=>{
+    const c=document.createElement('button');
+    c.className='mc'+(m===selMonth?' sel':'');
+    c.textContent=m.replace('-','年')+'月';
+    c.onclick=()=>pickMonth(m);
+    mg.appendChild(c);
+  });
+
+  if(!selMonth&&availMonths.length){
+    selMonth=availMonths[availMonths.length-1];
+    mg.querySelectorAll('.mc').forEach((c,i)=>{ if(availMonths[i]===selMonth)c.classList.add('sel'); });
+  }
+
+  renderPatients();
+  document.getElementById('step2').style.display='block';
+}
+
+function pickMonth(m){
+  selMonth=m; selected.clear();
+  document.querySelectorAll('.mc').forEach((c,i)=>c.classList.toggle('sel',availMonths[i]===m));
+  renderPatients();
+}
+
+function renderPatients(){
+  patientData={};
+  csvRows.forEach(r=>{
+    if((r['訪問日']||'').slice(0,7)!==selMonth) return;
+    const n=(r['利用者名']||'').trim(); if(!n) return;
+    if(!patientData[n])patientData[n]=[];
+    patientData[n].push(r);
+  });
+  const pdfPt=new Set();
+  pdfEntries.forEach(e=>{ if(e.byMonth[selMonth])pdfPt.add(e.patientName); });
+  pdfPt.forEach(n=>{ if(!patientData[n])patientData[n]=[]; });
+
+  const grid=document.getElementById('pGrid');
+  grid.innerHTML='';
+  Object.entries(patientData).sort((a,b)=>a[0].localeCompare(b[0],'ja')).forEach(([n,rows])=>{
+    const hasPDF=pdfPt.has(n);
+    const pdfCnt=pdfEntries.reduce((s,e)=>s+(e.patientName===n&&e.byMonth[selMonth]?e.byMonth[selMonth].length:0),0);
+    const btn=document.createElement('button');
+    btn.className='pb'+(selected.has(n)?' sel':'')+(hasPDF?' hpdf':'');
+    btn.id='pb_'+n;
+    btn.innerHTML=`<span class="nm">${n}</span>
+      <span class="ct">${rows.length>0?'CSV '+rows.length+'件':'CSV記録なし'}${hasPDF?'　PDF '+pdfCnt+'件':''}</span>
+      ${hasPDF?'<span class="pp">📄 PDF統合</span>':''}`;
+    btn.onclick=()=>togPt(n,btn);
+    grid.appendChild(btn);
+  });
+  updCnt();
+}
+
+function togPt(n,btn){
+  if(selected.has(n)){selected.delete(n);btn.classList.remove('sel');}
+  else{selected.add(n);btn.classList.add('sel');}
+  updCnt();
+}
+function selAll(){ Object.keys(patientData).forEach(n=>{selected.add(n);const b=document.getElementById('pb_'+n);if(b)b.classList.add('sel');}); updCnt(); }
+function clrAll(){ selected.clear(); document.querySelectorAll('.pb').forEach(b=>b.classList.remove('sel')); updCnt(); }
+function updCnt(){
+  const n=selected.size;
+  document.getElementById('selCnt').textContent=n>0?n+'名選択中':'利用者をクリックして選択';
+  document.getElementById('genBtn').disabled=n===0;
+}
+
+// ================= BUILD PROMPT =================
+function buildPromptText(name){
+  const cr=(patientData[name]||[]).slice().sort((a,b)=>{
+    const d=a['訪問日'].localeCompare(b['訪問日']); return d||a['訪問開始時刻'].localeCompare(b['訪問開始時刻']);
+  });
+  const lines=[];
+  cr.forEach(r=>{
+    const bp=r['1回目：血圧（高）（mmHg）']?`BP ${r['1回目：血圧（高）（mmHg）']}/${r['1回目：血圧（低）（mmHg）']}`:'';
+    const hr=r['1回目：脈拍（回/分）']?`HR ${r['1回目：脈拍（回/分）']}`:'';
+    const s=r['1回目：SpO2（％）']?`SpO2 ${r['1回目：SpO2（％）']}%`:'';
+    const t=r['1回目：体温（℃）']?`体温 ${r['1回目：体温（℃）']}℃`:'';
+    const v=[t,bp,hr,s].filter(Boolean).join(' / ');
+    let l=`[CSV] ${r['訪問日']} ${r['訪問開始時刻']}〜${r['訪問終了時刻']}`;
+    if(v) l+=`　${v}`;
+    if(r['観察記録']) l+=`\n  ${r['観察記録']}`;
+    if(r['医療の実施コメント']) l+=`\n  医療処置: ${r['医療の実施コメント']}`;
+    lines.push(l);
+  });
+  pdfEntries.forEach(e=>{
+    if(e.patientName!==name) return;
+    (e.byMonth[selMonth]||[]).slice().sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time)).forEach(en=>{
+      let l=`[経過記録] ${en.date}${en.time?' '+en.time:''}`;
+      if(en.recorder) l+=`　記録者:${en.recorder}`;
+      l+=`\n  ${en.content}`;
+      lines.push(l);
+    });
+  });
+  lines.sort((a,b)=>{
+    const da=a.match(/\d{4}-\d{2}-\d{2}/)?.[0]||'';
+    const db=b.match(/\d{4}-\d{2}-\d{2}/)?.[0]||'';
+    return da.localeCompare(db);
+  });
+  return lines.join('\n\n');
+}
+
+// ================= AI GENERATE =================
+async function genSummary(name){
+  const raw=buildPromptText(name);
+  const cc=(patientData[name]||[]).length;
+  const pc=pdfEntries.reduce((s,e)=>s+(e.patientName===name&&e.byMonth[selMonth]?e.byMonth[selMonth].length:0),0);
+  const hasPDF=pc>0;
+  const ml=selMonth.replace('-','年')+'月';
+  const prompt=`以下は訪問看護・施設看護の記録です（${ml}）。
+CSV（訪問看護記録書Ⅱ）: ${cc}件${hasPDF?`\n経過記録（施設記録PDF）: ${pc}件`:''}
+
+利用者氏名：${name}
+
+【記録データ（時系列）】
+${raw}
+
+---
+上記の記録をもとに、カイポケの月次経過記録欄に貼り付けられる形式で、1か月の経過を時系列でまとめてください。
+
+【形式の指示】
+- 月前半・月後半などの時期ごとに経過をまとめる
+- バイタルの傾向（安定・変動等）を簡潔に記述
+- 症状変化・特記事項・急変・処置変更があれば優先して記述${hasPDF?'\n- 施設経過記録とCSV訪問看護記録を自然に統合して記述':''}
+- 医療処置・ケア内容の継続・変化を含める
+- 「〜であった」「〜が認められた」などの看護記録調の文体
+- 400〜600字程度
+- 箇条書きではなく文章形式
+- 利用者名は記述不要`;
+
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+  });
+  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'API error');}
+  const data=await res.json();
+  return data.content.map(b=>b.text||'').join('');
+}
+
+async function genAll(){
+  const names=[...selected];
+  document.getElementById('step3').style.display='block';
+  document.getElementById('progArea').style.display='block';
+  document.getElementById('resWrap').innerHTML='';
+  document.getElementById('genBtn').disabled=true;
+
+  names.forEach(name=>{
+    const cc=(patientData[name]||[]).length;
+    const pc=pdfEntries.reduce((s,e)=>s+(e.patientName===name&&e.byMonth[selMonth]?e.byMonth[selMonth].length:0),0);
+    const div=document.createElement('div');
+    div.className='rb'; div.id='res_'+name;
+    div.innerHTML=`<div class="rh">
+      <div>
+        <div class="rn">${name}</div>
+        <div class="rm">
+          <span class="sb sb-c">CSV ${cc}件</span>
+          ${pc>0?`<span class="sb sb-p">PDF ${pc}件</span>`:''}
+          ${selMonth.replace('-','年')}月
+        </div>
+      </div>
+      <button class="btn-cp" id="cp_${name}" onclick="cpRes('${name}')" style="display:none">📋 コピー</button>
+    </div>
+    <div class="rt ld" id="tx_${name}">生成待機中...</div>`;
+    document.getElementById('resWrap').appendChild(div);
+  });
+  document.getElementById('step3').scrollIntoView({behavior:'smooth'});
+
+  let done=0;
+  for(const name of names){
+    const tx=document.getElementById('tx_'+name);
+    const cp=document.getElementById('cp_'+name);
+    tx.textContent='生成中...'; tx.className='rt ld';
+    document.getElementById('progLbl').textContent=`生成中 ${done+1}/${names.length}：${name}`;
+    document.getElementById('progFill').style.width=`${(done/names.length)*100}%`;
+    try{
+      const s=await genSummary(name);
+      results[name]=s; tx.textContent=s; tx.className='rt';
+      cp.style.display='inline-flex';
+      const b=document.getElementById('pb_'+name); if(b)b.classList.add('done');
+    }catch(e){
+      tx.textContent=`エラー: ${e.message}`; tx.className='rt er';
+    }
+    done++;
+  }
+  document.getElementById('progLbl').textContent=`完了 ${done}/${names.length}名`;
+  document.getElementById('progFill').style.width='100%';
+  document.getElementById('genBtn').disabled=false;
+}
+
+async function cpRes(name){
+  const t=results[name]||''; if(!t)return;
+  try{ await navigator.clipboard.writeText(t); }
+  catch{ const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a); }
+  const b=document.getElementById('cp_'+name);
+  b.textContent='✓ コピーしました'; b.classList.add('cp');
+  setTimeout(()=>{b.textContent='📋 コピー';b.classList.remove('cp');},2000);
+}
+
+function setupDrop(id,handler,multi=false){
+  const z=document.getElementById(id);
+  z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('over');});
+  z.addEventListener('dragleave',()=>z.classList.remove('over'));
+  z.addEventListener('drop',e=>{
+    e.preventDefault();z.classList.remove('over');
+    const fs=[...e.dataTransfer.files];
+    if(multi)fs.forEach(handler); else if(fs[0])handler(fs[0]);
+  });
+}
+</script>
+</body>
+</html>
