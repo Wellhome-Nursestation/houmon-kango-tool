@@ -1,0 +1,3053 @@
+[index_final_v11_all_names_displayed.html](https://github.com/user-attachments/files/29790285/index_final_v11_all_names_displayed.html)
+<!DOCTYPE html>
+<!-- saved from url=(0125)file:///C:/Users/miyuk/Downloads/%E8%A8%AA%E5%95%8F%E7%9C%8B%E8%AD%B7%E7%AE%97%E5%AE%9A%E3%83%84%E3%83%BC%E3%83%AB%20(5).html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪問看護 療養費算定ツール</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; background: #f5f6f8; color: #1a1a1a; font-size: 14px; }
+header { background: #2E4057; padding: 14px 24px; }
+header h1 { font-size: 17px; font-weight: 700; color: #fff; }
+header p { font-size: 12px; color: #aac4e0; margin-top: 2px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+.card { background: #fff; border-radius: 10px; border: 1px solid #e5e7eb; padding: 20px 24px; margin-bottom: 16px; }
+.card-title { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 12px; }
+.input-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .input-grid { grid-template-columns: 1fr; } }
+.input-block label { font-size: 12px; font-weight: 600; color: #444; display: block; margin-bottom: 4px; }
+.input-block .sub { font-size: 11px; color: #888; margin-bottom: 6px; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-left: 6px; font-weight: 500; }
+.badge-home { background: #dbeafe; color: #1e40af; }
+.badge-rinji { background: #fce7f3; color: #9d174d; }
+textarea { width: 100%; height: 100px; font-size: 12px; font-family: 'Courier New', monospace; resize: vertical; padding: 10px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #f9fafb; color: #1a1a1a; line-height: 1.6; }
+textarea:focus { outline: none; border-color: #185FA5; background: #fff; }
+.btn-run { display: inline-flex; align-items: center; gap: 6px; padding: 9px 22px; border-radius: 8px; background: #185FA5; color: #fff; border: none; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+.btn-run:hover { background: #0C447C; }
+.btn-sec { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; background: #fff; color: #333; border: 1px solid #d1d5db; font-size: 13px; cursor: pointer; margin-top: 10px; }
+.btn-sec:hover { background: #f3f4f6; }
+.btn-green { background: #166534; color: #fff; border-color: #166534; }
+.btn-green:hover { background: #14532d; }
+.btn-pink { background: #9d174d; color: #fff; border-color: #9d174d; }
+.btn-pink:hover { background: #831843; }
+.btn-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.error-box { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 12px; }
+.info-box { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 12px; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.metric { background: #f8fafc; border-radius: 8px; padding: 12px 16px; border: 1px solid #e5e7eb; }
+.metric-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.metric-sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+.date-tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 2px solid #e5e7eb; }
+.date-tab { padding: 7px 16px; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 8px 8px 0 0; color: #888; border: 1px solid transparent; border-bottom: none; background: #f5f6f8; }
+.date-tab.active { background: #fff; color: #185FA5; border-color: #e5e7eb; border-bottom: 2px solid #fff; margin-bottom: -2px; }
+.date-tab:hover:not(.active) { background: #eef2f7; }
+.view-tabs { display: flex; gap: 4px; margin: 14px 0 10px; }
+.view-tab { padding: 6px 14px; font-size: 12px; font-weight: 500; cursor: pointer; border-radius: 6px; color: #888; border: 1px solid #e5e7eb; background: #f9fafb; }
+.view-tab.active { background: #185FA5; color: #fff; border-color: #185FA5; }
+.table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #e5e7eb; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead th { background: #f1f5f9; padding: 9px 10px; text-align: center; font-weight: 600; font-size: 12px; color: #555; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+tbody td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; text-align: center; color: #333; vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f8fafc; }
+.grand-row td { background: #dde5f0; font-weight: 700; }
+.day-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 14px; }
+.day-metric { background: #f8fafc; border-radius: 8px; padding: 10px 12px; border: 1px solid #e5e7eb; text-align: center; }
+.day-metric-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.day-metric-value { font-size: 18px; font-weight: 700; }
+.kubun-counts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.kubun-count-item { display: flex; align-items: center; gap: 5px; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 6px; padding: 5px 10px; font-size: 12px; }
+.k-i { background: #D4EDDA; color: #1a5c30; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; }
+.k-ro { background: #CCE5FF; color: #0c407c; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; }
+.k-ha { background: #E2D9F3; color: #3a286a; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; }
+.k-ni { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; }
+.k-ki { background: #E8F5E9; color: #2d6a31; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; }
+.k-wn { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; }
+.k-ng { background: #FFE0E0; color: #8b1a1a; border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
+.k-miss { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; font-size: 12px; color: #666; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+#result-area { display: none; }
+.sim-section { background: #fff0f6; border: 1px solid #f9a8d4; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; }
+.sim-title { font-size: 13px; font-weight: 700; color: #9d174d; margin-bottom: 4px; }
+.sim-desc { font-size: 12px; color: #be185d; margin-bottom: 12px; }
+.sim-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.sim-table th { background: #fce7f3; padding: 8px 10px; text-align: center; font-weight: 600; color: #831843; border-bottom: 1px solid #f9a8d4; white-space: nowrap; }
+.sim-table td { padding: 7px 10px; border-bottom: 1px solid #fce7f3; text-align: center; }
+.sim-table tr:last-child td { border-bottom: none; }
+.extra-input { width: 70px; padding: 4px 8px; border-radius: 6px; border: 1px solid #d1d5db; font-size: 13px; text-align: center; }
+.extra-input.auto-filled { background: #fce7f3; border-color: #f472b6; font-weight: 600; }
+.upgraded { color: #166534; font-weight: 700; }
+.same { color: #888; }
+.applied-badge { font-size: 10px; background: #dcfce7; color: #166534; border-radius: 3px; padding: 1px 5px; margin-left: 4px; }
+
+.kihon-detail { font-size:11px; color:#555; margin-top:2px; }
+.kihon-badge { font-size:10px; background:#e0f2fe; color:#0369a1; border-radius:3px; padding:1px 5px; margin-left:3px; }
+.kanri-badge { font-size:10px; background:#fef9c3; color:#854d0e; border-radius:3px; padding:1px 5px; margin-left:3px; }
+.yakan-badge { font-size:10px; background:#ede9fe; color:#5b21b6; border-radius:3px; padding:1px 5px; margin-left:3px; }
+.shinya-badge { font-size:10px; background:#fce7f3; color:#9d174d; border-radius:3px; padding:1px 5px; margin-left:3px; }
+.kaigo-badge { font-size:10px; background:#f0fdf4; color:#166534; border-radius:3px; padding:1px 5px; margin-left:3px; font-weight:700; }
+.kasan-panel { background:#fff; border:1px solid #e5e7eb; border-radius:10px; margin-top:16px; overflow:hidden; }
+.kasan-panel-header { background:#f8fafc; padding:12px 16px; font-weight:700; font-size:14px; color:#1e293b; border-bottom:1px solid #e5e7eb; display:flex; align-items:center; gap:8px; }
+.kasan-table { width:100%; border-collapse:collapse; font-size:13px; }
+.kasan-table th { background:#f1f5f9; padding:6px 10px; text-align:left; font-weight:600; }
+.kasan-table td { padding:6px 10px; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+.kasan-table tr:last-child td { border-bottom:none; }
+.kasan-total { background:#fef9c3; padding:10px 16px; font-weight:700; font-size:14px; text-align:right; border-top:2px solid #fbbf24; }
+.kyoten-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; }
+.kyoten-modal.open { display:flex; }
+.kyoten-box { background:#fff; border-radius:12px; padding:24px; min-width:400px; max-width:560px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.2); }
+.kyoten-box h3 { margin:0 0 16px; font-size:16px; color:#1e293b; }
+.kyoten-table { width:100%; border-collapse:collapse; margin-bottom:12px; font-size:13px; }
+.kyoten-table th { background:#f1f5f9; padding:6px 10px; text-align:left; }
+.kyoten-table td { padding:6px 10px; border-bottom:1px solid #e5e7eb; }
+.kyoten-table input { width:90%; border:1px solid #d1d5db; border-radius:4px; padding:3px 6px; font-size:13px; }
+.note-bad { color:#dc2626; font-weight:600; }
+.note-warn { color:#b45309; }
+.note-up { color:#7c3aed; font-weight:700; }
+
+/* 加算内訳ポップアップ */
+.kasan-popup-wrap { position:relative; display:inline-block; width:100%; }
+.kasan-popup { display:none; position:fixed;
+  background:#1e293b; color:#f8fafc; border-radius:8px; padding:10px 14px; font-size:12px;
+  white-space:normal; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,0.4); width:300px; max-width:90vw;
+  max-height:320px; overflow-y:auto; word-break:break-word; box-sizing:border-box; }
+.kasan-popup-wrap:hover .kasan-popup { display:block; }
+.kasan-popup-row { display:flex; justify-content:space-between; gap:8px; padding:2px 0;
+  border-bottom:1px solid rgba(255,255,255,0.1); white-space:normal; width:100%; box-sizing:border-box; }
+.kasan-popup-row > span:first-child { min-width:0; overflow-wrap:break-word; word-break:break-word; flex:1 1 auto; }
+.kasan-popup-row > span:last-child { flex:0 0 auto; white-space:nowrap; }
+.kasan-popup-row:last-child { border-bottom:none; font-weight:700; color:#fbbf24; padding-top:4px; }
+
+.btn-print { font-size:11px; padding:4px 10px; border-radius:6px; border:1px solid #c4b5fd; background:#f5f3ff; color:#6d28d9; cursor:pointer; font-weight:600; }
+.btn-print:hover { background:#ede9fe; }
+
+/* 職員名簿モーダル */
+.staff-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; }
+.staff-modal.open { display:flex; }
+.staff-box { background:#fff; border-radius:12px; padding:24px; min-width:450px; max-width:600px; width:90%; max-height:80vh; box-shadow:0 8px 32px rgba(0,0,0,0.2); overflow-y:auto; }
+.staff-box h3 { margin:0 0 16px; font-size:16px; color:#1e293b; }
+.staff-section { margin-bottom:18px; }
+.staff-section-title { font-size:13px; font-weight:700; color:#1e293b; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #e5e7eb; }
+.staff-item { display:flex; align-items:center; gap:10px; margin-bottom:8px; padding:8px 10px; background:#f9fafb; border-radius:6px; }
+.staff-item input { flex:1; border:1px solid #d1d5db; border-radius:4px; padding:4px 8px; font-size:12px; }
+.staff-item .staff-type { width:80px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:4px; padding:4px 8px; font-size:11px; font-weight:600; }
+.staff-item-btn { background:#fee2e2; color:#991b1b; border:none; border-radius:4px; padding:4px 8px; font-size:11px; cursor:pointer; }
+.staff-item-btn:hover { background:#fecaca; }
+@media print {
+  @page { size: A4 portrait; margin: 8mm; }
+  header, .card:not(.print-area), .btn-bar, .date-tabs, .view-tabs, #dl-btn, .btn-sec, .btn-run, .no-print, #result-area { display:none !important; }
+  body { background:#fff; font-size:8px; }
+  .container { max-width:100%; padding:0; margin:0; }
+  .print-area { display:block !important; box-shadow:none; border:none; padding:0; }
+  .print-area > div { padding:0 !important; }
+  .table-wrap { border:none; overflow:visible; }
+  table { font-size:7px; width:100%; table-layout:fixed; }
+  /* 列幅調整：名前・数値系は狭く、詳細・備考は広く */
+  th:nth-child(1), td:nth-child(1) { width:7%; }
+  th:nth-child(2), td:nth-child(2) { width:6%; }
+  th:nth-child(3), td:nth-child(3) { width:6%; }
+  th:nth-child(4), td:nth-child(4) { width:5%; }
+  th:nth-child(5), td:nth-child(5) { width:4%; }
+  th:nth-child(6), td:nth-child(6) { width:4%; }
+  th:nth-child(7), td:nth-child(7) { width:4%; }
+  th:nth-child(8), td:nth-child(8) { width:6%; }
+  th:nth-child(9), td:nth-child(9) { width:21%; }
+  th:nth-child(10), td:nth-child(10) { width:16%; }
+  th:nth-child(11), td:nth-child(11) { width:21%; }
+  thead th { background:#eee !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:2px 3px; white-space:normal; word-break:break-word; }
+  tbody td { padding:2px 3px; white-space:normal; word-break:break-word; overflow-wrap:break-word; line-height:1.3; }
+  /* 詳細列は折り返して縦に収める */
+  td:nth-last-child(1), td:nth-last-child(2), td:nth-last-child(3),
+  th:nth-last-child(1), th:nth-last-child(2), th:nth-last-child(3) { white-space:normal !important; }
+  .day-summary { grid-template-columns: repeat(6, 1fr); gap:4px; margin-bottom:6px; }
+  .day-summary-date { font-size:12px !important; margin-bottom:6px !important; }
+  .day-metric { padding:4px 5px; }
+  .day-metric-label { font-size:7px; }
+  .day-metric-value { font-size:11px; }
+  .kubun-counts { margin-bottom:6px; gap:3px; }
+  .kubun-count-item { padding:2px 5px; font-size:8px; }
+  .k-i,.k-ro,.k-ha,.k-ni,.k-ki,.k-wn,.k-ng,.k-miss { -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:1px 4px; font-size:7px; }
+  .kihon-badge,.kanri-badge,.yakan-badge,.shinya-badge,.kaigo-badge { font-size:6px; padding:0 2px; margin-left:1px; }
+  .note-bad,.note-warn,.note-up { font-size:7px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div>
+      <h1>訪問看護 療養費算定ツール</h1>
+      <p>看護記録Ⅱ（通常）＋看護記録Ⅲ（臨時）をまとめて算定</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.15);border-radius:8px;padding:10px 16px;flex-wrap:wrap;">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#fff;font-size:14px;font-weight:600;">
+        <input type="checkbox" id="chk-hokatsu" checked onchange="onHokatsuChange()"
+          style="width:18px;height:18px;cursor:pointer;accent-color:#60a5fa;">
+        包括算定拠点
+      </label>
+      <span id="hokatsu-label" style="font-size:12px;color:#93c5fd;">イロハ二算定 + 基本療養費(1回時)</span>
+      <span style="color:rgba(255,255,255,0.3)">|</span>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#fff;font-size:14px;font-weight:600;">
+        <input type="checkbox" id="chk-oshoban" checked onchange="onOshobanChange()"
+          style="width:18px;height:18px;cursor:pointer;accent-color:#fbbf24;">
+        遅番あり(18〜20時)
+      </label>
+      <span id="oshoban-label" style="font-size:12px;color:#fcd34d;">上限110分を夜間から除外</span>
+      <span style="color:rgba(255,255,255,0.3)">|</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:#fff;font-size:14px;font-weight:600;">拠点：</span>
+        <select id="sel-kyoten" onchange="onKyotenChange(this.value)"
+          style="border-radius:6px;padding:4px 8px;font-size:13px;font-weight:600;border:none;background:#1e40af;color:#fff;cursor:pointer;">
+        </select>
+        <button onclick="openKyotenModal()"
+          style="background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">⚙ 編集</button>
+        <button onclick="openStaffModal()"
+          style="background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">👥 職員名簿</button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- 拠点設定モーダル -->
+<div id="kyoten-modal" class="kyoten-modal" onclick="if(event.target===this)closeKyotenModal()">
+  <div class="kyoten-box">
+    <h3>⚙ 拠点・等級設定</h3>
+    <table class="kyoten-table">
+      <thead><tr><th>拠点名</th><th>等級 (1〜7)</th><th></th></tr></thead>
+      <tbody id="kyoten-tbody"></tbody>
+    </table>
+    <button onclick="addKyotenRow()" style="background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;margin-right:8px;">＋ 拠点を追加</button>
+    <button onclick="saveKyotenModal()" style="background:#10b981;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;margin-right:8px;">✓ 保存</button>
+    <button onclick="closeKyotenModal()" style="background:#e5e7eb;color:#374151;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;">キャンセル</button>
+  </div>
+</div>
+
+<!-- 職員名簿モーダル -->
+<div id="staff-modal" class="staff-modal" onclick="if(event.target===this)closeStaffModal()">
+  <div class="staff-box">
+    <h3>👥 職員名簿設定 （拠点：<span id="staff-modal-kyoten">─</span>）</h3>
+    <div id="staff-content"></div>
+    <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="saveStaffData()" style="background:#10b981;color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer;">✓ 保存</button>
+      <button onclick="closeStaffModal()" style="background:#e5e7eb;color:#374151;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer;">閉じる</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="card-title">データ入力</div>
+    <div class="input-grid">
+      <div class="input-block">
+        <label>看護記録Ⅱ <span class="badge badge-home">通常</span></label>
+        <div class="sub">A列:日付　B列:名前　C列:開始時間　D列:終了時間　<span style="color:#059669;font-weight:600">E列:サービス内容　F列:職員名</span></div>
+        <textarea id="csv-home" placeholder="2026/6/1	利用者A	8:00	8:25	訪看Ⅰ1	太郎
+2026/6/1	利用者A	18:30	19:10	訪看Ⅰ1	花子
+2026/6/1	利用者B	9:00	9:20	訪看Ⅰ2	太郎"></textarea>
+      </div>
+      <div class="input-block">
+        <label>看護記録Ⅲ <span class="badge badge-rinji">臨時</span></label>
+        <div class="sub">A列:日付　B列:訪問回数　C列:名前　D列:職種　<span style="color:#ea580c;font-weight:600">E列:職員名　F列:開始　G列:終了　H列:合計分</span></div>
+        <textarea id="csv-rinji" placeholder="2026/6/1	1	利用者A	看護師	太郎	10:23	10:24	1
+2026/6/2	1	利用者A	准看護師	花子	0:19	0:21	2"></textarea>
+      </div>
+      <div class="input-block">
+        <label>請求管理CSV <span class="badge" style="background:#8b5cf6;color:#fff">加算</span></label>
+        <div class="sub">A列:利用者名　B列以降:加算チェック（請求管理シートからコピー）<br>
+          <span style="color:#7c3aed;font-size:10px">B:特管2500　C:特管5000　D:緊急2650　E:緊急2000　F:退院時共同指導　G:特別管理指導　H:退院支援指導　I:退院時支援指導　J:在宅患者連携指導　K:カンファレンス　L:ターミナルケア　M:エンゼルケア　N:情報提供</span>
+        </div>
+        <textarea id="csv-kasan" placeholder="利用者A&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;（P〜AD列を貼り付け）"></textarea>
+        <button onclick="applyKasanCSV()" style="margin-top:6px;background:#8b5cf6;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;width:100%">☑ 加算を自動チェック</button>
+      </div>
+    </div>
+    <div class="btn-bar">
+      <button class="btn-run" onclick="runCalc()">▶ 算定を実行</button>
+      <button class="btn-sec" id="dl-btn" onclick="downloadCSV()" style="display: inline-flex;">⬇ 結果をCSVで保存</button>
+    </div>
+    <div id="error-area"></div>
+    <div class="legend">
+      <div class="legend-item"><span class="k-i">イ</span> 30〜60分・2回以上</div>
+      <div class="legend-item"><span class="k-ro">ロ</span> 60〜90分・3回以上・昼夜各1回</div>
+      <div class="legend-item"><span class="k-ha">ハ</span> 90分以上・3回以上・昼夜各1回</div>
+      <div class="legend-item"><span class="k-ni">二</span> ハ条件＋日別平均120分以上</div>
+      <div class="legend-item"><span class="k-ki">基本療養費</span> 30分以上・1回</div>
+      <div class="legend-item"><span class="k-ng">算定外</span> 20分未満・1回</div>
+      <div class="legend-item" style="color:#0369a1">※非包括拠点または1回訪問時：<span class="kihon-badge">基</span>基本療養費 <span class="kanri-badge">管</span>管理療養費 <span class="kanri-badge" style="background:#dcfce7;color:#166534">複</span>複数回加算 <span class="yakan-badge">夜</span>夜間加算 <span class="shinya-badge">深</span>深夜加算</div>
+    </div>
+  </div>
+
+  <div id="result-area" style="display: none;">
+    <div class="metrics" id="metrics-area"></div>
+  </div>
+
+  <!-- 利用者別加算パネル -->
+  <div id="kasan-area" class="card" style="display:none;margin-top:0;padding:0;">
+    <div class="kasan-panel">
+      <div class="kasan-panel-header">
+        ＋ 利用者別加算設定
+        <span style="font-size:11px;font-weight:400;color:#64748b;margin-left:8px">利用者ごとに加算を設定します</span>
+        <button onclick="saveKasanData()" style="margin-left:auto;background:#10b981;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;">✓ 保存して集計に反映</button>
+        <button onclick="if(confirm('加算データを全件クリアしますか？（月初めの初期化に使用）【拠点：'+selectedKyoten+'】')){const b=getBranchKasan();Object.keys(b).forEach(k=>delete b[k]);if(!weekLock[selectedKyoten])weekLock[selectedKyoten]={};weekLock[selectedKyoten]={};saveKasan();saveWeekLock();renderKasanPanel(lastResults);renderMonthSummary(lastResults);document.getElementById('error-area').innerHTML='<div class=\'info-box\'>✓ 加算データをクリアしました（'+selectedKyoten+'）。</div>';}" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">🗑 月初クリア</button>
+      </div>
+      <div id="kasan-content" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+
+    <div class="sim-section" id="sim-section" style="display: none;">
+      <div class="sim-title">📋 臨時対応 合算シミュレーション</div>
+      <div class="sim-desc" id="sim-desc">臨時対応の時間を同日・同名で自動入力しました。内容を確認してから「本算定に反映」してください。</div>
+      <div style="overflow-x:auto">
+        <table class="sim-table">
+          <thead><tr>
+            <th>日付</th><th>名前</th><th>通常合計(分)</th><th>現在の区分</th>
+            <th>臨時追加(分)</th><th>合算後(分)</th><th>再判定</th><th>変化</th>
+          </tr></thead>
+          <tbody id="sim-tbody"></tbody>
+        </table>
+      </div>
+      <div class="btn-bar" style="margin-top:12px">
+        <button class="btn-sec btn-pink" onclick="applySimulation()">✓ この内容で本算定に反映する</button>
+        <button class="btn-sec btn-green" onclick="downloadSimCSV()">⬇ シミュレーション結果をCSVで保存</button>
+      </div>
+    </div>
+
+    <div class="card print-area" style="padding:0;overflow:hidden;">
+      <div style="padding:16px 20px 0;"><div class="date-tabs" id="date-tabs"></div><div style="padding:8px 20px 0;text-align:right;" class="no-print"><button class="btn-sec" onclick="window.print()">🖨 この日次サマリーを印刷</button></div><div style="padding:16px 20px 20px;" id="day-content"></div></div></div>
+
+    <!-- 全拠点サマリー -->
+    <div class="card" id="allbranch-area" style="margin-top:0;display:none;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:16px;font-weight:700;color:#1e3a8a">🏢 全拠点サマリー</span>
+        <span style="font-size:11px;color:#64748b">（各拠点で「保存して集計に反映」を押すと自動更新）</span>
+        <button onclick="window.print()" class="btn-sec no-print" style="margin-left:auto">🖨 印刷</button>
+        <button onclick="clearAllBranchData()" class="no-print" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">🗑 全データクリア</button>
+      </div>
+      <div id="allbranch-content"></div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PRICES={'イ':6310,'ロ':9910,'ハ':13730,'二':15300};
+
+// 加算項目定義（PDFより全額）
+// 月1回=checkbox、複数回=number
+const KASAN_ITEMS=[
+  {id:'k01',name:'特別管理加算（Ⅰ）',price:5000,unit:'月1回',type:'check',note:''},
+  {id:'k02',name:'特別管理加算（Ⅱ）',price:2500,unit:'月1回',type:'check',note:''},
+  {id:'k03',name:'退院時共同指導加算',price:8000,unit:'1回',type:'check',note:'入院中1回限り'},
+  {id:'k04',name:'ターミナルケア療養費（Ⅰ）',price:25000,unit:'1回',type:'check',note:'死亡日含む14日以内'},
+  {id:'k05',name:'緊急訪問看護加算（月14日まで）',price:2650,unit:'1日',type:'number',note:''},
+  {id:'k06',name:'緊急訪問看護加算（月15日以降）',price:2000,unit:'1日',type:'number',note:''},
+  {id:'k07',name:'長時間訪問看護加算',price:5200,unit:'週1回',type:'number',note:'90分超の訪問'},
+  {id:'k08',name:'訪問看護医療情報連携加算',price:1000,unit:'月1回',type:'check',note:'ICT活用'},
+  {id:'k09',name:'訪問看護遠隔診療補助料',price:2650,unit:'月1回',type:'check',note:'D to P with N'},
+  {id:'k10',name:'特別管理指導加算',price:2000,unit:'1回',type:'check',note:'別表8該当者'},
+  {id:'k11',name:'退院支援指導加算',price:6000,unit:'1回',type:'check',note:''},
+  {id:'k12',name:'退院時支援指導加算（90分以上）',price:8400,unit:'1回',type:'check',note:'90分以上'},
+  {id:'k13',name:'在宅患者連携指導加算',price:3000,unit:'月1回',type:'check',note:''},
+  {id:'k14',name:'看護・介護連携強化加算',price:2500,unit:'月1回',type:'check',note:'登録特定行為事業者'},
+  {id:'k15',name:'在宅患者緊急時等カンファレンス加算',price:2000,unit:'月2回まで',type:'number',note:''},
+  {id:'k16',name:'訪問看護医療DX情報活用加算',price:50,unit:'月1回',type:'check',note:''},
+  {id:'k17',name:'訪問看護情報提供療養費1〜3',price:1500,unit:'月1回',type:'check',note:''},
+  {id:'k18',name:'エンゼルケア',price:10000,unit:'1回',type:'check',note:''},
+];
+// 全員自動加算（物価対応料のみ・日数×単価で計算）
+const AUTO_KASAN=[
+  {id:'auto_bukka', name:'物価対応料', price:20, unit:'日額'},
+];
+const BASEUP_PRICE=1830;
+const BASEUP_TARGET_KUBUNS=['イ','ロ','ハ','二','基本療養費']; // 対象区分
+
+// ベースアップ評価料：対象区分（イロハ二・基本療養費）のユニーク人数×1830円
+// 介護保険・算定外・要確認は除外
+function calcBaseupFee(records, pastBaseupNames){
+  const targetNames=new Set(
+    records
+      .filter(r=>BASEUP_TARGET_KUBUNS.includes(r.kubun))
+      .map(r=>r.name)
+  );
+  // 前週計上済みの人は除外
+  let count=0;
+  targetNames.forEach(name=>{
+    if(!pastBaseupNames||!pastBaseupNames.has(name)) count++;
+  });
+  return{total:count*BASEUP_PRICE, names:[...targetNames], count};
+}
+
+// 前週以前の訪問日マップをlocalStorageから取得（物価対応料の初日判定用）
+// {人名: [日付,...]} を返す
+function getPastVisitDaysMap(branch, ymPrefix, currentWeekKey, currentWk){
+  const allData=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+  const map={};
+  Object.entries(allData).forEach(([sk,d])=>{
+    if(!sk.startsWith(branch+'__'+ymPrefix)) return;
+    if(d.weekKey===currentWeekKey) return;
+    const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+    if(pastWk>=currentWk) return;
+    if(d.personVisitDaysSaved){
+      Object.entries(d.personVisitDaysSaved).forEach(([name,dates])=>{
+        if(!map[name]) map[name]=[];
+        dates.forEach(dt=>{ if(!map[name].includes(dt)) map[name].push(dt); });
+      });
+    }
+  });
+  return map;
+}
+
+// 現在読み込み中recordsの週キー情報を取得
+function getCurrentWeekInfo(records){
+  if(!records||!records.length) return{weekKey:'',wk:99,ymPrefix:''};
+  const {weekKey,wk,year,month}=getWeekKeyFromRecords(records);
+  const ymPrefix=`${year}${String(month).padStart(2,'0')}`;
+  return{weekKey,wk,ymPrefix};
+}
+// 包括・非包括共通：月初回訪問日60円、2日目以降20円
+// 遠隔診療補助料(k09)算定日は物価対応料除外（先頭1日）
+// prevVisitDates：前週以前の訪問日リスト（月初日判定用）
+function calcBukkaFee(personName, records, hokatsu, bkasan, prevVisitDates){
+  // 医療保険対象の訪問日（介護保険除外）
+  const personRecords=records.filter(r=>r.name===personName&&r.kubun!=='介護保険');
+  const currentDates=[...new Set(personRecords.map(r=>r.date))].sort();
+  if(!currentDates.length) return 0;
+
+  // 遠隔診療補助料(k09)：算定日（先頭1日）を除外
+  const hasEnkaku=(bkasan[personName]&&bkasan[personName]['k09'])||0;
+
+  // 前週含む全訪問日リストで「月の初日（初回訪問日）」を特定
+  const allDates=[...(prevVisitDates||[]),...currentDates].sort();
+  const firstDate=allDates[0];
+
+  let total=0;
+  let enkakuUsed=false;
+  currentDates.forEach(date=>{
+    // 遠隔診療補助料：月初日を除外（1回のみ）
+    if(hasEnkaku&&!enkakuUsed&&date===firstDate){
+      enkakuUsed=true;
+      return;
+    }
+    total+=(date===firstDate)?60:20;
+  });
+  return total;
+}
+
+// 自動加算合計を計算（物価対応料のみ・前週重複考慮）
+function calcAutoKasanForPerson(personName, records, hokatsu, bkasan, pastAutoNames, prevVisitDates){
+  // 介護保険算定者は物価対応料も算定不可
+  const personRecords=records.filter(r=>r.name===personName);
+  const isKaigo=personRecords.length>0&&personRecords.every(r=>r.kubun==='介護保険');
+  if(isKaigo) return 0;
+  // 物価対応料：毎週日数分計算（前週除外なし）
+  return calcBukkaFee(personName, records, hokatsu, bkasan, prevVisitDates);
+}
+// 利用者別加算データ（拠点別・localStorageで保存）
+// 構造: kasanData[拠点名][利用者名][加算ID] = 値
+let kasanData=JSON.parse(localStorage.getItem('kasanData2')||'null');
+if(!kasanData||typeof kasanData!=='object'||Array.isArray(kasanData)){
+  // 旧形式(kasanData)を移行
+  const old=JSON.parse(localStorage.getItem('kasanData')||'{}');
+  kasanData={};
+  const defBranch='（未分類）';
+  if(Object.keys(old).length){kasanData[defBranch]=old;}
+}
+function saveKasan(){localStorage.setItem('kasanData2',JSON.stringify(kasanData));}
+
+// 現在拠点のkasanDataを取得するヘルパー
+function getBranchKasan(branch){
+  const b=branch||selectedKyoten;
+  if(!kasanData[b]) kasanData[b]={};
+  return kasanData[b];
+}
+
+// 週次締め管理: weekLock[拠点][加算ID][利用者名] = true（締め済み）
+let weekLock=JSON.parse(localStorage.getItem('weekLock')||'{}');
+function saveWeekLock(){localStorage.setItem('weekLock',JSON.stringify(weekLock));}
+function getBranchWeekLock(branch){
+  const b=branch||selectedKyoten;
+  if(!weekLock[b]) weekLock[b]={};
+  return weekLock[b];
+}
+
+// 加算ルール検証：排他制御・週次締め・カンファ月2回チェック
+// 返値: {valid:true} or {valid:false, reason:''}
+function validateKasan(name, kid, val, bkasan, bwlock){
+  const item=KASAN_ITEMS.find(k=>k.id===kid);
+  if(!item) return{valid:true};
+  const d=bkasan[name]||{};
+
+  // ① 在宅患者連携指導加算(k13) と 訪問看護医療情報連携加算(k08) は排他
+  if(kid==='k08'&&val>0&&(d['k13']||0)>0)
+    return{valid:false,reason:'在宅患者連携指導加算(k13)が優先されるため、訪問看護医療情報連携加算(k08)は算定できません'};
+  if(kid==='k13'&&val>0){
+    // k13設定時はk08を自動除外
+  }
+
+  // ② 特別管理加算(Ⅰ)(k01) と (Ⅱ)(k02) は排他。k01優先
+  if(kid==='k02'&&val>0&&(d['k01']||0)>0)
+    return{valid:false,reason:'特別管理加算(Ⅰ)(k01)が優先されるため、(Ⅱ)(k02)は算定できません'};
+  if(kid==='k01'&&val>0){
+    // k01設定時はk02を自動除外
+  }
+
+  // ③ 特別管理指導加算(k10)：退院時共同指導加算(k03)＋特別管理加算(k01 or k02)が必要
+  //    ※退院支援指導加算(k11/k12)のみでは算定不可
+  if(kid==='k10'&&val>0){
+    const hasKyodo=(d['k03']||0)>0;   // 退院時共同指導加算
+    const hasSpecial=(d['k01']||0)>0||(d['k02']||0)>0; // 特別管理加算
+    if(!hasKyodo||!hasSpecial)
+      return{valid:false,reason:'特別管理指導加算は退院時共同指導加算＋特別管理加算(Ⅰ/Ⅱ)の両方が必要です（退院支援指導加算のみでは算定不可）'};
+  }
+
+  // ④ 週次締め：カンファ(k15)は月2回まで、その他月1回加算は週次締め後不可
+  if(val>0&&bwlock[kid]&&bwlock[kid][name]){
+    if(kid==='k15'){
+      // カンファは月2回まで → 締め済み回数確認
+      const locked=bwlock[kid][name];
+      if(typeof locked==='number'&&locked>=2)
+        return{valid:false,reason:'在宅患者緊急時等カンファレンス加算は月2回まで（すでに2回締め済み）'};
+    } else if(item.unit==='月1回'||item.unit==='月2回まで'){
+      return{valid:false,reason:`${item.name}は週次締め済みのため今月は再算定できません`};
+    }
+  }
+
+  return{valid:true};
+}
+
+// 週次締め実行
+function lockWeek(names, branch){
+  const b=branch||selectedKyoten;
+  if(!weekLock[b]) weekLock[b]={};
+  const bk=getBranchKasan(b);
+  names.forEach(name=>{
+    const d=bk[name]||{};
+    KASAN_ITEMS.forEach(item=>{
+      const val=d[item.id]||0;
+      if(!val||val<=0) return;
+      if(!weekLock[b][item.id]) weekLock[b][item.id]={};
+      if(item.id==='k15'){
+        // カンファ：累積カウント
+        weekLock[b][item.id][name]=(weekLock[b][item.id][name]||0)+Math.min(val,2);
+      } else if(item.unit==='月1回'||item.unit==='月2回まで'){
+        weekLock[b][item.id][name]=true;
+      }
+    });
+  });
+  saveWeekLock();
+}
+// 請求管理シートの列→加算IDのマッピング（A=0基準）
+// A:名前(0) B〜O:その他(1-14) P:24h(15) Q:特管2500(16) R:特管5000(17)
+// S:緊急2650(18) T:緊急2000(19) U:退院指導(20) V:特管指導(21)
+// W:退院支援(22) X:退院時支援(23) Y:連携指導(24) Z:カンファ(25)
+// AA:ターミナル(26) AB:複数名(27) AC:エンゼル(28) AD:情報提供(29)
+// 実際の列順（A=名前(0)、B列以降）
+// B(1)=特別管理2500, C(2)=特別管理5000, D(3)=緊急2650, E(4)=緊急2000
+// F(5)=退院時共同指導8000, G(6)=特別管理指導2000, H(7)=退院支援指導6000
+// I(8)=退院時支援指導8400, J(9)=在宅患者連携指導3000
+// K(10)=カンファレンス2000, L(11)=ターミナルケア25000
+// M(12)=エンゼルケア10000, N(13)=情報提供(提供先)
+const KASAN_COL_MAP={
+  1:'k02', // B:特別管理加算（Ⅱ）2500
+  2:'k01', // C:特別管理加算（Ⅰ）5000
+  3:'k05', // D:緊急訪問看護加算2650
+  4:'k06', // E:緊急訪問看護加算2000
+  5:'k03', // F:退院時共同指導8000
+  6:'k10', // G:特別管理指導2000
+  7:'k11', // H:退院支援指導6000
+  8:'k12', // I:退院時支援指導8400
+  9:'k13', // J:在宅患者連携指導3000
+  10:'k15', // K:カンファレンス2000
+  11:'k04', // L:ターミナルケア25000
+  12:'k18', // M:エンゼルケア10000
+  13:'k17', // N:情報提供（提供先に値があればON）
+};
+
+function applyKasanCSV(){
+  const raw=document.getElementById('csv-kasan').value.trim();
+  if(!raw){alert('請求管理CSVを貼り付けてください');return;}
+  const lines=raw.split(/\r?\n/).filter(l=>l.trim());
+  let applied=0;
+  const bkasan=getBranchKasan();
+  lines.forEach(line=>{
+    const cols=line.split(/\t/);
+    if(cols.length<2)return;
+    const name=normName(cols[0]);
+    if(!name)return;
+    if(!bkasan[name]) bkasan[name]={};
+    // P〜AD列をチェック
+    Object.entries(KASAN_COL_MAP).forEach(([colIdx,kid])=>{
+      const val=(cols[parseInt(colIdx)]||'').trim();
+      // 値があれば（空でなければ）チェックON
+      // TRUE/FALSE・〇・数値・文字列すべてに対応
+      const isOn=val&&val!=='0'&&val!=='-'&&val.toUpperCase()!=='FALSE'&&val!=='';
+      if(isOn){
+        const item=KASAN_ITEMS.find(k=>k.id===kid);
+        if(item){
+          bkasan[name][kid]=item.type==='check'?1:1;
+        }
+      }
+    });
+    applied++;
+  });
+  saveKasan();
+  // 加算パネルを再描画
+  if(lastResults&&lastResults.length>0){
+    renderKasanPanel(lastResults);
+    renderMonthSummary(lastResults);
+  }
+  // デバッグ：名前一覧と反映内容を表示
+  const bkasan2=getBranchKasan();
+  const kasanNames=Object.keys(bkasan2);
+  const kasanSummary=kasanNames.map(n=>{
+    const items=Object.entries(bkasan2[n]).filter(([k,v])=>v>0).map(([k])=>KASAN_ITEMS.find(i=>i.id===k)?.name||k).join('、');
+    return items?`${n}: ${items}`:'';
+  }).filter(Boolean).join('<br>');
+  document.getElementById('error-area').innerHTML=`<div class="info-box">✓ ${applied}名分を処理しました。<br>${kasanSummary||'加算なし（名前が一致しないか、チェック列が空です）'}</div>`;
+}
+
+// 介護保険単位数（時間帯別）
+const KAIGO_UNITS={
+  '訪看Ⅰ１':{day:283,yakan:353,shinya:424},  // 全角１
+  '訪看Ⅰ1':{day:283,yakan:353,shinya:424},   // 半角1
+  '訪看Ⅰ２':{day:424,yakan:530,shinya:636},  // 全角２
+  '訪看Ⅰ2':{day:424,yakan:530,shinya:636},   // 半角2
+  '訪看Ⅰ３':{day:741,yakan:926,shinya:1111}, // 全角３
+  '訪看Ⅰ3':{day:741,yakan:926,shinya:1111},  // 半角3
+  '訪看Ⅰ５':{day:265,yakan:265,shinya:265},  // 全角５
+  '訪看Ⅰ5':{day:265,yakan:265,shinya:265},   // 半角5
+};
+// 等級単価（円/単位）
+const KAIGO_GRADE={1:11.40,2:11.12,3:11.05,4:10.84,5:10.70,6:10.42,7:10.21};
+
+// 拠点設定（localStorageで永続化）
+let kyotenList=JSON.parse(localStorage.getItem('kyotenList')||'null')||[
+  {name:'鎌ヶ谷',grade:6},{name:'志木',grade:4},{name:'川口',grade:5},
+  {name:'金沢',grade:7},{name:'一宮',grade:6}
+];
+let selectedKyoten=localStorage.getItem('selectedKyoten')||'川口';
+function saveKyoten(){localStorage.setItem('kyotenList',JSON.stringify(kyotenList));localStorage.setItem('selectedKyoten',selectedKyoten);}
+
+// 職員名簿管理（拠点別・職種別）
+const staffTypesArray=['看護師','准看護師','理学療法士','作業療法士','言語聴覚士','その他'];
+function openStaffModal(){
+  document.getElementById('staff-modal-kyoten').textContent=selectedKyoten;
+  const staffData=JSON.parse(localStorage.getItem('staffRoster')||'{}');
+  const kyotenStaff=staffData[selectedKyoten]||{};
+  let html='';
+  staffTypesArray.forEach(type=>{
+    const staffList=kyotenStaff[type]||[];
+    html+=`<div class="staff-section"><div class="staff-section-title">${type}</div><div id="staff-${type}">`;
+    staffList.forEach((name,idx)=>{
+      html+=`<div class="staff-item"><input type="text" value="${name}"><span class="staff-type">${type}</span><button class="staff-item-btn" onclick="removeStaffItem('${type}',${idx})">削除</button></div>`;
+    });
+    html+=`</div><button onclick="addStaffInput('${type}')" style="background:#dbeafe;color:#1e40af;border:none;border-radius:4px;padding:4px 10px;font-size:11px;cursor:pointer;margin-top:6px;">＋ ${type}を追加</button></div>`;
+  });
+  document.getElementById('staff-content').innerHTML=html;
+  document.getElementById('staff-modal').classList.add('open');
+}
+function closeStaffModal(){document.getElementById('staff-modal').classList.remove('open');}
+function addStaffInput(type){
+  const container=document.getElementById(`staff-${type}`);
+  const newInput=document.createElement('div');
+  newInput.className='staff-item';
+  newInput.innerHTML=`<input type="text" placeholder="職員名を入力"><span class="staff-type">${type}</span><button class="staff-item-btn">削除</button>`;
+  newInput.querySelector('.staff-item-btn').onclick=()=>newInput.remove();
+  container.appendChild(newInput);
+}
+function removeStaffItem(type,idx){
+  const staffData=JSON.parse(localStorage.getItem('staffRoster')||'{}');
+  if(!staffData[selectedKyoten])staffData[selectedKyoten]={};
+  if(!staffData[selectedKyoten][type])staffData[selectedKyoten][type]=[];
+  staffData[selectedKyoten][type].splice(idx,1);
+  localStorage.setItem('staffRoster',JSON.stringify(staffData));
+  openStaffModal();
+}
+function saveStaffData(){
+  const staffData=JSON.parse(localStorage.getItem('staffRoster')||'{}');
+  if(!staffData[selectedKyoten])staffData[selectedKyoten]={};
+  
+  staffTypesArray.forEach(type=>{
+    const inputs=document.querySelectorAll(`#staff-${type} input`);
+    const names=[];
+    inputs.forEach(inp=>{if(inp.value.trim())names.push(inp.value.trim());});
+    staffData[selectedKyoten][type]=names;
+  });
+  localStorage.setItem('staffRoster',JSON.stringify(staffData));
+  closeStaffModal();
+  document.getElementById('error-area').innerHTML='<div class="info-box">✓ 職員名簿を保存しました（'+selectedKyoten+'）</div>';
+}
+
+// 職員名から職種を取得（職員名簿から参照）
+function getStaffType(staffName){
+  if(!staffName||!staffName.trim())return'';
+  const staffData=JSON.parse(localStorage.getItem('staffRoster')||'{}');
+  const kyotenStaff=staffData[selectedKyoten]||{};
+  const normalizedName=staffName.trim().replace(/[\s\u3000]+/g,'');
+  for(const type of staffTypesArray){
+    const staffList=kyotenStaff[type]||[];
+    for(const s of staffList){
+      if(s.trim().replace(/[\s\u3000]+/g,'')===normalizedName){
+        return type;
+      }
+    }
+  }
+  return'';
+}
+
+// 介護保険料金計算
+function calcKaigoFee(kubunStr, sm, em){
+  const units=KAIGO_UNITS[kubunStr];
+  if(!units) return null;
+  const kyoten=kyotenList.find(k=>k.name===selectedKyoten)||{grade:5};
+  const gradePx=KAIGO_GRADE[kyoten.grade]||10.00;
+  // 時間帯判定（開始時刻で判定）
+  const h=Math.floor(sm/60);
+  let unitVal;
+  if((h>=22)||(h<6)) unitVal=units.shinya;       // 深夜：22:00〜5:59
+  else if((h>=18&&h<22)||(h>=6&&h<8)) unitVal=units.yakan; // 夜間・早朝
+  else unitVal=units.day;                          // 昼間
+  const price=Math.round(unitVal*gradePx/10)*10;  // 10円未満四捨五入
+  return{units:unitVal,grade:kyoten.grade,gradePx,price,kubunStr};
+}
+
+// 基本療養費モードの料金表（同一建物20-49人・全額）
+const KIHON_RYOYO = {teiki20:2710, teiki21:2610}; // 月20日まで / 21日以降
+const KANRI = {first:7710, d2_15:2510, d16_24:2310, d25:2210}; // 管理療養費
+const FUKUSUU = {kai2:3500, kai3_d20:4500, kai3_d21:3500}; // 複数回訪問看護加算
+const YAKAN_KASAN = {d15:1200, d16:950}; // 夜間・早朝加算
+const SHINYA_KASAN = {d15:2100, d16:1500}; // 深夜加算
+
+// 訪問時間が指定時間帯に20分以上含まれるか判定
+function hasVisitInRange(visits, rangeStart, rangeEnd) {
+  return visits.some(v=>{
+    const sm=v.sm, em=v.em;
+    // 範囲との重複時間を計算
+    const os=Math.max(sm, rangeStart);
+    const oe=Math.min(em, rangeEnd);
+    return (oe-os)>=20;
+  });
+}
+
+// 基本療養費モードの料金計算
+// visitDays: その人のその月の累積訪問日数（この訪問日まで）
+// isFirstVisitOfMonth: この日がその月の初回訪問か
+function calcKihonFee(visits, visitDayCount, isFirstVisitOfMonth, hokatsu=false) {
+  // 基本療養費（累積訪問日数で判定）
+  const kihon = visitDayCount<=20 ? KIHON_RYOYO.teiki20 : KIHON_RYOYO.teiki21;
+
+  // 管理療養費
+  let kanri = 0;
+  if(isFirstVisitOfMonth){
+    kanri = KANRI.first;
+  } else {
+    if(visitDayCount<=15) kanri=KANRI.d2_15;
+    else if(visitDayCount<=24) kanri=KANRI.d16_24;
+    else kanri=KANRI.d25;
+  }
+
+  // 夜間・早朝加算（6:00〜7:59 / 18:00〜21:59 に20分以上の訪問）
+  const yakan1 = hasVisitInRange(visits, 6*60, 8*60);   // 6:00-8:00
+  const yakan2 = hasVisitInRange(visits, 18*60, 22*60); // 18:00-22:00
+  let yakanFee = 0;
+  if(yakan1||yakan2){
+    yakanFee = visitDayCount<=15 ? YAKAN_KASAN.d15 : YAKAN_KASAN.d16;
+  }
+
+  // 深夜加算（22:00〜5:59 に20分以上の訪問）
+  const shinya1 = hasVisitInRange(visits, 22*60, 24*60); // 22:00-24:00
+  const shinya2 = hasVisitInRange(visits, 0, 6*60);      // 0:00-6:00
+  let shinyaFee = 0;
+  if(shinya1||shinya2){
+    shinyaFee = visitDayCount<=15 ? SHINYA_KASAN.d15 : SHINYA_KASAN.d16;
+  }
+
+  // 包括拠点で基本療養費に変更される場合：複数加算から最高額のみを選ぶ（単回訪問制限）
+  if(hokatsu){
+    // 複雑な介護加算は不可（単回訪問のみ）
+    yakanFee = 0;
+    shinyaFee = 0;
+    
+    // 深夜加算 vs 夜間早朝加算で最高額を選ぶ
+    const maxKasan=Math.max(
+      yakan1||yakan2 ? (visitDayCount<=15 ? YAKAN_KASAN.d15 : YAKAN_KASAN.d16) : 0,
+      shinya1||shinya2 ? (visitDayCount<=15 ? SHINYA_KASAN.d15 : SHINYA_KASAN.d16) : 0
+    );
+    
+    if(maxKasan>0){
+      // 最高額を深夜加算が満たしているか確認
+      if(shinya1||shinya2){
+        const shinyaVal=visitDayCount<=15 ? SHINYA_KASAN.d15 : SHINYA_KASAN.d16;
+        if(shinyaVal===maxKasan){
+          shinyaFee=shinyaVal;
+        }
+      }
+      // 夜間早朝加算が最高額の場合
+      if(yakan1||yakan2){
+        const yakanVal=visitDayCount<=15 ? YAKAN_KASAN.d15 : YAKAN_KASAN.d16;
+        if(yakanVal===maxKasan){
+          yakanFee=yakanVal;
+        }
+      }
+    }
+  }
+
+  // 複数回訪問加算（非包括拠点のみ・各訪問20分以上のみカウント）
+  let fukusuuFee = 0;
+  if(!hokatsu){
+    const validCount = visits.filter(v=>(v.em-v.sm)>=20).length;
+    if(validCount===2){
+      fukusuuFee = FUKUSUU.kai2;
+    } else if(validCount>=3){
+      fukusuuFee = visitDayCount<=20 ? FUKUSUU.kai3_d20 : FUKUSUU.kai3_d21;
+    }
+  }
+
+  const total=kihon+kanri+yakanFee+shinyaFee+fukusuuFee;
+  return{total,kihon,kanri,yakanFee,shinyaFee,fukusuuFee,isFirstVisitOfMonth,visitDayCount};
+}
+
+function onHokatsuChange(){
+  const chk=document.getElementById('chk-hokatsu');
+  const lbl=document.getElementById('hokatsu-label');
+  lbl.textContent=chk.checked?'イロハ二算定 + 基本療養費(1回時)':'基本療養費のみ算定';
+  lbl.style.color=chk.checked?'#93c5fd':'#fca5a5';
+  // 包括チェック状態が変更されたら日次サマリーを再レンダリング
+  if(lastResults&&lastResults.length>0){
+    renderDateTabs(lastResults);
+  }
+}
+function onOshobanChange(){
+  const chk=document.getElementById('chk-oshoban');
+  const lbl=document.getElementById('oshoban-label');
+  lbl.textContent=chk.checked?'上限110分を夜間から除外':'遅番なし（夜間に含む）';
+  lbl.style.color=chk.checked?'#fcd34d':'#9ca3af';
+}
+function onKyotenChange(val){
+  selectedKyoten=val;
+  saveKyoten();
+}
+function buildKyotenSelect(){
+  const sel=document.getElementById('sel-kyoten');
+  if(!sel)return;
+  sel.innerHTML=kyotenList.map(k=>`<option value="${k.name}" ${k.name===selectedKyoten?'selected':''}>${k.name}（${k.grade}等級）</option>`).join('');
+}
+function openKyotenModal(){
+  const tbody=document.getElementById('kyoten-tbody');
+  tbody.innerHTML=kyotenList.map((k,i)=>`<tr>
+    <td><input id="kn${i}" value="${k.name}" placeholder="拠点名"></td>
+    <td><input id="kg${i}" type="number" min="1" max="7" value="${k.grade}" style="width:60px"></td>
+    <td><button onclick="deleteKyotenRow(${i})" style="background:#fee2e2;color:#991b1b;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;">削除</button></td>
+  </tr>`).join('');
+  document.getElementById('kyoten-modal').classList.add('open');
+}
+function deleteKyotenRow(i){
+  kyotenList.splice(i,1);
+  openKyotenModal();
+}
+function addKyotenRow(){
+  kyotenList.push({name:'新拠点',grade:5});
+  openKyotenModal();
+}
+function saveKyotenModal(){
+  const tbody=document.getElementById('kyoten-tbody');
+  const rows=tbody.querySelectorAll('tr');
+  kyotenList=[];
+  rows.forEach((_,i)=>{
+    const name=document.getElementById('kn'+i)?.value.trim();
+    const grade=parseInt(document.getElementById('kg'+i)?.value)||5;
+    if(name) kyotenList.push({name,grade});
+  });
+  if(!kyotenList.find(k=>k.name===selectedKyoten)) selectedKyoten=kyotenList[0]?.name||'';
+  saveKyoten();
+  buildKyotenSelect();
+  closeKyotenModal();
+}
+function closeKyotenModal(){
+  document.getElementById('kyoten-modal').classList.remove('open');
+}
+// 初期化
+// 加算内訳ポップアップの表示位置をホバー要素の近くに動的設定
+function positionKasanPopup(wrapEl){
+  const popup=wrapEl.querySelector('.kasan-popup');
+  if(!popup) return;
+  const rect=wrapEl.getBoundingClientRect();
+  const popupWidth=300;
+  let left=rect.left+rect.width/2-popupWidth/2;
+  // 画面端をはみ出さないよう補正
+  left=Math.max(8,Math.min(left,window.innerWidth-popupWidth-8));
+  let top=rect.bottom+6;
+  popup.style.left=left+'px';
+  popup.style.top=top+'px';
+  // 下にはみ出す場合は上に表示
+  requestAnimationFrame(()=>{
+    const popupRect=popup.getBoundingClientRect();
+    if(popupRect.bottom>window.innerHeight-8){
+      popup.style.top=(rect.top-popupRect.height-6)+'px';
+    }
+  });
+}
+window.addEventListener('DOMContentLoaded',()=>{buildKyotenSelect();renderAllBranchSummary();});
+// デバッグ用：コンソールから window.debugKihon2() を実行すると現在のlastResultsの基本療養費判定状況を確認できます
+// デバッグ用：コンソールから window.debugKihon2() を実行すると現在のlastResultsの基本療養費判定状況を確認できます
+window.debugKihon2=function(){
+  if(!lastResults||!lastResults.length){console.log('lastResultsが空です。先に算定を実行してください。');return;}
+  const kihonRecords=lastResults.filter(r=>r.kubun==='基本療養費');
+  console.log('=== 月初日(1日)以外で7710円になっているケース ===');
+  const wrongCases=kihonRecords.filter(r=>r.kihonFee&&r.kihonFee.kanri===7710&&!r.date.endsWith('/01'));
+  console.log('該当件数:',wrongCases.length);
+  wrongCases.slice(0,30).forEach(r=>{
+    console.log(r.date, r.name, '累積日数=', r.kihonFee.visitDayCount);
+  });
+  console.log('=== personVisitDays サンプル(先頭5名・基本療養費対象日のみ) ===');
+  const names=[...new Set(kihonRecords.map(r=>r.name))].slice(0,5);
+  names.forEach(name=>{
+    const dates=kihonRecords.filter(r=>r.name===name).map(r=>r.date).sort();
+    console.log(name,':',dates.join(', '));
+  });
+};
+window.debugKihon3=function(targetName){
+  if(!lastResults||!lastResults.length){console.log('lastResultsが空です。');return;}
+  console.log('=== personVisitDays['+targetName+'] の中身 ===');
+  console.log(window._debugPersonVisitDays?window._debugPersonVisitDays[targetName]:'(window._debugPersonVisitDaysが未定義)');
+  console.log('=== keys のうち'+targetName+'を含むもの ===');
+  if(window._debugKeys){
+    const matched=window._debugKeys.filter(k=>k.includes(targetName));
+    console.log(matched);
+  }
+  console.log('=== kihonTargetKeysのうち'+targetName+'を含むもの ===');
+  if(window._debugKihonTargetKeys){
+    const matched2=window._debugKihonTargetKeys.filter(k=>k.includes(targetName));
+    console.log(matched2);
+  }
+  const personRecords=lastResults.filter(r=>r.name===targetName||r.displayName===targetName).filter(r=>r.kubun==='基本療養費');
+  console.log('=== '+targetName+' さんの基本療養費レコード（全'+personRecords.length+'件）===');
+  personRecords.sort((a,b)=>new Date(a.date)-new Date(b.date)).forEach(r=>{
+    console.log(r.date,'管理療養費=',r.kihonFee?r.kihonFee.kanri:'?','初日判定=',r.kihonFee?r.kihonFee.isFirstVisitOfMonth:'?','累積日数=',r.kihonFee?r.kihonFee.visitDayCount:'?');
+  });
+};
+const KUBUN_ORDER=['イ','ロ','ハ','二','基本療養費','介護保険','要確認(20〜30分)','条件未達(要確認)','算定外'];
+let lastResults=[],allDates=[],simTargets=[],rinjiMap={};
+
+function parseTime(val){
+  const s=String(val||'').trim();
+  if(s.match(/^\d+:\d+$/)){const[h,m]=s.split(':').map(Number);return h*60+m;}
+  const n=parseFloat(s);
+  if(!isNaN(n)&&n>0&&n<1)return Math.round(n*1440);
+  return null;
+}
+function parseDate(val){
+  const s=String(val||'').trim();
+  const m=s.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+  if(m)return`${m[1]}/${m[2].padStart(2,'0')}/${m[3].padStart(2,'0')}`;
+  const n=parseFloat(s);
+  if(!isNaN(n)&&n>40000){const d=new Date(Math.round((n-25569)*86400*1000));return`${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;}
+  return null;
+}
+function classify(total,count,hasDay,hasNight,dayAvg){
+  // 1回のみ
+  if(count===1){if(total<20)return'算定外';if(total<30)return'要確認(20〜30分)';return'基本療養費';}
+  // 2回以上だが昼夜どちらかが0回→基本療養費（1回のみ算定）
+  if(!hasDay||!hasNight){
+    if(total<20)return'算定外';
+    if(total<30)return'要確認(20〜30分)';
+    return'基本療養費';
+  }
+  // 昼夜各1回以上あり
+  if(total<30)return'条件未達(要確認)';
+  if(total<60)return'イ';
+  if(total<90)return count>=3?'ロ':'イ';
+  if(count>=3)return dayAvg>=120?'二':'ハ';
+  return'イ';
+}
+function badge(k){
+  const map={'イ':'k-i','ロ':'k-ro','ハ':'k-ha','二':'k-ni','基本療養費':'k-ki','算定外':'k-ng','要確認(20〜30分)':'k-wn','条件未達(要確認)':'k-miss'};
+  const label={'基本療養費':'基'};
+  return`<span class="${map[k]||'k-miss'}">${label[k]||k}</span>`;
+}
+function fmtM(m){return`${Math.floor(m/60)}:${String(m%60).padStart(2,'0')}`;}
+// 区分判定の備考（理由）と「あと何分で区分が上がるか」を計算
+function getKubunNote(r){
+  const hokatsuNow=document.getElementById('chk-hokatsu').checked;
+  if(!hokatsuNow) return ''; // 非包括拠点はコメント不要
+  const total=r.totalMin, count=r.count, hasDay=r.hasDay, hasNight=r.hasNight, dayAvg=r.dayAvg, kubun=r.kubun;
+  const notes=[];
+
+  // ① 合計60分以上なのに「ロ」(またはハ・二)に届いていない＝訪問回数不足
+  let routeWarned=false;
+  if(total>=60 && hasDay && hasNight && kubun==='イ'){
+    notes.push(`<span class="note-bad">⚠ 要ルート見直し：訪問回数不足（合計${total}分・${count}回。3回以上にできれば「ロ」以上）</span>`);
+    routeWarned=true;
+  }
+
+  // ② 上位区分（イ→ロ、ロ→ハ）に届かない理由を明示（会社目標：ハの算定増）
+  // ※時間不足が理由の場合、あと10分以内で届く場合のみ表示（11分以上の差は対象外）
+  if(kubun==='イ' && !routeWarned){
+    if(!hasDay||!hasNight){
+      notes.push(`<span class="note-warn">「ロ」に届かない理由：${!hasDay?'昼間':'夜間'}の訪問が無い（昼夜各1回以上が必要）</span>`);
+    } else if(total<60){
+      if(60-total<=10) notes.push(`<span class="note-warn">「ロ」に届かない理由：合計時間が${total}分（60分以上が必要、あと${60-total}分）</span>`);
+    } else if(count<3){
+      notes.push(`<span class="note-warn">「ロ」に届かない理由：訪問回数が${count}回（3回以上が必要）</span>`);
+    }
+  } else if(kubun==='ロ'){
+    const reasons=[];
+    if(total<90){ if(90-total<=10) reasons.push(`合計時間が${total}分（90分以上が必要、あと${90-total}分）`); }
+    if(count<3) reasons.push(`訪問回数が${count}回（3回以上が必要）`);
+    if(reasons.length) notes.push(`<span class="note-warn">「ハ」に届かない理由：${reasons.join('／')}</span>`);
+  }
+
+  // ③ あと何分で区分が上がるか（1〜10分の範囲で実際の不足分を表示）
+  {
+    let neededMin=null, newKubun=null;
+    for(let add=1;add<=10;add++){
+      const k=classify(total+add,count,hasDay,hasNight,dayAvg);
+      if(k!==kubun && (PRICES[k]||0)>(PRICES[kubun]||0)){
+        neededMin=add; newKubun=k; break;
+      }
+    }
+    if(neededMin!==null){
+      const diff=(PRICES[newKubun]||0)-(PRICES[kubun]||0);
+      notes.push(`<span class="note-up">🔼 あと${neededMin}分で「${kubun}」→「${newKubun}」（+¥${diff.toLocaleString()}）ルート調整を検討</span>`);
+    }
+  }
+
+  return notes.length?notes.join('<br>'):'';
+}
+// 名前の全角・半角スペースを除去して正規化（「吉澤　敏子」→「吉澤敏子」）
+function normName(n){return String(n||'').trim().replace(/[\s\u3000]+/g,'');}
+
+function parseRinjiCSV(raw){
+  // 看護記録Ⅲ形式: A:日付, B:訪問回数, C:名前, D:職種, E:職員名, F:開始, G:終了, H:合計分
+  // key: "date|name" -> {totalMin, count, hasDay, hasNight, visits:[], staffName}
+  const map={};
+  raw.split('\n').map(l=>l.trim()).filter(l=>l).forEach(line=>{
+    const cols=line.split(/\t|,/);
+    if(cols[0].includes('日付')||cols.length<5)return;
+    const dateStr=parseDate(cols[0]);
+    const name=normName(cols[2]);
+    if(!dateStr||!name)return;
+    const key=dateStr+'|'+name;
+    
+    // 新形式：D:職種, E:職員名, F:開始, G:終了, H:合計分
+    // 旧形式との互換性：cols[3]が数字の場合は開始時刻（旧形式）
+    const isNewFormat=cols[3]&&isNaN(parseInt(cols[3]));
+    
+    let staffName='', sm, em0, dur=0, isDay=false, startStr='', endStr='';
+    
+    if(isNewFormat){
+      // 新形式：D:職種, E:職員名, F:開始, G:終了, H:合計分
+      staffName=(cols[4]||'').trim();
+      sm=parseTime(cols[5]);
+      em0=parseTime(cols[6]);
+      if(cols[7]&&!isNaN(parseInt(cols[7]))) dur=parseInt(cols[7]);
+    } else {
+      // 旧形式との互換性：D:開始, E:終了, F:合計分
+      sm=parseTime(cols[3]);
+      em0=parseTime(cols[4]);
+      if(cols[5]&&!isNaN(parseInt(cols[5]))) dur=parseInt(cols[5]);
+    }
+    
+    if(sm!==null&&em0!==null){
+      let em=em0; if(em<=sm)em+=1440;
+      dur=em-sm;
+      isDay=Math.floor(sm/60)>=8&&Math.floor(sm/60)<18;
+      startStr=fmtM(sm);
+      endStr=fmtM(em%1440);
+    }
+    
+    if(!map[key]) map[key]={totalMin:0,count:0,hasDay:false,hasNight:false,visits:[],staffName};
+    map[key].totalMin+=dur;
+    map[key].count+=1;
+    if(isDay) map[key].hasDay=true; else map[key].hasNight=true;
+    if(startStr) map[key].visits.push({startStr,endStr,isDay,dur,staffName});
+  });
+  return map;
+}
+
+function runCalc(){
+  const rawHome=document.getElementById('csv-home').value.trim();
+  const rawRinji=document.getElementById('csv-rinji').value.trim();
+  const errEl=document.getElementById('error-area');
+  errEl.innerHTML='';
+  if(!rawHome){errEl.innerHTML='<div class="error-box">通常訪問記録を貼り付けてください。</div>';return;}
+
+  // 臨時CSVをパース
+  rinjiMap=rawRinji?parseRinjiCSV(rawRinji):{};
+
+  const visits=[];
+  rawHome.split('\n').map(l=>l.trim()).filter(l=>l).forEach(line=>{
+    const cols=line.split(/\t|,/);
+    if(cols.length<4)return;
+    const dateStr=parseDate(cols[0]);
+    const rawName=cols[1].trim();
+    const name=normName(rawName);
+    const sm=parseTime(cols[2]);
+    const em0=parseTime(cols[3]);
+    if(!dateStr||!name||sm===null||em0===null)return;
+    if(rawName.includes('記入例')||rawName==='名前')return;
+    let em=em0;if(em<=sm)em+=1440;
+    const isDay=Math.floor(sm/60)>=8&&Math.floor(sm/60)<18;
+    // E列：サービス内容（全角数字を半角に正規化してマッチング精度を上げる）
+    const serviceCol=(cols[4]||'').trim().replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0));
+    // 介護保険判定（訪看Ⅰで始まる場合）
+    const kaigoKey=Object.keys(KAIGO_UNITS).find(k=>serviceCol.includes(k));
+    const isKaigo=!!kaigoKey;
+    const kaigoKubun=kaigoKey||null;
+    const staffName=(cols[5]||'').trim();
+    visits.push({date:dateStr,name,displayName:rawName,sm,em,isDay,startStr:fmtM(sm),endStr:fmtM(em%1440),isKaigo,kaigoKubun,staffName});
+  });
+
+  if(!visits.length){errEl.innerHTML='<div class="error-box">有効なデータが読み取れませんでした。</div>';return;}
+
+  const keys=[...new Set(visits.map(v=>v.date+'|'+v.name))];
+  const dateTotal={},datePeople={};
+  keys.forEach(key=>{
+    const[date,name]=key.split('|');
+    const grp=visits.filter(v=>v.date===date&&v.name===name);
+    dateTotal[date]=(dateTotal[date]||0)+grp.reduce((s,v)=>s+(v.em-v.sm),0);
+    if(!datePeople[date])datePeople[date]=new Set();
+    datePeople[date].add(name);
+  });
+
+  // 基本療養費計算：人別・月累積訪問日数を計算（recordsより前に宣言）
+  const hokatsu=document.getElementById('chk-hokatsu').checked;
+
+  // パス1：各key(日付|名前)が基本療養費対象日かを事前判定
+  const kihonTargetKeys=new Set();
+  keys.forEach(key=>{
+    const[date,name]=key.split('|');
+    const grp=visits.filter(v=>v.date===date&&v.name===name);
+    const kaigoVisits=grp.filter(v=>v.isKaigo);
+    if(kaigoVisits.length>0) return; // 介護保険は除外
+    const totalMin=grp.reduce((s,v)=>s+(v.em-v.sm),0);
+    const hasDay=grp.some(v=>v.isDay),hasNight=grp.some(v=>!v.isDay);
+    const dayAvg=dateTotal[date]/datePeople[date].size;
+    const rinjiMinValid=(rinjiMap[key]&&rinjiMap[key].visits)
+      ? rinjiMap[key].visits.reduce((s,rv)=>{
+          const sm=parseTime(rv.startStr),em0=parseTime(rv.endStr);
+          if(sm===null||em0===null)return s;
+          let em=em0;if(em<=sm)em+=1440;
+          const ov=grp.some(tv=>sm<tv.em&&em>tv.sm);
+          return ov?s:s+(rv.dur||(em-sm));
+        },0)
+      : (rinjiMap[key]?rinjiMap[key].totalMin:0);
+    const withTotal=totalMin+rinjiMinValid;
+    const rinjiCount=(rinjiMap[key]&&rinjiMap[key].visits)?
+      rinjiMap[key].visits.filter(rv=>{
+        const sm=parseTime(rv.startStr),em0=parseTime(rv.endStr);
+        if(sm===null||em0===null)return false;
+        let em=em0;if(em<=sm)em+=1440;
+        return !grp.some(tv=>sm<tv.em&&em>tv.sm);
+      }).length
+      :(rinjiMap[key]?rinjiMap[key].count:0);
+    const withCount=grp.length+rinjiCount;
+    const withHasDay=hasDay||(rinjiMap[key]?rinjiMap[key].hasDay:false);
+    const withHasNight=hasNight||(rinjiMap[key]?rinjiMap[key].hasNight:false);
+    if(!hokatsu){
+      // 非包括拠点：介護保険以外は無条件で基本療養費対象（イロハ二判定は存在しない）
+      kihonTargetKeys.add(key);
+    } else {
+      // 包括拠点：classify()の結果が「基本療養費」相当の場合のみ対象
+      const kubun=classify(withTotal,withCount,withHasDay,withHasNight,dayAvg);
+      if(kubun==='基本療養費') kihonTargetKeys.add(key);
+    }
+  });
+
+  // パス2：基本療養費対象日のみで訪問日カウントを構築
+  const personVisitDays={};
+  keys.forEach(key=>{
+    const[date,name]=key.split('|');
+    if(!kihonTargetKeys.has(key)) return; // 基本療養費対象日のみ
+    if(!personVisitDays[name]) personVisitDays[name]=[];
+    if(!personVisitDays[name].includes(date)) personVisitDays[name].push(date);
+  });
+
+  // 前週保存データから同月の訪問済み日を先行注入（週をまたいだ初日判定を正確に）
+  {
+    const allSaved=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+    // 今週の週キーを算出
+    const sampleDate=keys.length?keys[0].split('|')[0]:null;
+    if(sampleDate){
+      const sd=new Date(sampleDate);
+      const sy=sd.getFullYear(), sm2=sd.getMonth()+1;
+      const ymPrefix=`${sy}${String(sm2).padStart(2,'0')}`;
+      const sfirstDay=new Date(sy,sd.getMonth(),1).getDay();
+      const sthu=4;
+      const sfwe=sfirstDay<=sthu?sthu-sfirstDay+1:7-sfirstDay+1+sthu;
+      const sday=sd.getDate();
+      let swk;
+      if(sday<=sfwe) swk=1;
+      else swk=Math.ceil((sday-sfwe)/7)+1;
+      const currentWeekKey=`${ymPrefix}_w${swk}`;
+
+      Object.entries(allSaved).forEach(([sk,d])=>{
+        if(!sk.startsWith(selectedKyoten+'__'+ymPrefix)) return;
+        if(d.weekKey===currentWeekKey) return; // 今週は除外
+        const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+        if(pastWk>=swk) return; // 今週以降は除外
+        // 過去週の訪問日を先行追加
+        if(d.personVisitDaysSaved){
+          Object.entries(d.personVisitDaysSaved).forEach(([name,dates])=>{
+            if(!personVisitDays[name]) personVisitDays[name]=[];
+            dates.forEach(dt=>{
+              if(!personVisitDays[name].includes(dt)) personVisitDays[name].push(dt);
+            });
+          });
+        }
+      });
+    }
+  }
+
+  Object.keys(personVisitDays).forEach(n=>{
+    personVisitDays[n].sort((a,b)=>new Date(a)-new Date(b));
+  });
+  window._debugPersonVisitDays=personVisitDays; // デバッグ用に公開
+  window._debugKihonTargetKeys=[...kihonTargetKeys]; // デバッグ用に公開
+  window._debugKeys=keys; // デバッグ用に公開
+
+  const records=keys.map(key=>{
+    const[date,name]=key.split('|');
+    const grp=visits.filter(v=>v.date===date&&v.name===name);
+    const totalMin=grp.reduce((s,v)=>s+(v.em-v.sm),0);
+    const hasDay=grp.some(v=>v.isDay),hasNight=grp.some(v=>!v.isDay);
+    const dayAvg=dateTotal[date]/datePeople[date].size;
+    const detail=grp.map(v=>`${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'})`).join(' / ');
+    const displayName=grp[0].displayName||name;
+    const rinji=rinjiMap[key]||null;
+    // 定期訪問と臨時訪問の重複チェック
+    let rinjiMinNet=0, rinjiCountNet=0, rinjiHasDayNet=false, rinjiHasNightNet=false;
+    let rinjiVisitsAnnotated=[];
+    if(rinji&&rinji.visits){
+      rinji.visits.forEach(rv=>{
+        const rvSm=parseTime(rv.startStr);
+        const rvEm0=parseTime(rv.endStr);
+        if(rvSm===null||rvEm0===null){rinjiVisitsAnnotated.push({...rv,overlap:false});return;}
+        let rvEm=rvEm0; if(rvEm<=rvSm)rvEm+=1440;
+        // 定期訪問との重複チェック
+        const isOverlap=grp.some(tv=>{
+          const tvSm=tv.sm, tvEm=tv.em;
+          return rvSm<tvEm && rvEm>tvSm; // 重複あり
+        });
+        rinjiVisitsAnnotated.push({...rv,overlap:isOverlap});
+        if(!isOverlap){
+          rinjiMinNet+=rv.dur||(rvEm-rvSm);
+          rinjiCountNet+=1;
+          if(rv.isDay) rinjiHasDayNet=true; else rinjiHasNightNet=true;
+        }
+      });
+    } else if(rinji){
+      // visits情報がない場合は従来通り
+      rinjiMinNet=rinji.totalMin;
+      rinjiCountNet=rinji.count;
+      rinjiHasDayNet=rinji.hasDay;
+      rinjiHasNightNet=rinji.hasNight;
+      rinjiVisitsAnnotated=[];
+    }
+    const rinjiMin=rinji?rinji.totalMin:0; // 表示用（重複含む元の値）
+    const rinjiMinValid=rinjiMinNet;        // 算定用（重複除外後）
+    const rinjiCount=rinjiCountNet;
+    const rinjiHasDay=rinjiHasDayNet;
+    const rinjiHasNight=rinjiHasNightNet;
+    // 臨時込みの合計・判定を最初から計算（重複除外後）
+    const withTotal=totalMin+rinjiMinValid;
+    const withCount=grp.length+rinjiCount;
+    const withHasDay=hasDay||rinjiHasDay;
+    const withHasNight=hasNight||rinjiHasNight;
+    // 介護保険かどうか判定（グループ内に介護保険訪問があるか）
+    const kaigoVisits=grp.filter(v=>v.isKaigo);
+    const isKaigo=kaigoVisits.length>0;
+    const kaigoKubun=isKaigo?(kaigoVisits[0].kaigoKubun||null):null;
+
+    // 介護保険の場合はclassifyをスキップ
+    const withKubun=isKaigo?'介護保険':classify(withTotal,withCount,withHasDay,withHasNight,dayAvg);
+    // 介護保険の場合
+    let kihonFee=null, kaigoFee=null, finalPrice=0, kubun=withKubun;
+    if(isKaigo && kaigoKubun){
+      // 介護保険：各訪問ごとに計算して合算
+      kaigoFee=grp.map(v=>calcKaigoFee(v.kaigoKubun||kaigoKubun,v.sm,v.em)).filter(Boolean);
+      finalPrice=kaigoFee.reduce((s,f)=>s+f.price,0);
+      kubun='介護保険';
+    } else {
+      // 医療保険：包括 or 基本療養費
+      let useKihon, finalKubun;
+      if(!hokatsu){
+        // 非包括拠点：イロハ二判定は存在しない。時間不足のみ算定外/要確認として残す
+        useKihon = true;
+        finalKubun = (withKubun==='算定外'||withKubun==='要確認(20〜30分)'||withKubun==='条件未達(要確認)')
+          ? withKubun : '基本療養費';
+      } else {
+        // 包括拠点：classify()の結果をそのまま使用
+        useKihon = withKubun==='基本療養費'||withKubun==='算定外'||withKubun==='要確認(20〜30分)'||withKubun==='条件未達(要確認)';
+        finalKubun = useKihon
+          ? (withKubun==='算定外'||withKubun==='要確認(20〜30分)'||withKubun==='条件未達(要確認)' ? withKubun : '基本療養費')
+          : withKubun;
+      }
+      kubun = finalKubun;
+      if(useKihon && kubun==='基本療養費'){
+        const visitDays=personVisitDays[name]||[];
+        const visitDayCount=visitDays.indexOf(date)+1||1;
+        const isFirstVisitOfMonth=visitDayCount===1;
+        const grpVisits=grp.map(v=>({sm:v.sm,em:v.em}));
+        const rinjiVisits=(rinjiMap[key]&&rinjiMap[key].visits||[]).map(v=>{
+          const sm=parseTime(v.startStr), em0=parseTime(v.endStr);
+          if(sm===null||em0===null) return null;
+          let em=em0; if(em<=sm)em+=1440;
+          return{sm,em};
+        }).filter(Boolean);
+        const allVisitsForKihon=[...grpVisits,...rinjiVisits];
+        kihonFee=calcKihonFee(allVisitsForKihon,visitDayCount,isFirstVisitOfMonth,hokatsu);
+        finalPrice=kihonFee.total;
+      } else {
+        finalPrice=PRICES[kubun]||0;
+      }
+    }
+    // 定期のみ（臨時を含めない）場合の区分を計算（算定率変化の判定用、kubunと同じ変換ロジックを適用）
+    let baseKubun;
+    if(isKaigo){
+      baseKubun='介護保険';
+    } else {
+      const rawBaseKubun=classify(totalMin,grp.length,hasDay,hasNight,dayAvg);
+      if(!hokatsu){
+        baseKubun=(rawBaseKubun==='算定外'||rawBaseKubun==='要確認(20〜30分)'||rawBaseKubun==='条件未達(要確認)')
+          ? rawBaseKubun : '基本療養費';
+      } else {
+        const useKihonBase=rawBaseKubun==='基本療養費'||rawBaseKubun==='算定外'||rawBaseKubun==='要確認(20〜30分)'||rawBaseKubun==='条件未達(要確認)';
+        baseKubun=useKihonBase
+          ? (rawBaseKubun==='算定外'||rawBaseKubun==='要確認(20〜30分)'||rawBaseKubun==='条件未達(要確認)' ? rawBaseKubun : '基本療養費')
+          : rawBaseKubun;
+      }
+    }
+    return{date,name,displayName,
+      count:withCount,totalMin:withTotal,hasDay:withHasDay,hasNight:withHasNight,
+      countBase:grp.length,totalMinBase:totalMin,hasDayBase:hasDay,hasNightBase:hasNight,
+      detail,kubun,kubunBase:baseKubun,applied:rinjiMinValid,price:finalPrice,dayAvg,isKaigo,kaigoKubun,kaigoFee,
+      rinjiMin:rinjiMinValid,rinjiMinRaw:rinjiMin,rinjiCount,rinjiHasDay,rinjiHasNight,
+      rinjiVisitsAnnotated,kihonFee};
+  });
+
+  // 臨時CSVにあって通常CSVにないレコードを追加（臨時のみの人）
+  Object.keys(rinjiMap).forEach(key=>{
+    if(records.find(r=>r.date+'|'+r.name===key)) return;
+    const[date,name]=key.split('|');
+    const rinji2=rinjiMap[key];
+    const rKubun=classify(rinji2.totalMin,rinji2.count,rinji2.hasDay,rinji2.hasNight,0);
+    const rNeedKihon=!hokatsu||(rinji2.count===1&&rinji2.totalMin>=30);
+    let rKihonFee=null, rPrice=PRICES[rKubun]||0;
+    if(rNeedKihon&&rKubun==='基本療養費'){
+      const visitDays=personVisitDays[name]||[];
+      const vdc=visitDays.indexOf(date)+1||1;
+      rKihonFee=calcKihonFee([],vdc,vdc===1);
+      rPrice=rKihonFee.total;
+    }
+    records.push({date,name,displayName:name,
+      count:rinji2.count,totalMin:rinji2.totalMin,hasDay:rinji2.hasDay,hasNight:rinji2.hasNight,
+      countBase:0,totalMinBase:0,hasDayBase:false,hasNightBase:false,
+      detail:'（通常記録なし）',kubun:rKubun,kubunBase:rKubun,price:rPrice,dayAvg:0,
+      rinjiMin:rinji2.totalMin,rinjiCount:rinji2.count,rinjiHasDay:rinji2.hasDay,rinjiHasNight:rinji2.hasNight,
+      kihonFee:rKihonFee});
+  });
+
+  lastResults=records;
+  allDates=[...new Set(records.map(r=>r.date))].sort();
+  window._allVisits=visits;  // 昼夜別時間集計用
+  window.rinjiMap=rinjiMap;  // 臨時時間帯参照用
+
+
+
+  let infoMsg=`通常記録: ${visits.length}件`;
+  if(Object.keys(rinjiMap).length){
+    const rinjiTotal=Object.values(rinjiMap).reduce((s,v)=>s+v.totalMin,0);
+    infoMsg+=`　臨時記録: ${Object.keys(rinjiMap).length}名分（合計${rinjiTotal}分）を自動入力しました`;
+  }
+  errEl.innerHTML=`<div class="info-box">✓ 読み込み完了 — ${infoMsg}</div>`;
+
+  renderMonthSummary(records);
+  renderSimSection(records);
+  renderDateTabs(records);
+  renderKasanPanel(records);
+  document.getElementById('result-area').style.display='block';
+  document.getElementById('dl-btn').style.display='inline-flex';
+}
+
+function renderSimSection(records){
+  // イ・ロ判定の人、または臨時データが存在する人を対象
+  const targets=records.filter(r=>r.kubun==='イ'||r.kubun==='ロ'||r.rinjiMin>0).sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
+  const sec=document.getElementById('sim-section');
+  if(!targets.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  simTargets=targets;
+
+  document.getElementById('sim-tbody').innerHTML=targets.map((r,i)=>{
+    const autoVal=r.rinjiMin>0?r.rinjiMin:0;
+    const baseTotal=r.totalMinBase!=null?r.totalMinBase:r.totalMin;
+    const baseCount=r.countBase||r.count;
+    const baseHasDay=r.hasDayBase!=null?r.hasDayBase:r.hasDay;
+    const baseHasNight=r.hasNightBase!=null?r.hasNightBase:r.hasNight;
+    // 現在の区分：定期のみで再計算
+    const baseKubun=r.kubun==='臨時のみ'?'臨時のみ':classify(baseTotal,baseCount,baseHasDay,baseHasNight,r.dayAvg);
+    const newTotal=baseTotal+autoVal;
+    const newCount=baseCount+(r.rinjiCount||0);
+    const newHasDay=baseHasDay||(r.rinjiHasDay||false);
+    const newHasNight=baseHasNight||(r.rinjiHasNight||false);
+    const newKubun=classify(newTotal,newCount,newHasDay,newHasNight,r.dayAvg);
+    const currentLabel=baseKubun==='臨時のみ'?'<span class="k-miss">通常記録なし</span>':badge(baseKubun);
+    const changeHTML=autoVal>0&&newKubun!==baseKubun
+      ?`<span class="upgraded">${baseKubun} → ${newKubun}　${((PRICES[newKubun]||0)-(PRICES[baseKubun]||0))>=0?'+':''}¥${((PRICES[newKubun]||0)-(PRICES[baseKubun]||0)).toLocaleString()}</span>`
+      :`<span class="same">変化なし</span>`;
+    return`<tr>
+      <td>${r.date}</td>
+      <td style="text-align:left;white-space:nowrap">${r.displayName||r.name}<span style="font-size:10px;background:#fce7f3;color:#9d174d;border-radius:3px;padding:1px 5px;margin-left:4px">臨時${autoVal}分</span></td>
+      <td>${baseTotal}</td>
+      <td>${currentLabel}</td>
+      <td><input class="extra-input${autoVal>0?' auto-filled':''}" type="number" min="0" max="999" value="${autoVal}" id="sim-input-${i}" oninput="recalcSim(${i})"></td>
+      <td id="sim-sum-${i}">${newTotal}</td>
+      <td id="sim-kubun-${i}">${badge(newKubun)}</td>
+      <td id="sim-change-${i}">${changeHTML}</td>
+    </tr>`;
+  }).join('');
+}
+
+function recalcSim(i){
+  const r=simTargets[i];
+  const addMin=parseInt(document.getElementById(`sim-input-${i}`).value)||0;
+  const baseTotal=r.totalMinBase!=null?r.totalMinBase:r.totalMin;
+  const newTotal=baseTotal+addMin;
+  const newCount=(r.countBase||r.count)+(r.rinjiCount||0);
+  const newHasDay=(r.hasDayBase!=null?r.hasDayBase:r.hasDay)||(r.rinjiHasDay||false);
+  const newHasNight=(r.hasNightBase!=null?r.hasNightBase:r.hasNight)||(r.rinjiHasNight||false);
+  const newKubun=classify(newTotal,newCount,newHasDay,newHasNight,r.dayAvg);
+  document.getElementById(`sim-sum-${i}`).textContent=newTotal;
+  document.getElementById(`sim-kubun-${i}`).innerHTML=badge(newKubun);
+  const bKubun=r.kubun==='臨時のみ'?'臨時のみ':classify(baseTotal,r.countBase||r.count,r.hasDayBase!=null?r.hasDayBase:r.hasDay,r.hasNightBase!=null?r.hasNightBase:r.hasNight,r.dayAvg);
+  const diff=(PRICES[newKubun]||0)-(PRICES[bKubun]||0);
+  document.getElementById(`sim-change-${i}`).innerHTML=newKubun!==bKubun
+    ?`<span class="upgraded">${bKubun} → ${newKubun}　${diff>=0?'+':''}¥${diff.toLocaleString()}</span>`
+    :`<span class="same">変化なし</span>`;
+}
+
+function applySimulation(){
+  // シミュレーション結果を本算定に反映
+  simTargets.forEach((r,i)=>{
+    const addMin=parseInt(document.getElementById(`sim-input-${i}`).value)||0;
+    if(!addMin)return;
+    const rec=lastResults.find(x=>x.date===r.date&&x.name===r.name);
+    if(!rec)return;
+    // 定期のみの値（countBase/totalMinBase）を基準に、シミュレーション入力分のみを加算する
+    // （rec.count/rec.totalMinには既に臨時分が含まれているため、二重加算しない）
+    const baseTotal=rec.totalMinBase!=null?rec.totalMinBase:rec.totalMin;
+    const baseCount=rec.countBase!=null?rec.countBase:rec.count;
+    const baseHasDay=rec.hasDayBase!=null?rec.hasDayBase:rec.hasDay;
+    const baseHasNight=rec.hasNightBase!=null?rec.hasNightBase:rec.hasNight;
+    const addCount=addMin>0?1:0; // シミュレーション入力は1件の臨時対応として扱う
+    const newTotal=baseTotal+addMin;
+    const newCount=baseCount+addCount;
+    const newHasDay=baseHasDay||(r.rinjiHasDay||false);
+    const newHasNight=baseHasNight||(r.rinjiHasNight||false);
+    const newKubun=classify(newTotal,newCount,newHasDay,newHasNight,rec.dayAvg);
+    rec.totalMin=newTotal;
+    rec.count=newCount;
+    rec.hasDay=newHasDay;
+    rec.hasNight=newHasNight;
+    if(rec.kubunBase==null) rec.kubunBase=rec.kubun; // フォールバック（通常はrunCalc側で既にセット済み）
+    rec.kubun=newKubun;
+    rec.price=PRICES[newKubun]||0;
+    rec.applied=addMin;
+  });
+  renderMonthSummary(lastResults);
+  renderDateTabs(lastResults);
+  document.getElementById('sim-section').style.display='none';
+  document.getElementById('error-area').innerHTML='<div class="info-box">✓ 臨時対応分を本算定に反映しました。</div>';
+}
+
+function renderMonthSummary(records){
+  const totalPrice=records.reduce((s,r)=>s+r.price,0);
+  const billable=records.filter(r=>r.price>0).length;
+  const totalMin=records.reduce((s,r)=>s+r.totalMin,0);
+  const teikiMin=records.reduce((s,r)=>s+(r.totalMinBase||0),0);
+  const rinjiTotal=records.reduce((s,r)=>s+(r.rinjiMin||0),0);
+  const kasanTotal=calcKasanTotal(records);
+  const hokatsuNow=document.getElementById('chk-hokatsu').checked;
+  const uniquePersons=new Set(records.map(r=>r.name)).size;
+  const bkasanNow=getBranchKasan();
+  // 前週訪問日マップを取得して初日判定を正確に
+  const {weekKey:rwk,wk:rwkn,ymPrefix:rymp}=getCurrentWeekInfo(records);
+  const pastDaysMapR=getPastVisitDaysMap(selectedKyoten,rymp,rwk,rwkn);
+  const autoSum=records.length>0?[...new Set(records.map(r=>r.name))].reduce((s,name)=>{
+    return s+calcAutoKasanForPerson(name,records,hokatsuNow,bkasanNow,new Set(),pastDaysMapR[name]||[]);
+  },0):0;
+  // 24時間加算：非包括・介護保険以外の人のみ
+  const jikanPersons=!hokatsuNow?[...new Set(records.map(r=>r.name))].filter(name=>{
+    const pr=records.filter(r=>r.name===name);
+    return !(pr.length>0&&pr.every(r=>r.kubun==='介護保険'));
+  }):[];
+  const jikanTaiou=jikanPersons.length*6520;
+  const grandTotal=totalPrice+kasanTotal+jikanTaiou;
+  // ベースアップ評価料（自動・前週除外なし・表示用）
+  const baseupResult=calcBaseupFee(records,null);
+  const baseUpSum=baseupResult.total;
+  const bukkaAndBase=autoSum+baseUpSum;
+
+  document.getElementById('metrics-area').innerHTML=`
+    <div class="metric"><div class="metric-label">訪問看護療養費合計</div><div class="metric-value">¥${totalPrice.toLocaleString()}</div></div>
+    ${jikanTaiou>0?`<div class="metric" style="background:#fef3c7"><div class="metric-label" style="color:#92400e">24時間対応体制加算</div><div class="metric-value" style="color:#92400e">¥${jikanTaiou.toLocaleString()}</div><div style="font-size:10px;color:#92400e">${jikanPersons.length}名×¥6,520</div></div>`:''}
+    ${bukkaAndBase>0?`<div class="metric" style="background:#f5f3ff"><div class="metric-label" style="color:#6d28d9">ベースアップ＋物価対応料</div><div class="metric-value" style="color:#6d28d9">¥${bukkaAndBase.toLocaleString()}</div><div style="font-size:10px;color:#6d28d9">${baseUpSum>0?`ベースアップ¥${baseUpSum.toLocaleString()}(${baseupResult.count}名) ＋ `:``}物価¥${autoSum.toLocaleString()}</div></div>`:''}
+    ${kasanTotal-autoSum-baseUpSum>0?`<div class="metric" style="background:#f0fdf4"><div class="metric-label" style="color:#166534">利用者別加算合計</div><div class="metric-value" style="color:#166534">¥${(kasanTotal-autoSum-baseUpSum).toLocaleString()}</div></div>`:``}
+    <div class="metric" style="background:#1e40af;border-radius:8px"><div class="metric-label" style="color:#bfdbfe">月間請求合計</div><div class="metric-value" style="color:#fff;font-size:20px">¥${grandTotal.toLocaleString()}</div></div>
+    <div class="metric" style="background:#0369a1;border-radius:8px"><div class="metric-label" style="color:#bae6fd">訪問回数合計</div><div class="metric-value" style="color:#fff;font-size:20px">${records.reduce((s,r)=>s+(r.count||0),0)}<span style="font-size:13px">回</span></div></div>
+    <div class="metric" style="grid-column:span 4;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;">
+      <span style="font-size:12px;color:#555">算定件数 <strong style="font-size:16px">${billable}</strong><span style="font-size:11px;color:#aaa"> / 全${records.length}件</span></span>
+      <span style="color:#ddd">|</span>
+      <span style="font-size:12px;color:#555">対象日数 <strong style="font-size:16px">${allDates.length}</strong><span style="font-size:11px;color:#aaa">日</span></span>
+      <span style="color:#ddd">|</span>
+      <span style="font-size:12px;color:#555">対象人数(延べ) <strong style="font-size:16px">${records.length}</strong><span style="font-size:11px;color:#aaa">名</span></span>
+      <span style="color:#ddd">|</span>
+      <span style="font-size:12px;color:#555">月間合計訪問時間 <strong style="font-size:16px">${totalMin}</strong><span style="font-size:11px;color:#aaa">分(臨時含む)</span></span>
+      <span style="color:#ddd">|</span>
+      <span style="font-size:12px;color:#1e40af">定期訪問合計 <strong style="font-size:16px">${teikiMin}</strong><span style="font-size:11px">分</span></span>
+      <span style="color:#ddd">|</span>
+      <span style="font-size:12px;color:#9d174d">臨時訪問合計 <strong style="font-size:16px">${rinjiTotal}</strong><span style="font-size:11px">分</span></span>
+    </div>
+  `;
+}
+
+// ===================== 加算管理 =====================
+function calcKasanTotal(records){
+  let total=0;
+  const bkasan=getBranchKasan();
+  Object.values(bkasan).forEach(person=>{
+    Object.entries(person).forEach(([kid,val])=>{
+      if(!val||val<=0)return;
+      const item=KASAN_ITEMS.find(k=>k.id===kid);
+      if(item) total+=item.price*(item.type==='check'?1:val);
+    });
+  });
+  // 物価対応料（毎週日数分計算・前週重複なし）
+  const hokatsuNow=document.getElementById('chk-hokatsu')?.checked??true;
+  const names=records?[...new Set(records.map(r=>r.name))]:[];
+  // 前週訪問日マップを取得して初日判定を正確に
+  const {weekKey:cwk,wk:cwkn,ymPrefix:cymp}=getCurrentWeekInfo(records||[]);
+  const pastDaysMap=records?getPastVisitDaysMap(selectedKyoten,cymp,cwk,cwkn):{};
+  names.forEach(name=>{
+    total+=calcAutoKasanForPerson(name,records||[],hokatsuNow,bkasan,new Set(),pastDaysMap[name]||[]);
+  });
+  // ベースアップ評価料（自動）
+  if(records) total+=calcBaseupFee(records,null).total;
+  return total;
+}
+function renderKasanPanel(records){
+  const area=document.getElementById('kasan-area');
+  const cont=document.getElementById('kasan-content');
+  if(!records||!records.length){area.style.display='none';return;}
+  area.style.display='block';
+  const bkasan=getBranchKasan();
+  const bwlock=getBranchWeekLock();
+  const names=[...new Set(records.map(r=>r.name))].sort();
+  let html=`<div style="overflow-x:auto"><table class="kasan-table">
+    <thead><tr>
+      <th style="min-width:120px;position:sticky;left:0;background:#f1f5f9;z-index:1">利用者名</th>
+      ${KASAN_ITEMS.map(k=>{
+        const isLocked=(bwlock[k.id]&&Object.keys(bwlock[k.id]).length>0);
+        return`<th style="min-width:60px;font-size:10px;text-align:center;padding:4px 6px${isLocked?';background:#fee2e2':''}">${k.name}<br><span style="color:${k.type==='check'?'#3b82f6':'#10b981'};font-weight:700">${k.price.toLocaleString()}円</span><br><span style="color:#64748b;font-weight:400">${k.unit}</span>${isLocked?'<br><span style="color:#dc2626;font-size:9px">週次締済</span>':''}</th>`;
+      }).join('')}
+      <th style="min-width:80px">加算合計</th>
+    </tr></thead><tbody>`;
+  names.forEach(name=>{
+    if(!bkasan[name]) bkasan[name]={};
+    let rowTotal=0;
+    KASAN_ITEMS.forEach(k=>{ rowTotal+=(bkasan[name][k.id]||0)*k.price; });
+    const cells=KASAN_ITEMS.map(k=>{
+      const v=bkasan[name][k.id]||0;
+      const safeId=name.replace(/['"]/g,'_');
+      const locked=bwlock[k.id]&&bwlock[k.id][name];
+      const isLockedOut=locked&&!(k.id==='k15'&&(typeof locked!=='number'||locked<2));
+      const bgStyle=isLockedOut?'background:#fee2e2;':'';
+      if(k.type==='check'){
+        return `<td style="text-align:center;padding:4px;${bgStyle}"><input type="checkbox" ${v?'checked':''} ${isLockedOut?'disabled title="週次締済"':''} style="width:18px;height:18px;cursor:pointer;accent-color:#3b82f6" onchange="updateKasan('${safeId}','${k.id}',this.checked?1:0)"></td>`;
+      } else {
+        return `<td style="text-align:center;padding:4px;${bgStyle}"><input type="number" min="0" max="99" value="${v}" ${isLockedOut?'disabled title="週次締済"':''} style="width:44px;border:1px solid #d1d5db;border-radius:4px;padding:2px;text-align:center;font-size:12px" onchange="updateKasan('${safeId}','${k.id}',this.value)"></td>`;
+      }
+    }).join('');
+    html+=`<tr><td style="font-weight:600;white-space:nowrap;position:sticky;left:0;background:#fff">${name}</td>${cells}<td style="text-align:right;font-weight:700;white-space:nowrap" id="kasan-row-${name.replace(/[^a-zA-Z0-9]/g,'_')}">¥${rowTotal.toLocaleString()}</td></tr>`;
+  });
+  html+=`</tbody></table></div>
+  <div class="kasan-total" style="display:flex;align-items:center;gap:12px">
+    <span>利用者別加算合計：¥<span id="kasan-grand">${calcKasanTotal(records).toLocaleString()}</span></span>
+    <button onclick="doLockWeek()" style="background:#f59e0b;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;margin-left:auto">🔒 週次締め（今週分を確定）</button>
+    <button onclick="resetWeekLock()" style="background:#e5e7eb;color:#374151;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">🔓 締め解除</button>
+  </div>`;
+  cont.innerHTML=html;
+}
+function updateKasan(name,kid,val){
+  const bkasan=getBranchKasan();
+  const bwlock=getBranchWeekLock();
+  if(!bkasan[name]) bkasan[name]={};
+  const numVal=parseInt(val)||0;
+
+  // バリデーション
+  const check=validateKasan(name,kid,numVal,bkasan,bwlock);
+  if(!check.valid){
+    alert('⚠ '+check.reason);
+    renderKasanPanel(lastResults); // チェックをリセット
+    return;
+  }
+
+  // 排他制御：k13設定時はk08をクリア、k01設定時はk02をクリア
+  if(kid==='k13'&&numVal>0) bkasan[name]['k08']=0;
+  if(kid==='k01'&&numVal>0) bkasan[name]['k02']=0;
+
+  bkasan[name][kid]=numVal;
+  let rowTotal=0;
+  KASAN_ITEMS.forEach(k=>{ rowTotal+=(bkasan[name][k.id]||0)*k.price; });
+  const el=document.getElementById('kasan-row-'+name.replace(/[^a-zA-Z0-9]/g,'_'));
+  if(el) el.textContent='¥'+rowTotal.toLocaleString();
+  const gt=document.getElementById('kasan-grand');
+  if(gt) gt.textContent=calcKasanTotal(lastResults).toLocaleString();
+  renderMonthSummary(lastResults);
+}
+function saveKasanData(){
+  saveKasan();
+  // 算定結果も拠点別に保存
+  if(lastResults&&lastResults.length>0){
+    saveCalcResult(selectedKyoten, lastResults);
+  }
+  renderMonthSummary(lastResults);
+  renderAllBranchSummary();
+  document.getElementById('error-area').innerHTML='<div class="info-box">✓ 加算データを保存しました（拠点：'+selectedKyoten+'）。全拠点サマリーを更新しました。</div>';
+}
+
+// 算定結果をlocalStorageに拠点×週別保存
+// キー構造: allBranchResult[branch+'__'+weekKey] = data
+function getWeekKeyFromRecords(records){
+  // recordsの日付から週ラベルを決定（最多日付の週を使用）
+  const dateCounts={};
+  records.forEach(r=>{ dateCounts[r.date]=(dateCounts[r.date]||0)+1; });
+  // 全日付から週番号を算出し、最初の日付の週を使用
+  const dates=Object.keys(dateCounts).sort();
+  if(!dates.length) return {weekKey:'不明',weekLabel:'不明'};
+  // 最初の日付で週を決定
+  const d=new Date(dates[0]);
+  const month=d.getMonth()+1;
+  const year=d.getFullYear();
+  const firstDay=new Date(year,d.getMonth(),1).getDay();
+  const thu=4;
+  const firstWeekEnd=firstDay<=thu?thu-firstDay+1:7-firstDay+1+thu;
+  const day=d.getDate();
+  let wk;
+  if(day<=firstWeekEnd) wk=1;
+  else wk=Math.ceil((day-firstWeekEnd)/7)+1;
+  let wStart,wEnd;
+  if(wk===1){wStart=1;wEnd=firstWeekEnd;}
+  else{wStart=firstWeekEnd+(wk-2)*7+1;wEnd=wStart+6;}
+  const lastDay=new Date(year,d.getMonth()+1,0).getDate();
+  wEnd=Math.min(wEnd,lastDay);
+  const weekLabel=`${year}/${month} 第${wk}週(${month}/${wStart}〜${month}/${wEnd})`;
+  const weekKey=`${year}${String(month).padStart(2,'0')}_w${wk}`;
+  return{weekKey,weekLabel,wk,wStart,wEnd,month,year};
+}
+
+function saveCalcResult(branch, records){
+  const bkasan=getBranchKasan(branch);
+  const kubuns=['イ','ロ','ハ','二','基本療養費','介護保険','算定外','要確認(20〜30分)','条件未達(要確認)'];
+  const kubunCounts={};
+  kubuns.forEach(k=>{ kubunCounts[k]=records.filter(r=>r.kubun===k).length; });
+
+  const {weekKey,weekLabel,wk,year,month}=getWeekKeyFromRecords(records);
+  const ymPrefix=`${year}${String(month).padStart(2,'0')}`;
+  const storeKey=branch+'__'+weekKey;
+
+  // ロック確認
+  const allData=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+  if(allData[storeKey]&&allData[storeKey].locked){
+    alert(`⚠ ${branch} ${weekLabel} はロック済みです。ロックを解除してから保存してください。`);
+    return false;
+  }
+
+  // 同月・同拠点の過去週データから「人別・加算ID別 計上済み回数」を集計
+  const pastKasan={}; // {人名: {加算ID: 計上済み回数}}
+  Object.entries(allData).forEach(([sk,d])=>{
+    if(!sk.startsWith(branch+'__')) return;
+    if(!sk.startsWith(branch+'__'+ymPrefix)) return;
+    if(d.weekKey===weekKey) return; // 今週は除外
+    // 過去週のみ（週番号が今週より小さい）
+    const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+    if(pastWk>=wk) return;
+    // 過去週の人別加算を集計
+    if(d.personKasanDetail){
+      Object.entries(d.personKasanDetail).forEach(([name,kmap])=>{
+        if(!pastKasan[name]) pastKasan[name]={};
+        Object.entries(kmap).forEach(([kid,cnt])=>{
+          pastKasan[name][kid]=(pastKasan[name][kid]||0)+cnt;
+        });
+      });
+    }
+  });
+
+  // 今週の加算計算（人別・前週除外考慮）
+  let kasanTotal=0;
+  const personKasanDetail={}; // 今週の人別・加算ID別 計上回数（次週参照用）
+  const kasanExcludeLog=[]; // 除外ログ（サマリー表示用）
+
+  Object.entries(bkasan).forEach(([name,kmap])=>{
+    if(!personKasanDetail[name]) personKasanDetail[name]={};
+    Object.entries(kmap).forEach(([kid,val])=>{
+      if(!val||val<=0) return;
+      const item=KASAN_ITEMS.find(k=>k.id===kid);
+      if(!item) return;
+
+      const pastCount=(pastKasan[name]&&pastKasan[name][kid])||0;
+
+      // 毎週算定可能な例外：緊急訪問看護加算(k05/k06)・長時間訪問看護加算(k07)
+      const weeklyOk=['k05','k06','k07'].includes(item.id);
+
+      if(item.id==='k15'){
+        // カンファレンス加算：月2回まで。前週計上分を差し引いた残り
+        const maxAllowed=2;
+        const remaining=Math.max(0, maxAllowed-pastCount);
+        const effectiveVal=Math.min(val, remaining);
+        if(effectiveVal>0){
+          kasanTotal+=item.price*effectiveVal;
+          personKasanDetail[name][kid]=effectiveVal;
+        }
+        if(val>effectiveVal){
+          kasanExcludeLog.push(`${name}：${item.name} 前週計上済み${pastCount}回のため今週は${effectiveVal}回のみ算定`);
+        }
+      } else if(weeklyOk){
+        // 毎週算定可能：そのまま計上
+        kasanTotal+=item.price*(item.type==='check'?1:val);
+        personKasanDetail[name][kid]=(item.type==='check'?1:val);
+      } else {
+        // その他すべて：前週に1回でも計上済みなら今週は除外
+        if(pastCount>0){
+          kasanExcludeLog.push(`${name}：${item.name} 前週計上済みのため除外`);
+        } else {
+          kasanTotal+=item.price*(item.type==='check'?1:val);
+          personKasanDetail[name][kid]=(item.type==='check'?1:val);
+        }
+      }
+    });
+  });
+
+  const allNames=new Set(records.map(r=>r.name));
+  const names=allNames.size;
+  const visitCount=records.reduce((s,r)=>s+(r.count||0),0);
+  const calcPrice=records.reduce((s,r)=>s+(r.price||0),0);
+  const hokatsuNow=document.getElementById('chk-hokatsu').checked;
+
+  // 前週計上済みの自動加算（ベースアップ・包括物価対応料）を除外
+  const pastAutoNames=new Set();
+  // 前週の訪問日リスト（物価対応料の初日判定用）
+  const pastVisitDaysMap={}; // {人名: [日付,...]}
+  Object.entries(allData).forEach(([sk,d])=>{
+    if(!sk.startsWith(branch+'__'+ymPrefix)) return;
+    if(d.weekKey===weekKey) return;
+    const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+    if(pastWk>=wk) return;
+    if(d.personAutoNames) d.personAutoNames.forEach(n=>pastAutoNames.add(n));
+    // 前週の訪問日を収集（物価対応料の月初日判定用）
+    if(d.personVisitDaysSaved){
+      Object.entries(d.personVisitDaysSaved).forEach(([name,dates])=>{
+        if(!pastVisitDaysMap[name]) pastVisitDaysMap[name]=[];
+        dates.forEach(dt=>{ if(!pastVisitDaysMap[name].includes(dt)) pastVisitDaysMap[name].push(dt); });
+      });
+    }
+  });
+
+  // 自動加算を人別に計算（物価対応料・前週重複なし）
+  const autoExcludeLog=[];
+  const personAutoNames=[]; // 次週参照用
+  allNames.forEach(name=>{
+    const prevDates=pastVisitDaysMap[name]||[];
+    const autoFee=calcAutoKasanForPerson(name, records, hokatsuNow, bkasan, pastAutoNames, prevDates);
+    kasanTotal+=autoFee;
+  });
+
+  // ベースアップ評価料（自動・前週計上済み除外）
+  const pastBaseupNames=new Set();
+  Object.entries(allData).forEach(([sk,d])=>{
+    if(!sk.startsWith(branch+'__'+ymPrefix)) return;
+    if(d.weekKey===weekKey) return;
+    const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+    if(pastWk>=wk) return;
+    if(d.baseupNames) d.baseupNames.forEach(n=>pastBaseupNames.add(n));
+  });
+  const baseupResult=calcBaseupFee(records, pastBaseupNames);
+  kasanTotal+=baseupResult.total;
+
+  if(autoExcludeLog.length){
+    kasanExcludeLog.push(...autoExcludeLog);
+  }
+
+  // 24時間対応体制加算：前週に計上済みの人を除外し、新規追加分のみ算定
+  let jikanTaiou=0;
+  const jikanExcludeNames=[];
+  const jikanNewNames=[];
+  if(!hokatsuNow){
+    // 前週までに計上済みの人名セットを収集
+    const pastJikanNames=new Set();
+    Object.entries(allData).forEach(([sk,d])=>{
+      if(!sk.startsWith(branch+'__'+ymPrefix)) return;
+      if(d.weekKey===weekKey) return;
+      const pastWk=parseInt((d.weekKey||'').replace(/.*_w/,''))||0;
+      if(pastWk>=wk) return;
+      if(d.personJikanNames) d.personJikanNames.forEach(n=>pastJikanNames.add(n));
+    });
+    allNames.forEach(name=>{
+      // 介護保険算定者は除外
+      const personRecs=records.filter(r=>r.name===name);
+      const isKaigo=personRecs.length>0&&personRecs.every(r=>r.kubun==='介護保険');
+      if(isKaigo) return;
+      if(pastJikanNames.has(name)){
+        jikanExcludeNames.push(name);
+      } else {
+        jikanTaiou+=6520;
+        jikanNewNames.push(name);
+      }
+    });
+    if(jikanExcludeNames.length){
+      kasanExcludeLog.push(`24時間対応体制加算：前週計上済み ${jikanExcludeNames.join('・')} は除外（新規${jikanNewNames.length}名×¥6,520）`);
+    }
+  }
+
+  // 人別・基本療養費対象の訪問日リストを保存（翌週の初日判定用）
+  const personVisitDaysSaved={};
+  records.forEach(r=>{
+    if(r.kubun!=='基本療養費') return;
+    if(!personVisitDaysSaved[r.name]) personVisitDaysSaved[r.name]=[];
+    if(!personVisitDaysSaved[r.name].includes(r.date)) personVisitDaysSaved[r.name].push(r.date);
+  });
+
+  // 加算内訳集計（ポップアップ表示用）
+  const kasanBreakdown={};
+  // 利用者別加算
+  Object.entries(bkasan).forEach(([name,kmap])=>{
+    Object.entries(kmap).forEach(([kid,val])=>{
+      if(!val||val<=0) return;
+      const item=KASAN_ITEMS.find(k=>k.id===kid);
+      if(!item) return;
+      const isExcluded=kasanExcludeLog.some(l=>l.includes(name)&&l.includes(item.name));
+      if(isExcluded) return;
+      const weeklyOk=['k05','k06','k07'].includes(item.id);
+      const pastCount=(pastKasan[name]&&pastKasan[name][kid])||0;
+      if(!weeklyOk&&item.id!=='k15'&&pastCount>0) return;
+      const amount=item.id==='k15'
+        ?item.price*Math.min(val,Math.max(0,2-pastCount))
+        :item.price*(item.type==='check'?1:val);
+      if(amount<=0) return;
+      if(!kasanBreakdown[item.name]) kasanBreakdown[item.name]={amount:0,count:0};
+      kasanBreakdown[item.name].amount+=amount;
+      kasanBreakdown[item.name].count+=1;
+    });
+  });
+  // 24H加算
+  if(jikanTaiou>0) kasanBreakdown['24時間対応体制加算']={amount:jikanTaiou,count:jikanNewNames.length};
+  // 自動加算（物価対応料のみ・人別集計）
+  let autoBukkaTotal=0;
+  allNames.forEach(name=>{
+    const pr=records.filter(r=>r.name===name);
+    const isKaigo=pr.length>0&&pr.every(r=>r.kubun==='介護保険');
+    if(isKaigo) return;
+    const bukka=calcBukkaFee(name,records,hokatsuNow,bkasan,pastVisitDaysMap[name]||[]);
+    autoBukkaTotal+=bukka;
+  });
+  if(autoBukkaTotal>0){
+    let bukkaNote='';
+    if(!hokatsuNow){
+      const details=[...allNames].map(name=>{
+        const pr=records.filter(r=>r.name===name);
+        const isKaigo=pr.length>0&&pr.every(r=>r.kubun==='介護保険');
+        if(isKaigo) return null;
+        const fee=calcBukkaFee(name,records,hokatsuNow,bkasan,pastVisitDaysMap[name]||[]);
+        if(!fee) return null;
+        const days=[...new Set(pr.filter(r=>r.kubun!=='介護保険').map(r=>r.date))].length;
+        return `${name}:${days}日分=${fee}円`;
+      }).filter(Boolean);
+      bukkaNote=details.join(' / ');
+    }
+    kasanBreakdown['物価対応料']={amount:autoBukkaTotal,count:0,note:bukkaNote||undefined};
+  }
+  if(baseupResult.total>0){
+    kasanBreakdown['ベースアップ評価料']={amount:baseupResult.total,count:baseupResult.count,note:`対象${baseupResult.count}名×¥${BASEUP_PRICE.toLocaleString()}`};
+  }
+
+  const data={
+    branch, weekKey, weekLabel,
+    savedAt:new Date().toISOString(),
+    personCount:records.length, visitCount,
+    calcPrice, kasanTotal, jikanTaiou,
+    grandTotal:calcPrice+kasanTotal+jikanTaiou,
+    kubunCounts, isHokatsu:hokatsuNow,
+    locked:false,
+    personKasanDetail,    // 次週加算除外用
+    personVisitDaysSaved, // 次週初日判定用
+    personJikanNames:jikanNewNames, // 次週24H加算除外用
+    personAutoNames,      // 次週自動加算除外用
+    baseupNames:baseupResult.names, // 次週ベースアップ除外用
+    kasanExcludeLog,      // 除外ログ
+    kasanBreakdown        // 加算内訳（ポップアップ用）
+  };
+  allData[storeKey]=data;
+  localStorage.setItem('allBranchResult',JSON.stringify(allData));
+
+  // 週次サマリーにも保存（拠点別・週別）- records内の全週分を保存
+  const weekSummary=JSON.parse(localStorage.getItem('weekSummary')||'{}');
+  // records内の全週を集計して保存
+  const weekRecordMap={};
+  records.forEach(r=>{
+    const d=new Date(r.date);
+    const mo=d.getMonth()+1;
+    const dy=d.getDate();
+    const yr=d.getFullYear();
+    const fd=new Date(yr,d.getMonth(),1).getDay();
+    const th=4;
+    const fwe=fd<=th?th-fd+1:7-fd+1+th;
+    let wkn;
+    if(dy<=fwe) wkn=1;
+    else wkn=Math.ceil((dy-fwe)/7)+1;
+    let ws,we;
+    if(wkn===1){ws=1;we=fwe;}else{ws=fwe+(wkn-2)*7+1;we=ws+6;}
+    const ld=new Date(yr,d.getMonth()+1,0).getDate();
+    we=Math.min(we,ld);
+    const wk2=`${yr}${String(mo).padStart(2,'0')}_w${wkn}`;
+    const wl=`${yr}/${mo} 第${wkn}週(${mo}/${ws}〜${mo}/${we})`;
+    if(!weekRecordMap[wk2]) weekRecordMap[wk2]={weekKey:wk2,weekLabel:wl,records:[]};
+    weekRecordMap[wk2].records.push(r);
+  });
+  const now=new Date().toISOString();
+  Object.entries(weekRecordMap).forEach(([wk2,{weekKey:wk2key,weekLabel:wl2,records:wr}])=>{
+    const wSummaryKey=branch+'__'+wk2key;
+    const wKubunCounts={};
+    kubuns.forEach(k=>{wKubunCounts[k]=wr.filter(r=>r.kubun===k).length;});
+    weekSummary[wSummaryKey]={
+      branch, weekKey:wk2key, weekLabel:wl2,
+      savedAt:now,
+      personCount:wr.length,
+      visitCount:wr.reduce((s,r)=>s+(r.count||0),0),
+      calcPrice:wr.reduce((s,r)=>s+(r.price||0),0),
+      kubunCounts:wKubunCounts,
+      isHokatsu:hokatsuNow
+    };
+  });
+  localStorage.setItem('weekSummary',JSON.stringify(weekSummary));
+
+  return true;
+}
+
+function toggleBranchLock(storeKey){
+  const allData=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+  if(!allData[storeKey]) return;
+  allData[storeKey].locked=!allData[storeKey].locked;
+  localStorage.setItem('allBranchResult',JSON.stringify(allData));
+  renderAllBranchSummary();
+}
+
+function deleteBranchWeek(storeKey){
+  const allData=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+  if(!allData[storeKey]) return;
+  if(allData[storeKey].locked){alert('ロック中は削除できません。先にロックを解除してください。');return;}
+  if(!confirm('この週のデータを削除しますか？')) return;
+  delete allData[storeKey];
+  localStorage.setItem('allBranchResult',JSON.stringify(allData));
+  renderAllBranchSummary();
+}
+
+// 全拠点サマリー描画
+function renderAllBranchSummary(){
+  const allData=JSON.parse(localStorage.getItem('allBranchResult')||'{}');
+  const area=document.getElementById('allbranch-area');
+  const cont=document.getElementById('allbranch-content');
+  if(!Object.keys(allData).length){ area.style.display='none'; return; }
+  area.style.display='block';
+
+  const kubunKeys=['イ','ロ','ハ','二','基本療養費','介護保険','算定外','要確認(20〜30分)','条件未達(要確認)'];
+  const kubunLabels={'イ':'イ','ロ':'ロ','ハ':'ハ','二':'二','基本療養費':'基療','介護保険':'介護','算定外':'算定外','要確認(20〜30分)':'要確認','条件未達(要確認)':'条件未達'};
+
+  // weekKeyでソートして表示
+  const entries=Object.entries(allData).sort(([ka],[kb])=>ka.localeCompare(kb));
+
+  // 週キー一覧（ユニーク）
+  const weekKeys=[...new Set(entries.map(([,d])=>d.weekKey))].sort();
+
+  let html=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+  <thead><tr style="background:#f1f5f9">
+    <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e2e8f0;white-space:nowrap">週</th>
+    <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e2e8f0;white-space:nowrap">拠点</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0">対象者数</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0">訪問件数</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0;color:#1e40af">算定売上</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0;color:#92400e;white-space:nowrap">24H加算</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0;color:#166534">加算合計</th>
+    <th style="padding:8px 10px;text-align:right;border-bottom:2px solid #e2e8f0;font-weight:700;color:#7c3aed">合計</th>
+    ${kubunKeys.map(k=>`<th style="padding:6px 5px;text-align:center;border-bottom:2px solid #e2e8f0;font-size:11px;white-space:nowrap">${kubunLabels[k]}</th>`).join('')}
+    <th style="padding:8px 8px;text-align:center;border-bottom:2px solid #e2e8f0;font-size:11px;color:#64748b">保存日時</th>
+    <th style="padding:8px 8px;text-align:center;border-bottom:2px solid #e2e8f0;font-size:11px" class="no-print">操作</th>
+  </tr></thead><tbody>`;
+
+  // 週ごとに集計行 → 小計行
+  weekKeys.forEach(wk=>{
+    const wkEntries=entries.filter(([,d])=>d.weekKey===wk);
+    const weekLabel=wkEntries[0]?.[1]?.weekLabel||wk;
+    let wTotPerson=0,wTotVisit=0,wTotCalc=0,wTotKasan=0,wTotJikan=0,wTotGrand=0;
+    const wTotKubun={};kubunKeys.forEach(k=>{wTotKubun[k]=0;});
+
+    wkEntries.forEach(([storeKey,d])=>{
+      const isCurrent=(d.branch===selectedKyoten);
+      const isLocked=d.locked;
+      wTotPerson+=d.personCount||0;
+      wTotVisit+=d.visitCount||0;
+      wTotCalc+=d.calcPrice||0;
+      wTotKasan+=d.kasanTotal||0;
+      wTotJikan+=d.jikanTaiou||0;
+      wTotGrand+=d.grandTotal||0;
+      kubunKeys.forEach(k=>{wTotKubun[k]+=(d.kubunCounts&&d.kubunCounts[k])||0;});
+      const savedAt=d.savedAt?new Date(d.savedAt).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      const jikanStr=d.jikanTaiou>0?`¥${d.jikanTaiou.toLocaleString()}`:'<span style="color:#cbd5e1">—</span>';
+      const excludeNote='';
+      html+=`<tr style="border-bottom:1px solid #f0f0f0;${isCurrent?'background:#f0f9ff;':''}${isLocked?'opacity:0.85;':''}" >
+        <td style="padding:6px 10px;font-size:11px;color:#64748b;white-space:nowrap">${weekLabel}</td>
+        <td style="padding:6px 10px;font-weight:700;white-space:nowrap">
+          ${isLocked?'🔒 ':''}${d.branch}
+          ${isCurrent?'<span style="font-size:10px;background:#0369a1;color:#fff;border-radius:3px;padding:1px 4px;margin-left:3px">現在</span>':''}
+          ${d.isHokatsu===false?'<span style="font-size:10px;color:#92400e;margin-left:3px">非包括</span>':''}
+        </td>
+        <td style="padding:6px 10px;text-align:right">${d.personCount||0}名</td>
+        <td style="padding:6px 10px;text-align:right">${d.visitCount||0}回</td>
+        <td style="padding:6px 10px;text-align:right;color:#1e40af">¥${(d.calcPrice||0).toLocaleString()}</td>
+        <td style="padding:6px 10px;text-align:right;color:#92400e">${jikanStr}</td>
+        <td style="padding:6px 10px;text-align:right;color:#166534">${(()=>{
+          const bd=d.kasanBreakdown;
+          if(!bd||!Object.keys(bd).length) return `¥${(d.kasanTotal||0).toLocaleString()}`;
+          const rows=Object.entries(bd).map(([name,{amount,count,note}])=>
+            `<div class="kasan-popup-row"><span>${name}${count>0?` (${count}名)`:''}</span><span>¥${amount.toLocaleString()}</span></div>${note?`<div style="font-size:10px;color:#94a3b8;padding:1px 0 3px 0;white-space:normal;word-break:break-word;overflow-wrap:break-word;width:100%;box-sizing:border-box;">${note}</div>`:''}`
+          ).join('');
+          return `<div class="kasan-popup-wrap" style="cursor:help" onmouseenter="positionKasanPopup(this)">
+            ¥${(d.kasanTotal||0).toLocaleString()} <span style="font-size:10px;color:#86efac">▼</span>
+            <div class="kasan-popup">${rows}<div class="kasan-popup-row"><span>合計</span><span>¥${(d.kasanTotal||0).toLocaleString()}</span></div></div>
+          </div>`;
+        })()}</td>
+        <td style="padding:6px 10px;text-align:right;font-weight:700;color:#7c3aed">¥${(d.grandTotal||0).toLocaleString()}</td>
+        ${kubunKeys.map(k=>`<td style="padding:6px 5px;text-align:center;font-size:12px">${(d.kubunCounts&&d.kubunCounts[k])||''}</td>`).join('')}
+        <td style="padding:6px 8px;text-align:center;font-size:11px;color:#94a3b8;white-space:nowrap">${savedAt}</td>
+        <td style="padding:6px 8px;text-align:center;white-space:nowrap" class="no-print">
+          <button onclick="toggleBranchLock('${storeKey}')" style="font-size:11px;padding:2px 7px;border:none;border-radius:4px;cursor:pointer;background:${isLocked?'#fef3c7;color:#92400e':'#e0f2fe;color:#0369a1'}">${isLocked?'🔓 解除':'🔒 固定'}</button>
+          <button onclick="deleteBranchWeek('${storeKey}')" style="font-size:11px;padding:2px 7px;border:none;border-radius:4px;cursor:pointer;background:#fee2e2;color:#991b1b;margin-left:3px">🗑</button>
+        </td>
+      </tr>${excludeNote}`;
+    });
+
+    // 週小計行
+    html+=`<tr style="background:#f0fdf4;font-weight:700;border-top:1px solid #86efac;border-bottom:2px solid #86efac">
+      <td style="padding:6px 10px;color:#166534;font-size:12px" colspan="2">📊 ${weekLabel} 小計</td>
+      <td style="padding:6px 10px;text-align:right;color:#166534">${wTotPerson}名</td>
+      <td style="padding:6px 10px;text-align:right;color:#166534">${wTotVisit}回</td>
+      <td style="padding:6px 10px;text-align:right;color:#1e40af">¥${wTotCalc.toLocaleString()}</td>
+      <td style="padding:6px 10px;text-align:right;color:#92400e">${wTotJikan>0?'¥'+wTotJikan.toLocaleString():'—'}</td>
+      <td style="padding:6px 10px;text-align:right;color:#166534">¥${wTotKasan.toLocaleString()}</td>
+      <td style="padding:6px 10px;text-align:right;color:#7c3aed;font-size:14px">¥${wTotGrand.toLocaleString()}</td>
+      ${kubunKeys.map(k=>`<td style="padding:6px 5px;text-align:center;color:#166534">${wTotKubun[k]||''}</td>`).join('')}
+      <td></td><td class="no-print"></td>
+    </tr>`;
+  });
+
+  // 全体合計
+  const totals=entries.reduce((acc,[,d])=>{
+    acc.person+=d.personCount||0;
+    acc.visit+=d.visitCount||0;
+    acc.calc+=d.calcPrice||0;
+    acc.kasan+=d.kasanTotal||0;
+    acc.jikan+=d.jikanTaiou||0;
+    acc.grand+=d.grandTotal||0;
+    kubunKeys.forEach(k=>{acc.kubun[k]=(acc.kubun[k]||0)+((d.kubunCounts&&d.kubunCounts[k])||0);});
+    return acc;
+  },{person:0,visit:0,calc:0,kasan:0,jikan:0,grand:0,kubun:{}});
+
+  html+=`<tr style="background:#f8f4ff;font-weight:700;border-top:2px solid #c4b5fd">
+    <td style="padding:8px 10px;color:#7c3aed" colspan="2">🏢 全拠点・全週合計</td>
+    <td style="padding:8px 10px;text-align:right">${totals.person}名</td>
+    <td style="padding:8px 10px;text-align:right">${totals.visit}回</td>
+    <td style="padding:8px 10px;text-align:right;color:#1e40af">¥${totals.calc.toLocaleString()}</td>
+    <td style="padding:8px 10px;text-align:right;color:#92400e">${totals.jikan>0?'¥'+totals.jikan.toLocaleString():'—'}</td>
+    <td style="padding:8px 10px;text-align:right;color:#166534">¥${totals.kasan.toLocaleString()}</td>
+    <td style="padding:8px 10px;text-align:right;color:#7c3aed;font-size:15px">¥${totals.grand.toLocaleString()}</td>
+    ${kubunKeys.map(k=>`<td style="padding:8px 5px;text-align:center">${totals.kubun[k]||''}</td>`).join('')}
+    <td></td><td class="no-print"></td>
+  </tr>`;
+
+  html+=`</tbody></table></div>`;
+  cont.innerHTML=html;
+}
+
+function clearAllBranchData(){
+  if(!confirm('全拠点の保存済み算定データをクリアしますか？')) return;
+  localStorage.removeItem('allBranchResult');
+  renderAllBranchSummary();
+  document.getElementById('error-area').innerHTML='<div class="info-box">✓ 全拠点データをクリアしました。</div>';
+}
+function doLockWeek(){
+  if(!lastResults||!lastResults.length){alert('先に算定データを読み込んでください');return;}
+  const names=[...new Set(lastResults.map(r=>r.name))];
+  lockWeek(names, selectedKyoten);
+  saveKasan();
+  renderKasanPanel(lastResults);
+  document.getElementById('error-area').innerHTML='<div class="info-box">🔒 週次締めを実行しました（'+selectedKyoten+'）。締め済み加算は次週以降グレーアウトされます。</div>';
+}
+function resetWeekLock(){
+  if(!confirm('週次締めを解除しますか？（'+selectedKyoten+'）'))return;
+  if(!weekLock[selectedKyoten]) weekLock[selectedKyoten]={};
+  weekLock[selectedKyoten]={};
+  saveWeekLock();
+  renderKasanPanel(lastResults);
+  document.getElementById('error-area').innerHTML='<div class="info-box">🔓 週次締めを解除しました（'+selectedKyoten+'）。</div>';
+}
+// ===================== 加算管理ここまで =====================
+
+function renderDateTabs(records){
+  document.getElementById('date-tabs').innerHTML=
+    `<div class="date-tab active" onclick="switchDate('月間',this)">月間集計</div>`
+    +allDates.map(d=>`<div class="date-tab" onclick="switchDate('${d}',this)">${d.replace(/^\d{4}\//,'')}</div>`).join('');
+  renderDayContent('月間',records);
+}
+function switchDate(date,el){
+  document.querySelectorAll('.date-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderDayContent(date,lastResults);
+}
+function renderDayContent(date,allRecords){
+  const el=document.getElementById('day-content');
+  if(date==='月間'){el.innerHTML=renderMonthView(allRecords);restoreChangedChecks();}
+  else{el.innerHTML=renderDayView(date,allRecords.filter(r=>r.date===date));}
+}
+
+function renderDayView(date,dr){
+  // 非包括拠点の場合、表示用にイロハ二を基本療養費に変換
+  const hokatsuNow=document.getElementById('chk-hokatsu').checked;
+  const displayRecords=hokatsuNow?dr:dr.map(r=>{
+    if(r.kubun==='イ'||r.kubun==='ロ'||r.kubun==='ハ'||r.kubun==='二'){
+      return{...r,displayKubun:'基本療養費'};
+    }
+    return{...r,displayKubun:r.kubun};
+  });
+  
+  // 臨時反映後の合計時間・判定で集計
+  const totalMin=displayRecords.reduce((s,r)=>s+r.totalMin,0);
+  const avgMin=displayRecords.length>0?Math.round(totalMin/displayRecords.length):0;
+  const dayPrice=displayRecords.reduce((s,r)=>s+r.price,0);
+  const kubunCounts={};
+  KUBUN_ORDER.forEach(k=>{kubunCounts[k]=displayRecords.filter(r=>{
+    const dispKubun=r.displayKubun||r.kubun;
+    return dispKubun===k;
+  }).length;});
+
+  // 昼間（8-18時）・夜間（18-8時）別合計時間（通常+臨時）
+  let dayTimeMin=0, nightTimeMin=0, lateTimeMin=0;
+  if(window._allVisits){
+    const dayVisits=window._allVisits.filter(v=>v.date===date);
+    dayTimeMin=dayVisits.filter(v=>v.isDay).reduce((s,v)=>s+(v.em-v.sm),0);
+    nightTimeMin=dayVisits.filter(v=>!v.isDay).reduce((s,v)=>s+(v.em-v.sm),0);
+    // 遅番（18:00-20:00）に重なる時間を計算
+    const LATE_START=18*60, LATE_END=20*60;
+    dayVisits.forEach(v=>{
+      // 18:00-20:00と重なる部分を計算
+      const vStart=v.sm, vEnd=v.em>1440?v.em-1440:v.em; // 日またぎ補正
+      const overlapStart=Math.max(vStart,LATE_START);
+      const overlapEnd=Math.min(vEnd,LATE_END);
+      if(overlapEnd>overlapStart) lateTimeMin+=overlapEnd-overlapStart;
+    });
+  }
+  // 臨時分も時間帯別に加算
+  if(window.rinjiMap){
+    dr.forEach(r=>{
+      const rj=window.rinjiMap[r.date+'|'+r.name];
+      if(!rj) return;
+      if(rj.hasDay) dayTimeMin+=rj.totalMin;
+      if(rj.hasNight) nightTimeMin+=(rj.hasDay?0:rj.totalMin);
+      if(rj.hasDay&&rj.hasNight){
+        nightTimeMin+=rj.totalMin-rj.totalMin;
+      }
+      // 臨時の遅番時間も計算
+      if(rj.visits){
+        const LATE_START=18*60, LATE_END=20*60;
+        rj.visits.forEach(v=>{
+          const sm=parseTime(v.startStr), em0=parseTime(v.endStr);
+          if(sm===null||em0===null) return;
+          let em=em0; if(em<=sm) em+=1440;
+          const overlapStart=Math.max(sm,LATE_START);
+          const overlapEnd=Math.min(em>1440?em-1440:em,LATE_END);
+          if(overlapEnd>overlapStart) lateTimeMin+=overlapEnd-overlapStart;
+        });
+      }
+    });
+    // 昼夜混在の臨時は再計算
+    dr.forEach(r=>{
+      const rj=window.rinjiMap[r.date+'|'+r.name];
+      if(!rj||!(rj.hasDay&&rj.hasNight)) return;
+      dayTimeMin+=Math.round(rj.totalMin/2);
+      nightTimeMin+=Math.round(rj.totalMin/2);
+    });
+  }
+  // 遅番チェックがONの場合のみ上限110分を適用・夜間から差し引き
+  const oshoban=document.getElementById('chk-oshoban').checked;
+  lateTimeMin=oshoban?Math.min(lateTimeMin,110):0;
+  const nightExLateMin=Math.max(nightTimeMin-lateTimeMin,0);
+
+  // 定期/臨時の昼間・夜間内訳を計算
+  const dayBaseMin=window._allVisits?window._allVisits.filter(v=>v.date===date&&v.isDay).reduce((s,v)=>s+(v.em-v.sm),0):0;
+  const nightBaseMin=window._allVisits?window._allVisits.filter(v=>v.date===date&&!v.isDay).reduce((s,v)=>s+(v.em-v.sm),0):0;
+  const dayRinjiMin=dayTimeMin-dayBaseMin;
+  const nightRinjiMin=nightTimeMin-nightBaseMin;
+
+  // 非包括拠点：4回以上の算定外オーバー集計
+  let overCount=0, overPersons=0;
+  if(!hokatsuNow){
+    dr.forEach(r=>{
+      // 有効訪問（20分以上）の回数でカウント
+      const validVisits=(window._allVisits||[]).filter(v=>v.date===r.date&&v.name===r.name&&(v.em-v.sm)>=20);
+      const rj=window.rinjiMap&&window.rinjiMap[r.date+'|'+r.name];
+      const rinjiValid=(rj&&rj.visits||[]).filter(v=>{
+        const sm=parseTime(v.startStr),em0=parseTime(v.endStr);
+        if(sm===null||em0===null)return false;
+        let em=em0;if(em<=sm)em+=1440;
+        return(em-sm)>=20;
+      });
+      const totalValid=validVisits.length+rinjiValid.length;
+      if(totalValid>=4){
+        overCount+=totalValid-3; // 3回が上限（複数回加算3回以上）
+        overPersons++;
+      }
+    });
+  }
+
+  let html=`<div class="day-summary-date" style="font-size:16px;font-weight:700;margin-bottom:10px;color:#1e3a8a;">${date} の日次サマリー</div>
+  <div class="day-summary">
+    <div class="day-metric"><div class="day-metric-label">提供人数</div><div class="day-metric-value">${dr.length}名</div></div>
+    <div class="day-metric"><div class="day-metric-label">合計時間(臨時含む)</div><div class="day-metric-value">${totalMin}分</div></div>
+    <div class="day-metric"><div class="day-metric-label">1人あたり平均</div><div class="day-metric-value">${avgMin}分</div></div>
+    <div class="day-metric"><div class="day-metric-label" style="color:#1e40af">昼間(8〜18時)</div><div class="day-metric-value" style="color:#1e40af">${dayTimeMin}分</div><div style="font-size:10px;color:#1e40af">定期${dayBaseMin}／臨時${dayRinjiMin}</div></div>
+    <div class="day-metric"><div class="day-metric-label" style="color:#6d28d9">${oshoban?'夜間(遅番除く)':'夜間(18〜8時)'}</div><div class="day-metric-value" style="color:#6d28d9">${nightExLateMin}分</div><div style="font-size:10px;color:#6d28d9">定期${Math.max(nightBaseMin-lateTimeMin,0)}／臨時${nightRinjiMin}</div></div>
+    ${oshoban?`<div class="day-metric"><div class="day-metric-label" style="color:#b45309">遅番(18〜20時)</div><div class="day-metric-value" style="color:#b45309">${lateTimeMin}分</div><div style="font-size:10px;color:#b45309">上限110分</div></div>`:''}
+    ${!hokatsuNow&&overCount>0?`<div class="day-metric" style="border:2px solid #fca5a5;background:#fff5f5"><div class="day-metric-label" style="color:#dc2626">算定外訪問(超過分)</div><div class="day-metric-value" style="color:#dc2626">${overCount}回</div><div style="font-size:10px;color:#dc2626">${overPersons}名が超過</div></div>`:''}
+    ${(()=>{const ch=dr.filter(r=>r.applied>0&&r.kubunBase&&r.kubun!==r.kubunBase);if(!ch.length)return'';const m={};ch.forEach(r=>{const k=r.kubunBase+'→'+r.kubun;m[k]=(m[k]||0)+1;});return`<div class="day-metric" style="border:2px solid #a78bfa;background:#f5f3ff"><div class="day-metric-label" style="color:#6d28d9">臨時で区分変更</div><div class="day-metric-value" style="color:#6d28d9">${ch.length}名</div><div style="font-size:10px;color:#6d28d9;line-height:1.6">${Object.entries(m).map(([k,v])=>k+': '+v+'名').join('<br>')}</div></div>`;})()}
+    <div class="day-metric"><div class="day-metric-label">合計算定金額</div><div class="day-metric-value" style="font-size:16px">¥${dayPrice.toLocaleString()}</div></div>
+    <div class="day-metric" style="background:#e0f2fe"><div class="day-metric-label" style="color:#0369a1">訪問合計回数</div><div class="day-metric-value" style="color:#0369a1">${dr.reduce((s,r)=>s+(r.count||0),0)}回</div></div>
+  </div><div class="kubun-counts">`;
+  KUBUN_ORDER.forEach(k=>{if(!kubunCounts[k])return;html+=`<div class="kubun-count-item">${badge(k)}<span style="font-weight:700;font-size:14px;margin-left:2px">${kubunCounts[k]}名</span></div>`;});
+  html+='</div>';
+
+  // 包括算定拠点：正看護師チェック警告（表示のみ）
+  if(hokatsuNow&&window._allVisits){
+    const staffsToday=window._allVisits.filter(v=>v.date===date);
+    const hasRN=staffsToday.some(v=>v.staffName&&getStaffType(v.staffName)==='看護師');
+    if(!hasRN&&staffsToday.length>0){
+      html+=`<div style="margin-top:14px;border:2px solid #dc2626;background:#fef2f2;border-radius:10px;padding:12px;color:#991b1b">
+        <div style="font-weight:700;font-size:12px;margin-bottom:6px">⚠️ 【警告】正看護師の訪問がありません</div>
+        <div style="font-size:11px;line-height:1.5">
+          包括算定拠点では1日1回以上の正看護師の介入が必要です。この日の訪問には正看護師がいません。基本療養費での請求に変更が必要な場合があります。
+        </div>
+      </div>`;
+    }
+  }
+
+  // グローバル変数に現在の日次データを保存（ダウンロード用）
+  window.currentDaySummary={date,records:displayRecords,totalMin,dayPrice,dayTimeMin,nightExLateMin,dayBaseMin,nightBaseMin,dayRinjiMin,nightRinjiMin};
+
+  // 日次サマリーのダウンロードボタン
+  html+=`<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn-sec" style="background:#10b981;color:#fff;border:none;cursor:pointer" onclick="downloadDaySummaryCSV()" title="日次サマリー（詳細テーブル）をCSVダウンロード">📥 CSV</button>
+    <button class="btn-print" onclick="printDaySummary()" title="日次サマリー（詳細テーブル）をPDF出力">📄 PDF</button>
+  </div>`;
+
+  // 定期＋臨時で算定率（区分）が変わる人の一覧
+  const changedPersons=dr.filter(r=>r.applied>0&&r.kubunBase&&r.kubun!==r.kubunBase);
+  if(changedPersons.length>0){
+    html+=`<div class="card-title" style="margin-top:14px;color:#6d28d9;display:flex;align-items:center;justify-content:space-between">
+      <span>⚡ 定期＋臨時で算定率が変わる人（${changedPersons.length}名）</span>
+      <button class="btn-print" onclick="printChangedList()">🖨️ この一覧を印刷</button>
+    </div>
+    <div class="table-wrap" id="changed-list-print" style="margin-bottom:14px"><table>
+      <thead><tr style="background:#f5f3ff">
+        <th style="text-align:left">名前</th>
+        <th>定期のみ区分</th><th>臨時込み区分</th>
+        <th>定期(分)</th><th>臨時追加(分)</th><th>合算後(分)</th>
+        <th>単価差額</th>
+      </tr></thead>
+      <tbody>${changedPersons.map(r=>{
+        const baseKubunPrice=PRICES[r.kubunBase]||0;
+        const newKubunPrice=PRICES[r.kubun]||0;
+        const diff=newKubunPrice-baseKubunPrice;
+        return `<tr>
+        <td style="text-align:left;white-space:nowrap;font-weight:600">${r.displayName||r.name}</td>
+        <td style="white-space:nowrap">${badge(r.kubunBase)}</td>
+        <td style="white-space:nowrap">${badge(r.kubun)}</td>
+        <td>${r.totalMinBase||0}</td>
+        <td style="color:#9d174d">+${r.rinjiMin||0}</td>
+        <td style="font-weight:700">${r.totalMin}</td>
+        <td style="color:${diff>=0?'#16a34a':'#dc2626'};font-weight:600">${diff>=0?'+':''}¥${diff.toLocaleString()}</td>
+      </tr>`;}).join('')}</tbody>
+    </table></div>`;
+  }
+
+  const uid=date.replace(/\//g,'');
+  html+=`<div class="view-tabs">
+    <div class="view-tab active" onclick="switchView('${uid}','detail',this)">明細</div>
+    <div class="view-tab" onclick="switchView('${uid}','kubun',this)">区分別集計</div>
+  </div>`;
+
+  html+=`<div id="view-${uid}-detail" class="table-wrap"><table>
+    <thead><tr>
+      <th>名前</th><th>回数</th><th>合計(分)</th>
+      <th style="background:#fff0f6;color:#9d174d">臨時</th>
+      <th>昼間</th><th>夜間</th><th>区分</th><th>単価</th>
+      <th style="text-align:left">定期訪問詳細（職種 職員名）</th>
+      <th style="text-align:left;background:#fff0f6;color:#9d174d">臨時訪問詳細（職種 職員名）</th>
+      <th style="text-align:left;min-width:220px">備考（判定理由・ルート調整提案）</th>
+    </tr></thead>
+    <tbody>${displayRecords.map(r=>{
+      const rj=window.rinjiMap&&window.rinjiMap[r.date+'|'+r.name];
+      let rinjiDetail='－';
+      if(r.rinjiVisitsAnnotated&&r.rinjiVisitsAnnotated.length>0){
+        rinjiDetail=r.rinjiVisitsAnnotated.map(v=>{
+          const staffType=v.staffName?getStaffType(v.staffName):'';
+          const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+          return v.overlap
+            ?`<span style="color:#ef4444;text-decoration:line-through">${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'}) ${staffDisplay} ⚠️重複</span>`
+            :`${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'}) ${staffDisplay}`;
+        }).join(' / ');
+      } else if(rj&&rj.visits&&rj.visits.length>0){
+        rinjiDetail=rj.visits.map(v=>{
+          const staffType=v.staffName?getStaffType(v.staffName):'';
+          const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+          return `${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'}) ${staffDisplay}`;
+        }).join(' / ');
+      } else if(rj){
+        rinjiDetail=`合計${rj.totalMin}分`;
+      }
+      // 定期訪問詳細に職種・職員名を追加表示
+      let detailWithStaff=r.detail;
+      if(window._allVisits){
+        const dayVisits=window._allVisits.filter(v=>v.date===r.date&&v.name===r.name);
+        if(dayVisits.length>0){
+          detailWithStaff=dayVisits.map(v=>{
+            const staffType=v.staffName?getStaffType(v.staffName):'';
+            const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+            return `${fmtM(v.sm)}〜${fmtM(v.em)}(${v.em-v.sm}分) ${staffDisplay}`;
+          }).join(' / ');
+        }
+      }
+      const displayKubun=r.displayKubun||r.kubun;
+      return `<tr>
+      <td style="text-align:left;white-space:nowrap">${r.displayName||r.name}</td>
+      <td>${r.count}${r.rinjiCount>0?`<span style="font-size:10px;color:#9d174d">(通常${r.countBase})</span>`:''}</td>
+      <td>${r.totalMin}${r.rinjiMin>0?`<span style="font-size:10px;color:#9d174d">(通常${r.totalMinBase})</span>`:''}</td>
+      <td style="background:#fff8fb;text-align:center;font-size:11px;color:#9d174d">${r.rinjiMin>0?`+${r.rinjiMin}分`:'－'}</td>
+      <td>${r.hasDay?'✓':'－'}</td><td>${r.hasNight?'✓':'－'}</td>
+      <td style="white-space:nowrap">${badge(displayKubun)}</td>
+      <td style="white-space:nowrap">${r.price>0?`<span>¥${r.price.toLocaleString()}</span>${r.isKaigo&&r.kaigoFee?`<br>${r.kaigoFee.map(f=>`<span class='kaigo-badge'>${f.kubunStr} ${f.units}単位×${f.gradePx}=¥${f.price.toLocaleString()}</span>`).join('')}`:r.kihonFee?`<br><span class='kihon-badge'>基${r.kihonFee.kihon}</span><span class='kanri-badge'>管${r.kihonFee.kanri}</span>${r.kihonFee.fukusuuFee>0?`<span class='kanri-badge' style='background:#dcfce7;color:#166534'>複${r.kihonFee.fukusuuFee}</span>`:''  }${r.kihonFee.yakanFee>0?`<span class='yakan-badge'>夜${r.kihonFee.yakanFee}</span>`:''  }${r.kihonFee.shinyaFee>0?`<span class='shinya-badge'>深${r.kihonFee.shinyaFee}</span>`:''}`:''}`:'－'}</td>
+      <td style="text-align:left;font-size:11px;color:#888;white-space:nowrap">${detailWithStaff}</td>
+      <td style="text-align:left;font-size:11px;color:#9d174d;background:#fff8fb;white-space:nowrap">${rinjiDetail}</td>
+      <td style="text-align:left;font-size:11px;line-height:1.6">${getKubunNote(r)}</td>
+    </tr>`;}).join('')}</tbody>
+  </table></div>`;
+
+  let kt_html=`<div id="view-${uid}-kubun" class="table-wrap" style="display:none"><table>
+    <thead><tr><th>区分</th><th>件数</th><th>単価</th><th>合計金額</th></tr></thead><tbody>`;
+  KUBUN_ORDER.forEach(k=>{
+    const gr=displayRecords.filter(r=>{
+      const dispKubun=r.displayKubun||r.kubun;
+      return dispKubun===k;
+    });if(!gr.length)return;
+    const kt=gr.reduce((s,r)=>s+r.price,0);
+    kt_html+=`<tr><td>${badge(k)}</td><td>${gr.length}</td><td>${PRICES[k]?'¥'+PRICES[k].toLocaleString():'－'}</td><td>${kt>0?'¥'+kt.toLocaleString():'－'}</td></tr>`;
+  });
+  kt_html+=`<tr class="grand-row"><td>合計</td><td>${displayRecords.length}</td><td></td><td>¥${dayPrice.toLocaleString()}</td></tr></tbody></table></div>`;
+  return html+kt_html;
+}
+
+
+function saveChangedCheck(id,checked,rowId){
+  const key='changedChecks_'+selectedKyoten;
+  const data=JSON.parse(localStorage.getItem(key)||'{}');
+  data[id]=checked;
+  localStorage.setItem(key,JSON.stringify(data));
+  const row=document.getElementById(rowId);
+  if(row) row.style.background=checked?'#f0fdf4':'';
+}
+function restoreChangedChecks(){
+  const key='changedChecks_'+selectedKyoten;
+  const data=JSON.parse(localStorage.getItem(key)||'{}');
+  Object.entries(data).forEach(([id,checked])=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.checked=checked;
+      const row=el.closest('tr');
+      if(row) row.style.background=checked?'#f0fdf4':'';
+    }
+  });
+}
+function clearChangedChecks(){
+  if(!confirm('チェックをすべてリセットしますか？')) return;
+  const key='changedChecks_'+selectedKyoten;
+  localStorage.removeItem(key);
+  document.querySelectorAll('#changed-list-print input[type=checkbox]').forEach(el=>{
+    el.checked=false;
+    const row=el.closest('tr');
+    if(row) row.style.background='';
+  });
+}
+
+// 日次サマリーをCSVダウンロード
+function downloadDaySummaryCSV(){
+  if(!window.currentDaySummary){alert('日次サマリーを表示してください。');return;}
+  const{date,records,totalMin,dayPrice,dayTimeMin,nightExLateMin,dayBaseMin,nightBaseMin,dayRinjiMin,nightRinjiMin}=window.currentDaySummary;
+  
+  let csv='日次サマリー\n';
+  csv+=`日付,${date}\n`;
+  csv+=`提供人数,${records.length}名\n`;
+  csv+=`合計時間(臨時含む),${totalMin}分\n`;
+  csv+=`1人あたり平均,${records.length>0?Math.round(totalMin/records.length):0}分\n`;
+  csv+=`昼間(8〜18時),${dayTimeMin}分,定期${dayBaseMin}分,臨時${dayRinjiMin}分\n`;
+  csv+=`夜間(18〜8時),${nightExLateMin}分,定期${Math.max(nightBaseMin-110,0)}分,臨時${nightRinjiMin}分\n`;
+  csv+=`訪問合計回数,${records.reduce((s,r)=>s+(r.count||0),0)}回\n`;
+  csv+=`合計算定金額,¥${dayPrice.toLocaleString()}\n\n`;
+  
+  csv+='詳細テーブル\n';
+  csv+='名前,回数,合計(分),臨時,昼間,夜間,区分,単価(円),定期訪問詳細,臨時訪問詳細,備考\n';
+  
+  records.forEach(r=>{
+    const displayKubun=r.displayKubun||r.kubun;
+    const rj=window.rinjiMap&&window.rinjiMap[r.date+'|'+r.name];
+    let rinjiDetail='－';
+    if(r.rinjiVisitsAnnotated&&r.rinjiVisitsAnnotated.length>0){
+      rinjiDetail=r.rinjiVisitsAnnotated.map(v=>{
+        const staffType=v.staffName?getStaffType(v.staffName):'';
+        const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+        return `${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'}) ${staffDisplay}`;
+      }).join(' / ');
+    } else if(rj&&rj.visits&&rj.visits.length>0){
+      rinjiDetail=rj.visits.map(v=>{
+        const staffType=v.staffName?getStaffType(v.staffName):'';
+        const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+        return `${v.startStr}〜${v.endStr}(${v.isDay?'昼間':'夜間'}) ${staffDisplay}`;
+      }).join(' / ');
+    } else if(rj){
+      rinjiDetail=`合計${rj.totalMin}分`;
+    }
+    
+    let detailWithStaff=r.detail;
+    if(window._allVisits){
+      const dayVisits=window._allVisits.filter(v=>v.date===r.date&&v.name===r.name);
+      if(dayVisits.length>0){
+        detailWithStaff=dayVisits.map(v=>{
+          const staffType=v.staffName?getStaffType(v.staffName):'';
+          const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+          return `${fmtM(v.sm)}〜${fmtM(v.em)}(${v.em-v.sm}分) ${staffDisplay}`;
+        }).join(' / ');
+      }
+    }
+    
+    const note=getKubunNote(r).replace(/<[^>]*>/g,'').replace(/"/g,'""');
+    csv+=`"${r.displayName||r.name}",${r.count},${r.totalMin},${r.rinjiMin>0?`+${r.rinjiMin}`:'-'},${r.hasDay?'✓':'-'},${r.hasNight?'✓':'-'},"${displayKubun}",${r.price},"${detailWithStaff}","${rinjiDetail}","${note}"`;
+    csv+='\n';
+  });
+  
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);
+  a.download=`日次サマリー_${date.replace(/\//g,'-')}.csv`;
+  a.click();
+}
+
+// 日次サマリーをPDF出力
+function printDaySummary(){
+  if(!window.currentDaySummary){alert('日次サマリーを表示してください。');return;}
+  const{date,records,totalMin,dayPrice,dayTimeMin,nightExLateMin}=window.currentDaySummary;
+  
+  let tableHtml=`<table style="width:100%;border-collapse:collapse;font-size:11px;">
+    <thead><tr style="background:#e0e7ff;color:#1e3a8a;font-weight:700;">
+      <th style="border:1px solid #ddd;padding:5px;text-align:left">名前</th>
+      <th style="border:1px solid #ddd;padding:5px;">回数</th>
+      <th style="border:1px solid #ddd;padding:5px;">合計(分)</th>
+      <th style="border:1px solid #ddd;padding:5px;">臨時</th>
+      <th style="border:1px solid #ddd;padding:5px;">昼間</th>
+      <th style="border:1px solid #ddd;padding:5px;">夜間</th>
+      <th style="border:1px solid #ddd;padding:5px;">区分</th>
+      <th style="border:1px solid #ddd;padding:5px;">単価</th>
+      <th style="border:1px solid #ddd;padding:5px;text-align:left">訪問詳細</th>
+    </tr></thead><tbody>`;
+  
+  records.forEach(r=>{
+    const displayKubun=r.displayKubun||r.kubun;
+    let detailWithStaff=r.detail;
+    if(window._allVisits){
+      const dayVisits=window._allVisits.filter(v=>v.date===r.date&&v.name===r.name);
+      if(dayVisits.length>0){
+        detailWithStaff=dayVisits.map(v=>{
+          const staffType=v.staffName?getStaffType(v.staffName):'';
+          const staffDisplay=v.staffName?(staffType?`${staffType} ${v.staffName}`:v.staffName):'';
+          return `${fmtM(v.sm)}〜${fmtM(v.em)}(${v.em-v.sm}分) ${staffDisplay}`;
+        }).join('<br>');
+      }
+    }
+    tableHtml+=`<tr>
+      <td style="border:1px solid #ddd;padding:5px;text-align:left">${r.displayName||r.name}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.count}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.totalMin}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.rinjiMin>0?'+'+r.rinjiMin:'-'}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.hasDay?'✓':'-'}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.hasNight?'✓':'-'}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">${displayKubun}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:center">¥${r.price.toLocaleString()}</td>
+      <td style="border:1px solid #ddd;padding:5px;text-align:left;font-size:10px;">${detailWithStaff}</td>
+    </tr>`;
+  });
+  tableHtml+='</tbody></table>';
+  
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+  <title>日次サマリー ${date}</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;margin:16px;color:#1a1a1a;font-size:12px;}
+    h1{font-size:14px;margin:0 0 8px;color:#1e3a8a;font-weight:700;}
+    .summary{margin-bottom:12px;border:1px solid #e0e7ff;border-radius:8px;padding:10px;background:#f0f9ff;}
+    .summary-item{display:inline-block;margin-right:20px;font-size:11px;}
+    .summary-label{color:#0369a1;font-weight:600;}
+    .summary-value{font-size:14px;font-weight:700;color:#1e3a8a;}
+    @page{size:A4 landscape;margin:10mm;}
+  </style></head><body>
+  <h1>日次サマリー ${date}</h1>
+  <div class="summary">
+    <div class="summary-item"><span class="summary-label">提供人数</span> <span class="summary-value">${records.length}名</span></div>
+    <div class="summary-item"><span class="summary-label">合計時間</span> <span class="summary-value">${totalMin}分</span></div>
+    <div class="summary-item"><span class="summary-label">昼間</span> <span class="summary-value">${dayTimeMin}分</span></div>
+    <div class="summary-item"><span class="summary-label">夜間</span> <span class="summary-value">${nightExLateMin}分</span></div>
+    <div class="summary-item"><span class="summary-label">訪問回数</span> <span class="summary-value">${records.reduce((s,r)=>s+(r.count||0),0)}回</span></div>
+    <div class="summary-item"><span class="summary-label">合計金額</span> <span class="summary-value">¥${dayPrice.toLocaleString()}</span></div>
+  </div>
+  ${tableHtml}
+  <p style="margin-top:16px;font-size:10px;color:#888;">出力日：${new Date().toLocaleDateString('ja-JP')} ${new Date().toLocaleTimeString('ja-JP')}</p>
+  </body></html>`);
+  w.document.close();
+  w.onload=()=>{w.focus();w.print();};
+}
+
+// 算定外・要確認リストをCSVダウンロード
+function downloadNeedsCheckCSV(){
+  if(!window.needsCheckPeopleData||window.needsCheckPeopleData.length===0){
+    alert('算定外・要確認リストが見つかりません。');
+    return;
+  }
+  
+  // 名前ごとにグループ化
+  const groupedByName={};
+  window.needsCheckPeopleData.forEach(r=>{
+    const key=r.displayName||r.name;
+    if(!groupedByName[key]) groupedByName[key]=[];
+    groupedByName[key].push(r);
+  });
+  
+  // 各グループを日付順でソート
+  Object.keys(groupedByName).forEach(name=>{
+    groupedByName[name].sort((a,b)=>a.date.localeCompare(b.date));
+  });
+  
+  // 名前でソートしたキーを取得
+  const sortedNames=Object.keys(groupedByName).sort();
+  
+  let csv='算定外・要確認の人 月間リスト\n';
+  csv+=`出力日,${new Date().toLocaleDateString('ja-JP')} ${new Date().toLocaleTimeString('ja-JP')}\n\n`;
+  csv+='日付,名前,定期訪問時間(分),臨時訪問時間(分),合計(分),訪問回数,判定結果,判定理由\n';
+  
+  sortedNames.forEach(name=>{
+    groupedByName[name].forEach(r=>{
+      const kubunDisplay=r.kubun;
+      let reason='';
+      if(r.kubun==='算定外'){
+        reason='20分未満：算定対象外';
+      } else if(r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)'){
+        reason='20～30分：要確認（正看護師確認など）';
+      }
+      
+      csv+=`"${r.date}","${name}",${r.totalMinBase||0},${r.rinjiMin||0},${r.totalMin},${r.count},"${kubunDisplay}","${reason}"\n`;
+    });
+  });
+  
+  csv+='\n集計\n';
+  csv+=`総件数,${window.needsCheckPeopleData.length}件\n`;
+  const santeigaiCount=window.needsCheckPeopleData.filter(r=>r.kubun==='算定外').length;
+  const yokakuninCount=window.needsCheckPeopleData.filter(r=>r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)').length;
+  csv+=`算定外,${santeigaiCount}件\n`;
+  csv+=`要確認,${yokakuninCount}件\n`;
+  
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);
+  a.download=`算定外・要確認リスト_${new Date().toLocaleDateString('ja-JP').replace(/\//g,'-')}.csv`;
+  a.click();
+}
+
+// 算定外・要確認リストをPDF出力
+function printNeedsCheckList(){
+  if(!window.needsCheckPeopleData||window.needsCheckPeopleData.length===0){
+    alert('算定外・要確認リストが見つかりません。');
+    return;
+  }
+  
+  // 名前ごとにグループ化
+  const groupedByName={};
+  window.needsCheckPeopleData.forEach(r=>{
+    const key=r.displayName||r.name;
+    if(!groupedByName[key]) groupedByName[key]=[];
+    groupedByName[key].push(r);
+  });
+  
+  // 各グループを日付順でソート
+  Object.keys(groupedByName).forEach(name=>{
+    groupedByName[name].sort((a,b)=>a.date.localeCompare(b.date));
+  });
+  
+  // 名前でソートしたキーを取得
+  const sortedNames=Object.keys(groupedByName).sort();
+  
+  let tableHtml='<table style="width:100%;border-collapse:collapse;font-size:11px;">';
+  tableHtml+='<thead><tr style="background:#fee2e2;color:#991b1b;font-weight:700;border:1px solid #ddd">';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px;text-align:left">日付</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px;text-align:left">名前</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px">定期(分)</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px">臨時(分)</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px">合計(分)</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px">回数</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px">判定結果</th>';
+  tableHtml+='<th style="border:1px solid #ddd;padding:5px;text-align:left">判定理由</th>';
+  tableHtml+='</tr></thead><tbody>';
+  
+  sortedNames.forEach(name=>{
+    groupedByName[name].forEach((r,idx)=>{
+      const kubunDisplay=r.kubun;
+      const kubunColor=r.kubun==='算定外'?'#dc2626':'#f59e0b';
+      const kubunBg=r.kubun==='算定外'?'#fee2e2':'#fef3c7';
+      
+      let reason='';
+      if(r.kubun==='算定外'){
+        reason='20分未満：算定対象外';
+      } else if(r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)'){
+        reason='20～30分：要確認（正看護師確認など）';
+      }
+      
+      // 毎行、名前を表示
+      const displayName=name;
+      
+      tableHtml+=`<tr style="border:1px solid #ddd">
+        <td style="border:1px solid #ddd;padding:5px;text-align:left;font-weight:600">${r.date}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:left;font-weight:600">${displayName}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.totalMinBase||0}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:center;color:#9d174d;font-weight:600">${r.rinjiMin||0}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:center;font-weight:700">${r.totalMin}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:center">${r.count}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:center;background:${kubunBg};color:${kubunColor};font-weight:700;border-radius:4px">${kubunDisplay}</td>
+        <td style="border:1px solid #ddd;padding:5px;text-align:left;font-size:10px">${reason}</td>
+      </tr>`;
+    });
+  });
+  
+  tableHtml+='</tbody></table>';
+  
+  const santeigaiCount=window.needsCheckPeopleData.filter(r=>r.kubun==='算定外').length;
+  const yokakuninCount=window.needsCheckPeopleData.filter(r=>r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)').length;
+  
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+  <title>算定外・要確認リスト</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;margin:16px;color:#1a1a1a;font-size:12px;}
+    h1{font-size:14px;margin:0 0 8px;color:#dc2626;font-weight:700;}
+    .summary{margin-bottom:12px;border:1px solid #fee2e2;border-radius:8px;padding:10px;background:#fef2f2;}
+    .summary-item{display:inline-block;margin-right:20px;font-size:11px;}
+    .summary-label{color:#991b1b;font-weight:600;}
+    .summary-value{font-size:14px;font-weight:700;color:#dc2626;}
+    @page{size:A4 landscape;margin:10mm;}
+  </style></head><body>
+  <h1>⚠️ 算定外・要確認の人 月間リスト</h1>
+  <div class="summary">
+    <div class="summary-item"><span class="summary-label">総件数</span> <span class="summary-value">${window.needsCheckPeopleData.length}件</span></div>
+    <div class="summary-item"><span class="summary-label">算定外</span> <span class="summary-value">${santeigaiCount}件</span></div>
+    <div class="summary-item"><span class="summary-label">要確認</span> <span class="summary-value">${yokakuninCount}件</span></div>
+  </div>
+  ${tableHtml}
+  <p style="margin-top:16px;font-size:10px;color:#888;">出力日：${new Date().toLocaleDateString('ja-JP')} ${new Date().toLocaleTimeString('ja-JP')}</p>
+  </body></html>`);
+  w.document.close();
+  w.onload=()=>{w.focus();w.print();};
+}
+
+function printChangedList(){
+  const wrap=document.getElementById('changed-list-print');
+  if(!wrap){alert('印刷対象の一覧が見つかりません。');return;}
+  const titleEl=wrap.previousElementSibling;
+  const titleText=titleEl?(titleEl.querySelector('span')?titleEl.querySelector('span').textContent:titleEl.textContent):'算定率が変わる人 一覧';
+  const tableHtml=wrap.querySelector('table').outerHTML;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+  <title>${titleText}</title>
+  <style>
+    body{font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN',Meiryo,sans-serif;margin:16px;color:#1a1a1a;}
+    h1{font-size:15px;margin-bottom:10px;color:#6d28d9;}
+    table{width:100%;border-collapse:collapse;font-size:12px;}
+    th,td{border:1px solid #ddd;padding:5px 7px;text-align:center;}
+    th{background:#f5f3ff;color:#6d28d9;}
+    tfoot tr{background:#f5f3ff;font-weight:700;border-top:2px solid #c4b5fd;}
+    input[type=checkbox]{display:none;}
+    th:first-child,td:first-child{display:none;}
+    .k-i { background: #D4EDDA; color: #1a5c30; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-ro { background: #CCE5FF; color: #0c407c; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-ha { background: #E2D9F3; color: #3a286a; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-ni { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 8px; font-weight: 600; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-ki { background: #E8F5E9; color: #2d6a31; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-wn { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-ng { background: #FFE0E0; color: #8b1a1a; border-radius: 4px; padding: 2px 8px; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .k-miss { background: #FFF3CD; color: #7a5800; border-radius: 4px; padding: 2px 6px; font-size: 11px; white-space: nowrap; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    @page{size:A4 landscape;margin:10mm;}
+  </style></head><body>
+  <h1>${titleText}（出力日：${new Date().toLocaleDateString('ja-JP')}）</h1>
+  ${tableHtml}
+  </body></html>`);
+  w.document.close();
+  w.onload=()=>{w.focus();w.print();};
+}
+
+function switchView(uid,view,el){
+  el.closest('.view-tabs').querySelectorAll('.view-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(`view-${uid}-detail`).style.display=view==='detail'?'block':'none';
+  document.getElementById(`view-${uid}-kubun`).style.display=view==='kubun'?'block':'none';
+}
+
+function renderMonthView(records){
+  const totalPrice=records.reduce((s,r)=>s+r.price,0);
+  const teikiMin=records.reduce((s,r)=>s+(r.totalMinBase||0),0);
+  const rinjiTotal=records.reduce((s,r)=>s+(r.rinjiMin||0),0);
+  const hokatsuNow=document.getElementById('chk-hokatsu').checked;
+
+  // 日・人ごとの超過回数を計算するヘルパー
+  function calcOver(dr, date){
+    let overCount=0, overPersons=0;
+    if(!hokatsuNow){
+      dr.forEach(r=>{
+        const validVisits=(window._allVisits||[]).filter(v=>v.date===date&&v.name===r.name&&(v.em-v.sm)>=20);
+        const rj=window.rinjiMap&&window.rinjiMap[date+'|'+r.name];
+        const rinjiValid=(rj&&rj.visits||[]).filter(v=>{
+          const sm=parseTime(v.startStr),em0=parseTime(v.endStr);
+          if(sm===null||em0===null)return false;
+          let em=em0;if(em<=sm)em+=1440;
+          return(em-sm)>=20;
+        });
+        const totalValid=validVisits.length+rinjiValid.length;
+        if(totalValid>=4){overCount+=totalValid-3;overPersons++;}
+      });
+    }
+    return{overCount,overPersons};
+  }
+
+  // 月間合計の超過集計
+  let monthOverCount=0, monthOverPersons=0;
+  // 日付ごとの「定期＋臨時で算定率(区分)が変わる人」一覧を集計
+  const allChangedPersons=records.filter(r=>r.applied>0&&r.kubunBase&&r.kubun!==r.kubunBase);
+
+  let html=`<div class="table-wrap" style="margin-bottom:16px"><table>
+    <thead><tr><th>日付</th><th>対象者数</th>${!hokatsuNow?'<th style="color:#0369a1">訪問人数</th><th style="color:#0369a1">訪問回数</th>':''}<th>合計(分)</th><th>平均(分)</th><th>イ</th><th>ロ</th><th>ハ</th><th>二</th><th>基療</th><th>要確認</th><th>算定外</th>${!hokatsuNow?'<th style="color:#dc2626">超過回数</th><th style="color:#dc2626">超過人数</th>':''}<th style="color:#6d28d9">算定率変化</th><th>合計金額</th></tr></thead><tbody>`;
+  allDates.forEach(d=>{
+    const dr=records.filter(r=>r.date===d);
+    const tm=dr.reduce((s,r)=>s+r.totalMin,0);
+    const avg=dr.length>0?Math.round(tm/dr.length):0;
+    const dp=dr.reduce((s,r)=>s+r.price,0);
+    const c=k=>dr.filter(r=>r.kubun===k).length||'';
+    const w=dr.filter(r=>['要確認(20〜30分)','条件未達(要確認)'].includes(r.kubun)).length||'';
+    const{overCount,overPersons}=calcOver(dr,d);
+    monthOverCount+=overCount; monthOverPersons+=overPersons;
+    const dayChanged=dr.filter(r=>r.applied>0&&r.kubunBase&&r.kubun!==r.kubunBase);
+    // 訪問回数集計（非包括のみ）
+    let dayVisits=0;
+    if(!hokatsuNow){
+      dr.forEach(r=>{
+        const vv=(window._allVisits||[]).filter(v=>v.date===r.date&&v.name===r.name&&(v.em-v.sm)>=20);
+        const rj=window.rinjiMap&&window.rinjiMap[r.date+'|'+r.name];
+        const rv=(rj&&rj.visits||[]).filter(v=>{const sm=parseTime(v.startStr),em0=parseTime(v.endStr);if(sm===null||em0===null)return false;let em=em0;if(em<=sm)em+=1440;return(em-sm)>=20;});
+        dayVisits+=vv.length+rv.length;
+      });
+    }
+    html+=`<tr><td style="white-space:nowrap;font-weight:600">${d}</td><td>${dr.length}</td>${!hokatsuNow?`<td style="color:#0369a1;font-weight:600">${dr.length}</td><td style="color:#0369a1">${dayVisits}</td>`:''}<td>${tm}</td><td>${avg}</td>
+      <td>${c('イ')}</td><td>${c('ロ')}</td><td>${c('ハ')}</td><td>${c('二')}</td>
+      <td>${c('基本療養費')}</td><td>${w}</td><td>${c('算定外')}</td>
+      ${!hokatsuNow?`<td style="color:#dc2626;font-weight:${overCount>0?'700':'400'}">${overCount||''}</td><td style="color:#dc2626;font-weight:${overPersons>0?'700':'400'}">${overPersons||''}</td>`:''}
+      <td style="color:#6d28d9;font-weight:${dayChanged.length>0?'700':'400'};white-space:nowrap">${dayChanged.length>0?`${dayChanged.length}名<div style="font-size:9px;color:#6d28d9;font-weight:400">${dayChanged.map(r=>r.displayName||r.name).join('、')}</div>`:''}</td>
+      <td style="white-space:nowrap">¥${dp.toLocaleString()}</td></tr>`;
+  });
+  const tm=records.reduce((s,r)=>s+r.totalMin,0);
+  const avg=records.length>0?Math.round(tm/records.length):0;
+  const c=k=>records.filter(r=>r.kubun===k).length||'';
+  const w=records.filter(r=>['要確認(20〜30分)','条件未達(要確認)'].includes(r.kubun)).length||'';
+  const monthTotalVisits=!hokatsuNow?allDates.reduce((s,d)=>{const dr2=records.filter(r=>r.date===d);let dv=0;dr2.forEach(r=>{const vv=(window._allVisits||[]).filter(v=>v.date===r.date&&v.name===r.name&&(v.em-v.sm)>=20);const rj=window.rinjiMap&&window.rinjiMap[r.date+'|'+r.name];const rv=(rj&&rj.visits||[]).filter(v=>{const sm=parseTime(v.startStr),em0=parseTime(v.endStr);if(sm===null||em0===null)return false;let em=em0;if(em<=sm)em+=1440;return(em-sm)>=20;});dv+=vv.length+rv.length;});return s+dv;},0):0;
+  html+=`<tr class="grand-row"><td>月間合計</td><td>${records.length}</td>${!hokatsuNow?`<td style="color:#0369a1">${records.length}</td><td style="color:#0369a1">${monthTotalVisits}</td>`:''}<td>${tm}</td><td>${avg}</td>
+    <td>${c('イ')}</td><td>${c('ロ')}</td><td>${c('ハ')}</td><td>${c('二')}</td>
+    <td>${c('基本療養費')}</td><td>${w}</td><td>${c('算定外')}</td>
+    ${!hokatsuNow?`<td style="color:#dc2626;font-weight:700">${monthOverCount||''}</td><td style="color:#dc2626;font-weight:700">${monthOverPersons||''}</td>`:''}
+    <td style="color:#6d28d9;font-weight:700">${allChangedPersons.length||''}</td>
+    <td style="white-space:nowrap">¥${totalPrice.toLocaleString()}</td></tr>
+  <tr style="background:#eff6ff"><td colspan="2" style="font-weight:600;color:#1e40af">定期訪問合計</td><td style="font-weight:700;color:#1e40af">${teikiMin}分</td><td colspan="${!hokatsuNow?14:10}"></td></tr>
+  <tr style="background:#fff0f6"><td colspan="2" style="font-weight:600;color:#9d174d">臨時訪問合計</td><td style="font-weight:700;color:#9d174d">${rinjiTotal}分</td><td colspan="${!hokatsuNow?14:10}"></td></tr>
+  </tbody></table></div>`;
+
+  // 算定外・要確認の人のリストを抽出・名前ごとにグループ化
+  const needsCheckPeople=records.filter(r=>r.kubun==='算定外'||r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)');
+  
+  if(needsCheckPeople.length>0){
+    // 名前ごとにグループ化
+    const groupedByName={};
+    needsCheckPeople.forEach(r=>{
+      const key=r.displayName||r.name;
+      if(!groupedByName[key]) groupedByName[key]=[];
+      groupedByName[key].push(r);
+    });
+    
+    // 各グループを日付順でソート
+    Object.keys(groupedByName).forEach(name=>{
+      groupedByName[name].sort((a,b)=>a.date.localeCompare(b.date));
+    });
+    
+    // 名前でソートしたキーを取得
+    const sortedNames=Object.keys(groupedByName).sort();
+    
+    html+=`<div class="card-title" style="margin-top:14px;color:#dc2626;display:flex;align-items:center;justify-content:space-between">
+      <span>⚠️ 算定外・要確認の人 月間一覧（${needsCheckPeople.length}件）</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn-sec" style="background:#dc2626;color:#fff;border:none;cursor:pointer" onclick="downloadNeedsCheckCSV()" title="算定外・要確認リストをCSVダウンロード">📥 CSV</button>
+        <button class="btn-print" onclick="printNeedsCheckList()" title="算定外・要確認リストをPDF出力">📄 PDF</button>
+      </div>
+    </div>
+    <div class="table-wrap" id="needs-check-list-table" style="margin-bottom:16px"><table>
+      <thead><tr style="background:#fee2e2;color:#991b1b;font-weight:700">
+        <th style="text-align:left">日付</th>
+        <th style="text-align:left">名前</th>
+        <th>定期訪問時間(分)</th>
+        <th>臨時訪問時間(分)</th>
+        <th>合計(分)</th>
+        <th>訪問回数</th>
+        <th>判定結果</th>
+        <th style="text-align:left">判定理由</th>
+      </tr></thead>
+      <tbody>${sortedNames.map(name=>{
+        return groupedByName[name].map((r,idx)=>{
+          const kubunDisplay=r.kubun;
+          const kubunColor=r.kubun==='算定外'?'#dc2626':'#f59e0b';
+          const kubunBg=r.kubun==='算定外'?'#fee2e2':'#fef3c7';
+          
+          // 判定理由を生成
+          let reason='';
+          if(r.kubun==='算定外'){
+            reason='20分未満：算定対象外';
+          } else if(r.kubun==='要確認(20〜30分)'||r.kubun==='条件未達(要確認)'){
+            reason='20～30分：要確認（正看護師確認など）';
+          }
+          
+          // 毎行、名前を表示
+          const displayName=name;
+          
+          return `<tr>
+            <td style="text-align:left;white-space:nowrap;font-weight:600">${r.date}</td>
+            <td style="text-align:left;white-space:nowrap;font-weight:600">${displayName}</td>
+            <td style="text-align:center;font-weight:600">${r.totalMinBase||0}</td>
+            <td style="text-align:center;color:#9d174d;font-weight:600">${r.rinjiMin||0}</td>
+            <td style="text-align:center;font-weight:700">${r.totalMin}</td>
+            <td style="text-align:center">${r.count}</td>
+            <td style="background:${kubunBg};color:${kubunColor};font-weight:700;text-align:center;border-radius:4px;padding:4px">${kubunDisplay}</td>
+            <td style="text-align:left;font-size:11px;color:#666">${reason}</td>
+          </tr>`;
+        }).join('');
+      }).join('')}</tbody>
+    </table></div>`;
+    
+    // グローバル変数に保存（ダウンロード用）
+    window.needsCheckPeopleData=needsCheckPeople;
+  }
+
+  if(allChangedPersons.length>0){
+    const totalRinjiMin=allChangedPersons.reduce((s,r)=>s+(r.rinjiMin||0),0);
+    const totalDiff=allChangedPersons.reduce((s,r)=>{
+      const bp=PRICES[r.kubunBase]||0, np=PRICES[r.kubun]||0;
+      return s+(np-bp);
+    },0);
+    html+=`<div class="card-title" style="margin-top:14px;color:#6d28d9;display:flex;align-items:center;justify-content:space-between">
+      <span>⚡ 定期＋臨時で算定率が変わる人 月間一覧（${allChangedPersons.length}件）</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn-print" onclick="clearChangedChecks()" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5">✕ チェックをリセット</button>
+        <button class="btn-print" onclick="printChangedList()">🖨️ この一覧を印刷</button>
+      </div>
+    </div>
+    <div class="table-wrap" id="changed-list-print" style="margin-bottom:16px"><table>
+      <thead><tr style="background:#f5f3ff">
+        <th style="width:32px">✓</th>
+        <th>日付</th><th style="text-align:left">名前</th>
+        <th>定期のみ区分</th><th>臨時込み区分</th>
+        <th>定期(分)</th>
+        <th>臨時訪問時間（内訳）</th>
+        <th>臨時追加(分)</th><th>合算後(分)</th>
+        <th>単価差額</th>
+      </tr></thead>
+      <tbody>${allChangedPersons.slice().sort((a,b)=>a.date.localeCompare(b.date)).map((r,idx)=>{
+        const baseKubunPrice=PRICES[r.kubunBase]||0;
+        const newKubunPrice=PRICES[r.kubun]||0;
+        const diff=newKubunPrice-baseKubunPrice;
+        const ckid=`chgchk_${r.date}_${(r.name||'').replace(/\s/g,'')}`;
+        // 重複除外した臨時訪問の開始〜終了を列挙
+        const rinjiDetail=(r.rinjiVisitsAnnotated&&r.rinjiVisitsAnnotated.length>0)
+          ? r.rinjiVisitsAnnotated.filter(v=>!v.overlap).map(v=>`${v.startStr}〜${v.endStr}`).join('<br>')
+          : (r.rinjiMin>0?`（${r.rinjiMin}分）`:'');
+        return `<tr id="chgrow_${idx}" style="background:var(--chgrow-bg,transparent)">
+          <td style="text-align:center"><input type="checkbox" id="${ckid}" onchange="saveChangedCheck('${ckid}',this.checked,'chgrow_${idx}')" style="width:16px;height:16px;cursor:pointer"></td>
+          <td style="white-space:nowrap">${r.date}</td>
+          <td style="text-align:left;white-space:nowrap;font-weight:600">${r.displayName||r.name}</td>
+          <td style="white-space:nowrap">${badge(r.kubunBase)}</td>
+          <td style="white-space:nowrap">${badge(r.kubun)}</td>
+          <td>${r.totalMinBase||0}</td>
+          <td style="font-size:11px;color:#7c3aed;line-height:1.7;white-space:nowrap">${rinjiDetail||'―'}</td>
+          <td style="color:#9d174d;font-weight:600">+${r.rinjiMin||0}</td>
+          <td style="font-weight:700">${r.totalMin}</td>
+          <td style="color:${diff>=0?'#16a34a':'#dc2626'};font-weight:600">${diff>=0?'+':''}¥${diff.toLocaleString()}</td>
+        </tr>`;}).join('')}
+      </tbody>
+      <tfoot><tr style="background:#f5f3ff;font-weight:700;border-top:2px solid #c4b5fd">
+        <td colspan="7" style="text-align:right;color:#6d28d9;padding-right:8px">月間合計</td>
+        <td style="color:#9d174d">+${totalRinjiMin}分</td>
+        <td></td>
+        <td style="color:#16a34a">+¥${totalDiff.toLocaleString()}</td>
+      </tr></tfoot>
+    </table></div>`;
+  }
+
+  let mHTML=`<div class="table-wrap"><table><thead><tr><th>区分</th><th>件数</th><th>単価</th><th>合計金額</th></tr></thead><tbody>`;
+  KUBUN_ORDER.forEach(k=>{
+    const gr=records.filter(r=>r.kubun===k);if(!gr.length)return;
+    const kt=gr.reduce((s,r)=>s+r.price,0);
+    mHTML+=`<tr><td>${badge(k)}</td><td>${gr.length}</td><td>${PRICES[k]?'¥'+PRICES[k].toLocaleString():'－'}</td><td>${kt>0?'¥'+kt.toLocaleString():'－'}</td></tr>`;
+  });
+  mHTML+=`<tr class="grand-row"><td>合計</td><td>${records.length}</td><td></td><td>¥${totalPrice.toLocaleString()}</td></tr></tbody></table></div>`;
+
+  // 週次サマリー：保存済みデータ＋現在データを統合表示
+  // 現在のrecordsから週別集計
+  function getWeekLabel(dateStr){
+    const d=new Date(dateStr);
+    const month=d.getMonth()+1;
+    const day=d.getDate();
+    const firstDay=new Date(d.getFullYear(),d.getMonth(),1).getDay();
+    const thu=4;
+    const firstWeekEnd=firstDay<=thu ? thu-firstDay+1 : 7-firstDay+1+thu;
+    let wk;
+    if(day<=firstWeekEnd) wk=1;
+    else wk=Math.ceil((day-firstWeekEnd)/7)+1;
+    let wStart,wEnd;
+    if(wk===1){wStart=1;wEnd=firstWeekEnd;}
+    else{wStart=firstWeekEnd+(wk-2)*7+1;wEnd=wStart+6;}
+    const lastDay=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    wEnd=Math.min(wEnd,lastDay);
+    const year=d.getFullYear();
+    const weekKey=`${year}${String(month).padStart(2,'0')}_w${wk}`;
+    return{wk,label:`第${wk}週 (${month}/${wStart}〜${month}/${wEnd})`,wStart,wEnd,month,weekKey};
+  }
+
+  // 現在のrecordsを週別集計
+  const currentWeekMap={};
+  records.forEach(r=>{
+    const{weekKey,label}=getWeekLabel(r.date);
+    if(!currentWeekMap[weekKey]) currentWeekMap[weekKey]={label,records:[]};
+    currentWeekMap[weekKey].records.push(r);
+  });
+
+  // 保存済み週次データを読み込み（現在の拠点・月）
+  const savedWeekData=JSON.parse(localStorage.getItem('weekSummary')||'{}');
+  const hokatsuNow2=document.getElementById('chk-hokatsu').checked;
+
+  // 全週キーを統合（保存済み＋現在）
+  const allWeekKeys=new Set([
+    ...Object.keys(savedWeekData).filter(k=>k.startsWith(selectedKyoten+'__')).map(k=>k.split('__')[1]),
+    ...Object.keys(currentWeekMap)
+  ]);
+  const sortedWeekKeys=[...allWeekKeys].sort();
+
+  let wHTML=`<div class="table-wrap" style="margin-top:16px">
+  <div style="font-weight:700;font-size:14px;color:#1e3a8a;margin-bottom:8px">📅 週次サマリー（${selectedKyoten}）</div>
+  <table><thead><tr>
+    <th>週</th><th>対象者数</th><th>訪問件数</th><th>算定売上</th>
+    <th>イ</th><th>ロ</th><th>ハ</th><th>二</th><th>基療</th><th>介護</th><th>算定外</th><th>要確認</th>
+    <th style="font-size:10px;color:#64748b">保存日時</th>
+  </tr></thead><tbody>`;
+
+  let totPerson=0,totVisit=0,totSales=0;
+  const totKubun={};
+
+  sortedWeekKeys.forEach(wk=>{
+    const storeKey=selectedKyoten+'__'+wk;
+    const saved=savedWeekData[storeKey];
+    const current=currentWeekMap[wk];
+
+    // 現在週のデータがあれば現在データ優先表示、なければ保存データを表示
+    if(current){
+      const wr=current.records;
+      const wTotal=wr.reduce((s,r)=>s+r.price,0);
+      const wVisit=wr.reduce((s,r)=>s+(r.count||0),0);
+      const wc=k=>wr.filter(r=>r.kubun===k).length||'';
+      const ww=wr.filter(r=>['要確認(20〜30分)','条件未達(要確認)'].includes(r.kubun)).length||'';
+      const isSaved=!!saved;
+      totPerson+=wr.length; totVisit+=wVisit; totSales+=wTotal;
+      ['イ','ロ','ハ','二','基本療養費','介護保険','算定外'].forEach(k=>{totKubun[k]=(totKubun[k]||0)+(wr.filter(r=>r.kubun===k).length);});
+      wHTML+=`<tr style="${isSaved?'':'background:#f0f9ff'}">
+        <td style="white-space:nowrap;font-weight:600;text-align:left">${current.label}${!isSaved?'<span style="font-size:10px;background:#0369a1;color:#fff;border-radius:3px;padding:1px 4px;margin-left:4px">未保存</span>':''}</td>
+        <td>${wr.length}</td><td>${wVisit}</td>
+        <td style="white-space:nowrap;font-weight:600;color:#1e40af">¥${wTotal.toLocaleString()}</td>
+        <td>${wc('イ')}</td><td>${wc('ロ')}</td><td>${wc('ハ')}</td><td>${wc('二')}</td>
+        <td>${wc('基本療養費')}</td><td>${wc('介護保険')}</td><td>${wc('算定外')}</td><td>${ww}</td>
+        <td style="font-size:10px;color:#94a3b8">${isSaved?new Date(saved.savedAt).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'─'}</td>
+      </tr>`;
+    } else if(saved){
+      // 保存済みのみ（現在のCSVにない過去週）
+      totPerson+=saved.personCount||0; totVisit+=saved.visitCount||0; totSales+=saved.calcPrice||0;
+      ['イ','ロ','ハ','二','基本療養費','介護保険','算定外'].forEach(k=>{totKubun[k]=(totKubun[k]||0)+(saved.kubunCounts&&saved.kubunCounts[k]||0);});
+      const ww2=(saved.kubunCounts&&((saved.kubunCounts['要確認(20〜30分)']||0)+(saved.kubunCounts['条件未達(要確認)']||0)))||'';
+      wHTML+=`<tr style="opacity:0.8">
+        <td style="white-space:nowrap;font-weight:600;text-align:left">${saved.weekLabel}<span style="font-size:10px;background:#e5e7eb;color:#374151;border-radius:3px;padding:1px 4px;margin-left:4px">保存済</span></td>
+        <td>${saved.personCount||0}</td><td>${saved.visitCount||0}</td>
+        <td style="white-space:nowrap;font-weight:600;color:#1e40af">¥${(saved.calcPrice||0).toLocaleString()}</td>
+        ${['イ','ロ','ハ','二','基本療養費','介護保険','算定外'].map(k=>`<td>${(saved.kubunCounts&&saved.kubunCounts[k])||''}</td>`).join('')}
+        <td>${ww2}</td>
+        <td style="font-size:10px;color:#94a3b8">${new Date(saved.savedAt).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</td>
+      </tr>`;
+    }
+  });
+
+  wHTML+=`<tr class="grand-row">
+    <td>合計</td><td>${totPerson}</td><td>${totVisit}</td>
+    <td style="white-space:nowrap">¥${totSales.toLocaleString()}</td>
+    <td>${totKubun['イ']||''}</td><td>${totKubun['ロ']||''}</td><td>${totKubun['ハ']||''}</td><td>${totKubun['二']||''}</td>
+    <td>${totKubun['基本療養費']||''}</td><td>${totKubun['介護保険']||''}</td><td>${totKubun['算定外']||''}</td><td></td><td></td>
+  </tr></tbody></table></div>`;
+
+  return html+mHTML+wHTML;
+}
+function downloadCSV(){
+  const headers=['日付','名前','訪問回数','合計時間(分)','昼間','夜間','区分','単価(円)','訪問詳細'];
+  const rows=lastResults.map(r=>[r.date,r.name,r.count,r.totalMin,r.hasDay?'✓':'',r.hasNight?'✓':'',r.kubun,r.price||'',`"${r.detail}"`]);
+  dl('\uFEFF'+[headers,...rows].map(r=>r.join(',')).join('\n'),'訪問看護算定結果.csv');
+}
+function downloadSimCSV(){
+  const headers=['日付','名前','通常合計(分)','現在の区分','臨時追加(分)','合算後(分)','再判定','変化'];
+  const rows=simTargets.map((r,i)=>{
+    const add=parseInt(document.getElementById(`sim-input-${i}`).value)||0;
+    const newTotal=r.totalMin+add;
+    const newKubun=classify(newTotal,r.count,r.hasDay,r.hasNight,r.dayAvg);
+    return[r.date,r.name,r.totalMin,r.kubun,add,newTotal,newKubun,newKubun!==r.kubun?`${r.kubun}→${newKubun}`:'変化なし'];
+  });
+  dl('\uFEFF'+[headers,...rows].map(r=>r.join(',')).join('\n'),'臨時対応シミュレーション結果.csv');
+}
+function dl(csv,name){
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=name;a.click();
+}
+</script>
+
+
+</body></html>
